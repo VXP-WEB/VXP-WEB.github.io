@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vxp — Reseñas y Crónicas</title>
 
-    <!-- 1. ICONO DE LA PESTAÑA (Usando vxp.ico de tu repositorio) -->
+    <!-- 1. ICONO DE LA PESTAÑA DEL NAVEGADOR -->
     <link rel="icon" type="image/x-icon" href="vxp.ico">
 
-    <!-- 2. ANALÍTICAS DE VISITAS (GoatCounter) -->
+    <!-- 2. MEDIDOR DE VISITAS (GoatCounter) -->
     <script data-goatcounter="https://vxp-web.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 
@@ -33,10 +33,20 @@
             line-height: 1.6;
         }
 
+        /* Estilo para ajustar tu imagen vxp.png en el encabezado */
+        .site-logo {
+            max-width: 150px; /* Puedes ajustar este ancho si quieres la imagen más grande o pequeña */
+            height: auto;
+            display: block;
+            margin: 0 auto 15px auto;
+            border-radius: 6px;
+        }
+
         header {
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 20px;
             margin-bottom: 40px;
+            text-align: center;
         }
 
         h1 {
@@ -51,10 +61,14 @@
             margin-top: 5px;
         }
 
+        nav {
+            margin-top: 15px;
+        }
+
         nav a {
             color: var(--accent-color);
             text-decoration: none;
-            margin-right: 15px;
+            margin: 0 10px;
             font-size: 0.95rem;
         }
 
@@ -68,6 +82,7 @@
             border-radius: 6px;
             padding: 20px;
             margin-bottom: 25px;
+            text-align: left;
         }
 
         .post-title {
@@ -103,6 +118,9 @@
 <body>
 
     <header>
+        <!-- IMAGEN DESPLEGADA DE TU REPOSOTORIO -->
+        <img src="vxp.png" alt="vxp banner" class="site-logo">
+
         <h1>vxp</h1>
         <p class="subtitle">Bitácora de reseñas, ficción oscura y otros rastros.</p>
         <nav>
