@@ -20,6 +20,7 @@
             --accent-color: #bb86fc;
             --muted-color: #a0a0a0;
             --border-color: #2d2d2d;
+            --spotify-green: #1db954;
         }
 
         body {
@@ -87,8 +88,30 @@
             padding-bottom: 8px;
         }
 
-        .spotify-container {
-            margin-top: 20px;
+        /* Tarjeta / Botón para Spotify */
+        .spotify-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #121212;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 14px 20px;
+            color: #ffffff;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .spotify-card:hover {
+            border-color: var(--spotify-green);
+            transform: translateY(-2px);
+        }
+
+        .spotify-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--spotify-green);
         }
 
         footer {
@@ -116,16 +139,18 @@
     <main>
         <section class="bio-card">
             <h1>Sobre VXP</h1>
-            <p>Hola, Soy Julio. VXP es mi bitácora personal donde comparto análisis de videojuegos, notas sobre libros, cine, música, ciencia y proyectos de escritura propia.</p>
+            <p>Hola, soy Julio. VXP es mi bitácora personal donde comparto análisis de videojuegos, notas sobre libros, cine, música, ciencia y proyectos de escritura propia.</p>
             
             <h2>Lo que escucho / Mis Playlists</h2>
-            <p>La música es parte fundamental de mi proceso creativo y de escritura. Aquí puedes escuchar la playlist que suelo tener de fondo:</p>
+            <p>La música es parte fundamental de mi proceso creativo y de escritura. Si te interesa escuchar mis listas de reproducción, puedes revisar mi perfil directamente en el siguiente enlace:</p>
             
-            <!-- REPRODUCTOR DE SPOTIFY -->
-            <!-- Para obtener tu propio reproductor: En Spotify ve a tu Playlist > Compartir > Insertar playlist > Copia el código iframe -->
-            <div class="spotify-container">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/user/12132522852?si=8d787bcda7b145d7" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
+            <!-- Botón directo a Spotify -->
+            <a href="https://open.spotify.com/user/12132522852?si=cb06e0ad25ca4d16" target="_blank" rel="noopener noreferrer" class="spotify-card">
+                <svg class="spotify-icon" viewBox="0 0 24 24">
+                    <path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm5.521 17.341c-.217.357-.681.469-1.038.252-2.839-1.735-6.413-2.128-10.622-1.168-.403.093-.807-.161-.901-.564-.093-.403.16-.807.564-.901 4.609-1.054 8.562-.607 11.745 1.341.357.217.47.681.252 1.04zm1.472-3.275c-.273.444-.853.585-1.297.312-3.249-1.996-8.204-2.578-12.049-1.411-.502.152-1.034-.13-1.187-.633-.153-.502.13-1.034.633-1.187 4.394-1.334 9.853-.687 13.588 1.609.444.273.585.853.313 1.297zm.127-3.411c-3.896-2.313-10.323-2.528-14.062-1.393-.604.183-1.242-.163-1.425-.767-.183-.604.163-1.242.767-1.425 4.29-1.302 11.385-1.048 15.86 1.608.543.322.723 1.026.401 1.569-.322.542-1.026.723-1.541.408z"/>
+                </svg>
+                <span>Ver perfil en Spotify →</span>
+            </a>
         </section>
     </main>
 
