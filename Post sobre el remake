@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zelda: Ocarina of Time Remake — VXP</title>
+    <link rel="icon" type="image/x-icon" href="vxp.ico">
+    
+    <!-- Contador de visitas -->
+    <script data-goatcounter="https://vxp-web.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --accent-color: #bb86fc;
+            --muted-color: #a0a0a0;
+            --border-color: #2d2d2d;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Garamond', Georgia, serif;
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        article h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .date {
+            color: var(--muted-color);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo adaptado para la imagen promocional */
+        .article-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        p {
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-link">← Volver al inicio</a>
+    </header>
+
+    <main>
+        <article>
+            <h1>Mi expectativa sobre el remake de Zelda: Ocarina of Time</h1>
+            <div class="date">21 de Septiembre, 2026</div>
+
+            <!-- Imagen subida a la raíz de GitHub -->
+            <img src="16x9_PDP_NSwitch2_TloZOcarinaOfTime_AnniLogo_image1600w.jpg" alt="Zelda Ocarina of Time Remake" class="article-image">
+
+            <p>Sin palabras. Aun no me creo que van a rehacer esta obra maestra, cuando escuche el rumor hace mucho me entro un miedo terrible, Ocarina of Time para mi es algo inexpliclable, me tomo casi 22 años terminarlo de cierta forma, iba y volvia cada cierto tiempo para jugarlo, cada vez avanzaba otro poco, todo esto en un emulador, cuando por fin lo termine no pude evitar llorar como un bebe, senti que deje ir algo que llevaba atado desde hace mucho, la historia del juego me pego mucho en esa ultima vuelta, estaba en un momento complicado en mi vida y casi como si fuera el destino lo termine. </p>
+        </article>
+    </main>
+
+</body>
+</html>
