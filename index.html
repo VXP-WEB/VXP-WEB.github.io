@@ -8,11 +8,14 @@
     <!-- 1. ICONO DE LA PESTAÑA -->
     <link rel="icon" type="image/x-icon" href="vxp.ico">
 
-    <!-- 2. MEDIDOR DE VISITAS (GoatCounter) -->
+    <!-- 2. FUENTE SPACE MONO -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- 3. MEDIDOR DE VISITAS (GoatCounter) -->
     <script data-goatcounter="https://vxp-web.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 
-    <!-- 3. ESTILOS CSS -->
+    <!-- 4. ESTILOS CSS -->
     <style>
         :root {
             --bg-color: #121212;
@@ -26,7 +29,7 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: 'Garamond', Georgia, serif;
+            font-family: 'Space Mono', monospace;
             max-width: 750px;
             margin: 0 auto;
             padding: 40px 20px;
@@ -52,6 +55,7 @@
             color: var(--muted-color);
             font-style: italic;
             margin-top: 10px;
+            font-size: 0.9rem;
         }
 
         nav {
@@ -62,7 +66,7 @@
             color: var(--accent-color);
             text-decoration: none;
             margin: 0 10px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         nav a:hover {
@@ -80,7 +84,7 @@
 
         .post-title {
             margin: 0 0 10px 0;
-            font-size: 1.4rem;
+            font-size: 1.28rem;
         }
 
         .post-title a {
@@ -93,7 +97,7 @@
         }
 
         .post-date {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--muted-color);
             margin-bottom: 10px;
         }
@@ -102,7 +106,7 @@
             margin-top: 60px;
             border-top: 1px solid var(--border-color);
             padding-top: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--muted-color);
             text-align: center;
         }
@@ -122,7 +126,7 @@
         </nav>
     </header>
 
-   <main>
+    <main>
         <!-- 1. NUEVA RESEÑA (Aparece primero por ser la más reciente) -->
         <article class="post-preview">
             <h2 class="post-title"><a href="post-zelda.html">Mi expectativa sobre el remake de Zelda: Ocarina of Time</a></h2>
