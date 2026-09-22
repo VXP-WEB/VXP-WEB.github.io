@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título de la Reseña — vxp</title>
+    <!-- Fuente de Google Fonts: JetBrains Mono para toques modernos/cyberpunk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #161616;
+            --text-color: #d1d1d1;
+            --accent-color: #a855f7;
+            --muted-color: #6e6e6e;
+            --border-color: #262626;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'JetBrains Mono', monospace;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .back-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        header {
+            margin: 30px 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin: 10px 0;
+        }
+
+        .meta {
+            font-size: 0.85rem;
+            color: var(--muted-color);
+        }
+
+        .post-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Bloques de citas o fragmentos */
+        blockquote {
+            border-left: 3px solid var(--accent-color);
+            margin: 20px 0;
+            padding-left: 15px;
+            color: #a1a1aa;
+            font-style: italic;
+        }
+
+        /* Banner de afiliados o proyectos al final */
+        .promo-box {
+            background: var(--card-bg);
+            border: 1px dashed var(--accent-color);
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            margin-top: 60px;
+            font-size: 0.8rem;
+            color: var(--muted-color);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-link">← Volver al inicio</a>
+
+    <header>
+        <h1>Título de la Película / Libro / Videojuego</h1>
+        <div class="meta">Publicado por Julio • 21 de Septiembre, 2026 • Categoría: Cine Oscuro</div>
+    </header>
+
+    <main class="post-content">
+        <p>Aquí empieza tu crítica o reseña. Escribe con soltura sobre los puntos fuertes, los tropes del género y tu opinión sin filtro.</p>
+        
+        <blockquote>"Cita o frase destacada de la obra que estés analizando."</blockquote>
+
+        <p>Segunda parte del texto donde das el veredicto final.</p>
+
+        <!-- CAJA DE ENLACES / AFILIADOS / PROYECTOS PROPIOS -->
+        <div class="promo-box">
+            <strong>¿Te gustó esta obra?</strong><br>
+            Consigue el libro/película en Amazon a través de <a href="#" style="color: var(--accent-color);">este enlace</a> o pásate a leer mis notas sobre <em>La Flecha en la Oscuridad</em>.
+        </div>
+    </main>
+
+    <footer>
+        vxp — Bitácora independiente
+    </footer>
+
+</body>
+</html>
