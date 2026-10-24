@@ -4,134 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre el proyecto — VXP</title>
-    <link rel="icon" type="image/x-icon" href="vxp.ico">
-    
-    <!-- FUENTE SPACE MONO -->
+    <meta name="description" content="Hola, soy Julio. VXP es mi bitácora personal de videojuegos, libros, cine, música, ciencia y escritura propia.">
+    <link rel="canonical" href="https://vxp-web.github.io/about.html">
+    <link rel="icon" type="image/x-icon" href="/vxp.ico">
+
+    <!-- Vista previa al compartir (Open Graph) -->
+    <meta property="og:site_name" content="VXP">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sobre el proyecto — VXP">
+    <meta property="og:description" content="Hola, soy Julio. VXP es mi bitácora personal de videojuegos, libros, cine, música, ciencia y escritura propia.">
+    <meta property="og:url" content="https://vxp-web.github.io/about.html">
+    <meta property="og:image" content="https://vxp-web.github.io/vxp.png">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
     <!-- Contador de visitas -->
     <script data-goatcounter="https://vxp-web.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
-    <style>
-        :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: #e0e0e0;
-            --accent-color: #bb86fc;
-            --muted-color: #a0a0a0;
-            --border-color: #2d2d2d;
-            --spotify-green: #1db954;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Space Mono', monospace;
-            max-width: 750px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            line-height: 1.6;
-        }
-
-        header {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .site-logo {
-            max-width: 170px;
-            height: auto;
-            display: block;
-            margin: 0 auto 5px auto;
-        }
-
-        .subtitle {
-            color: var(--muted-color);
-            font-style: italic;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-
-        nav {
-            margin-top: 15px;
-        }
-
-        nav a {
-            color: var(--accent-color);
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 0.9rem;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        .bio-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 25px;
-            margin-bottom: 30px;
-        }
-
-        h1, h2 {
-            color: #ffffff;
-        }
-
-        h2 {
-            font-size: 1.2rem;
-            margin-top: 25px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        /* Tarjeta / Botón para Spotify */
-        .spotify-card {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background-color: #121212;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 14px 20px;
-            color: #ffffff;
-            text-decoration: none;
-            margin-top: 15px;
-            transition: border-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .spotify-card:hover {
-            border-color: var(--spotify-green);
-            transform: translateY(-2px);
-        }
-
-        .spotify-icon {
-            width: 24px;
-            height: 24px;
-            fill: var(--spotify-green);
-        }
-
-        footer {
-            margin-top: 60px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-            font-size: 0.8rem;
-            color: var(--muted-color);
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
-
-    <header>
-        <img src="vxp.png" alt="vxp logo" class="site-logo">
-        <p class="subtitle">Bitácora de reseñas, mis historias de ficcion y otros rastros.</p>
+    <header class="site-header">
+        <a href="index.html"><img src="vxp.png" alt="vxp logo" class="site-logo"></a>
+        <p class="subtitle">Bitácora de reseñas, mis historias de ficción y otros rastros.</p>
         <nav>
             <a href="index.html">Inicio</a>
-            <a href="#">Reseñas</a>
+            <a href="resenas.html">Reseñas</a>
             <a href="about.html">Sobre el proyecto</a>
         </nav>
     </header>
@@ -140,15 +38,12 @@
         <section class="bio-card">
             <h1>Sobre VXP</h1>
             <p>Hola, soy Julio. VXP es mi bitácora personal donde comparto análisis de videojuegos, notas sobre libros, cine, música, ciencia y proyectos de escritura propia.</p>
-            
+
             <h2>Lo que escucho / Mis Playlists</h2>
             <p>La música es parte fundamental de mi proceso creativo y de escritura. Si te interesa escuchar mis listas de reproducción, puedes revisar mi perfil directamente en el siguiente enlace:</p>
-            
-            <!-- Botón directo a Spotify -->
+
             <a href="https://open.spotify.com/user/12132522852?si=cb06e0ad25ca4d16" target="_blank" rel="noopener noreferrer" class="spotify-card">
-                <svg class="spotify-icon" viewBox="0 0 24 24">
-                    <path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm5.521 17.341c-.217.357-.681.469-1.038.252-2.839-1.735-6.413-2.128-10.622-1.168-.403.093-.807-.161-.901-.564-.093-.403.16-.807.564-.901 4.609-1.054 8.562-.607 11.745 1.341.357.217.47.681.252 1.04zm1.472-3.275c-.273.444-.853.585-1.297.312-3.249-1.996-8.204-2.578-12.049-1.411-.502.152-1.034-.13-1.187-.633-.153-.502.13-1.034.633-1.187 4.394-1.334 9.853-.687 13.588 1.609.444.273.585.853.313 1.297zm.127-3.411c-3.896-2.313-10.323-2.528-14.062-1.393-.604.183-1.242-.163-1.425-.767-.183-.604.163-1.242.767-1.425 4.29-1.302 11.385-1.048 15.86 1.608.543.322.723 1.026.401 1.569-.322.542-1.026.723-1.541.408z"/>
-                </svg>
+                <svg class="spotify-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm5.521 17.341c-.217.357-.681.469-1.038.252-2.839-1.735-6.413-2.128-10.622-1.168-.403.093-.807-.161-.901-.564-.093-.403.16-.807.564-.901 4.609-1.054 8.562-.607 11.745 1.341.357.217.47.681.252 1.04zm1.472-3.275c-.273.444-.853.585-1.297.312-3.249-1.996-8.204-2.578-12.049-1.411-.502.152-1.034-.13-1.187-.633-.153-.502.13-1.034.633-1.187 4.394-1.334 9.853-.687 13.588 1.609.444.273.585.853.313 1.297zm.127-3.411c-3.896-2.313-10.323-2.528-14.062-1.393-.604.183-1.242-.163-1.425-.767-.183-.604.163-1.242.767-1.425 4.29-1.302 11.385-1.048 15.86 1.608.543.322.723 1.026.401 1.569-.322.542-1.026.723-1.541.408z"/></svg>
                 <span>Ver perfil en Spotify →</span>
             </a>
         </section>

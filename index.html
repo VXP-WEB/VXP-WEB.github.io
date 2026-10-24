@@ -3,225 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vxp — Reseñas y Crónicas</title>
+    <title>VXP — Reseñas y Crónicas</title>
+    <meta name="description" content="Bitácora de reseñas, mis historias de ficción y otros rastros.">
+    <link rel="canonical" href="https://vxp-web.github.io/index.html">
+    <link rel="icon" type="image/x-icon" href="/vxp.ico">
 
-    <!-- 1. ICONO DE LA PESTAÑA -->
-    <link rel="icon" type="image/x-icon" href="vxp.ico">
+    <!-- Vista previa al compartir (Open Graph) -->
+    <meta property="og:site_name" content="VXP">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="VXP — Reseñas y Crónicas">
+    <meta property="og:description" content="Bitácora de reseñas, mis historias de ficción y otros rastros.">
+    <meta property="og:url" content="https://vxp-web.github.io/index.html">
+    <meta property="og:image" content="https://vxp-web.github.io/vxp.png">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- 2. FUENTE SPACE MONO -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
-    <!-- 3. MEDIDOR DE VISITAS (GoatCounter) -->
-    <script data-goatcounter="https://vxp-web.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
-
-    <!-- 4. ESTILOS CSS -->
-    <style>
-        :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: #e0e0e0;
-            --accent-color: #bb86fc;
-            --muted-color: #a0a0a0;
-            --border-color: #2d2d2d;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Space Mono', monospace;
-            max-width: 750px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            line-height: 1.6;
-        }
-
-        /* Logo centrado sin fondo ni recuadros extra */
-        .site-logo {
-            max-width: 170px;
-            height: auto;
-            display: block;
-            margin: 0 auto 5px auto;
-        }
-
-        header {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .subtitle {
-            color: var(--muted-color);
-            font-style: italic;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-
-        nav {
-            margin-top: 15px;
-        }
-
-        nav a {
-            color: var(--accent-color);
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 0.9rem;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        .post-preview {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 20px;
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .post-title {
-            margin: 0 0 10px 0;
-            font-size: 1.28rem;
-        }
-
-        .post-title a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        .post-title a:hover {
-            color: var(--accent-color);
-        }
-
-        .post-date {
-            font-size: 0.8rem;
-            color: var(--muted-color);
-            margin-bottom: 10px;
-        }
-
-        /* ===== CAJA DE SUSCRIPCIÓN (SUBSTACK) ===== */
-        .newsletter-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 25px;
-            margin-top: 40px;
-        }
-
-        .newsletter-card h2 {
-            color: #ffffff;
-            font-size: 1.2rem;
-            margin: 0 0 10px 0;
-        }
-
-        .newsletter-card p {
-            color: var(--muted-color);
-            font-size: 0.9rem;
-            margin: 0 0 18px 0;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            min-width: 200px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 10px 12px;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.9rem;
-        }
-
-        .newsletter-input::placeholder {
-            color: var(--muted-color);
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .newsletter-button {
-            background-color: var(--accent-color);
-            color: #121212;
-            border: none;
-            border-radius: 6px;
-            padding: 10px 18px;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.9rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .newsletter-button:hover {
-            background-color: #d4b0ff;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            margin-top: 60px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-            font-size: 0.8rem;
-            color: var(--muted-color);
-            text-align: center;
-        }
-    </style>
+    <!-- Contador de visitas -->
+    <script data-goatcounter="https://vxp-web.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-
-    <header>
-        <!-- Logo principal -->
-        <img src="vxp.png" alt="vxp logo" class="site-logo">
-
+    <header class="site-header">
+        <a href="index.html"><img src="vxp.png" alt="vxp logo" class="site-logo"></a>
         <p class="subtitle">Bitácora de reseñas, mis historias de ficción y otros rastros.</p>
         <nav>
             <a href="index.html">Inicio</a>
-            <a href="#">Reseñas</a>
+            <a href="resenas.html">Reseñas</a>
             <a href="about.html">Sobre el proyecto</a>
         </nav>
     </header>
 
     <main>
-        <!-- 1. RESEÑA MÁS RECIENTE: CRYSTAL LAKE -->
         <article class="post-preview">
             <h2 class="post-title"><a href="post-crystal-lake.html">Reseña: Crystal Lake, temporada 1</a></h2>
-            <div class="post-date">24 de Octubre, 2026</div>
+            <div class="post-date">24 de Octubre, 2026<span class="tag">Series</span></div>
             <p>Una historia trágica, un gran slasher y una carta de amor a Viernes 13. Mi opinión sobre la serie precuela de Pamela y el joven Jason.</p>
         </article>
 
-        <!-- 2. ZELDA -->
         <article class="post-preview">
             <h2 class="post-title"><a href="post-zelda.html">Mi expectativa sobre el remake de Zelda: Ocarina of Time</a></h2>
-            <div class="post-date">21 de Septiembre, 2026</div>
+            <div class="post-date">21 de Septiembre, 2026<span class="tag">Videojuegos</span></div>
             <p>Un recorrido personal sobre lo que significó terminar esta obra tras 22 años y el impacto ante el anuncio de su remake.</p>
         </article>
 
-        <!-- 3. POST DE BIENVENIDA (Se conserva abajo para hacer scroll) -->
         <article class="post-preview">
-            <h2 class="post-title"><a href="#">Bienvenido a VXP</a></h2>
+            <h2 class="post-title">Bienvenido a VXP</h2>
             <div class="post-date">21 de Septiembre, 2026</div>
             <p>Espacio dedicado a reviews cinematográficas, literatura propia y notas sobre proyectos en desarrollo.</p>
         </article>
     </main>
 
-    <!-- CAJA DE SUSCRIPCIÓN NEWSLETTER AUTOMÁTICO (SUBSTACK) -->
     <section class="newsletter-card">
         <h2>Suscríbete a la Bitácora</h2>
         <p>Escribe tu correo para recibir una notificación automática cada vez que publique una nueva reseña o texto.</p>
-
         <form action="https://vxpweb.substack.com/api/v1/free" method="post" target="_blank" class="newsletter-form">
-            <input type="email" name="email" placeholder="tu@correo.com" required class="newsletter-input">
+            <input type="email" name="email" placeholder="tu@correo.com" required class="newsletter-input" aria-label="Correo electrónico">
             <button type="submit" class="newsletter-button">Suscribirme</button>
         </form>
     </section>
