@@ -58,6 +58,15 @@ p{margin-bottom:18px;font-size:1rem}
 .construction{background-color:var(--card-bg);border:1px dashed var(--border-color);border-radius:6px;padding:30px;text-align:center}
 .construction h1{font-size:1.5rem;margin-top:0}
 .construction p{color:var(--muted-color)}
+/* Contacto y redes */
+.social-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:15px}
+.social-card{display:inline-flex;align-items:center;gap:10px;background-color:#121212;border:1px solid var(--border-color);border-radius:6px;padding:12px 18px;color:#fff;text-decoration:none;font-size:.9rem;transition:border-color .2s ease,transform .2s ease}
+.social-card:hover{border-color:var(--brand);transform:translateY(-2px)}
+.social-card svg{width:22px;height:22px;color:var(--brand);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin-bottom:12px}
+footer a{color:var(--muted-color);text-decoration:none}
+footer a:hover{color:var(--accent-color);text-decoration:underline}
+.footer-copy{font-size:.8rem;margin:0}
 footer{margin-top:60px;border-top:1px solid var(--border-color);padding-top:20px;font-size:.8rem;color:var(--muted-color);text-align:center}
 .error-page{text-align:center;padding:40px 0}
 .error-page h1{font-size:4rem;margin:0}
