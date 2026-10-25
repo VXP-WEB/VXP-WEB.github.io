@@ -5,8 +5,8 @@ a{color:var(--accent-color)}
 header.site-header{border-bottom:1px solid var(--border-color);padding-bottom:20px;margin-bottom:40px;text-align:center}
 .site-logo{max-width:170px;height:auto;display:block;margin:0 auto 5px auto}
 .subtitle{color:var(--muted-color);font-style:italic;margin-top:10px;font-size:.9rem}
-nav{margin-top:15px}
-nav a{color:var(--accent-color);text-decoration:none;margin:0 10px;font-size:.9rem}
+nav{margin-top:15px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px}
+nav a{color:var(--accent-color);text-decoration:none;font-size:.9rem}
 nav a:hover{text-decoration:underline}
 h1,h2{color:#fff}
 /* Listados */
@@ -55,6 +55,9 @@ p{margin-bottom:18px;font-size:1rem}
 .support-card p{color:var(--muted-color);font-size:.9rem;margin:0 0 18px 0}
 .support-button{display:inline-block;background-color:transparent;color:var(--accent-color);border:1px solid var(--accent-color);border-radius:6px;padding:10px 20px;font-weight:bold;font-size:.9rem;text-decoration:none;transition:background-color .2s ease,color .2s ease,transform .2s ease}
 .support-button:hover{background-color:var(--accent-color);color:#121212;transform:translateY(-2px)}
+.construction{background-color:var(--card-bg);border:1px dashed var(--border-color);border-radius:6px;padding:30px;text-align:center}
+.construction h1{font-size:1.5rem;margin-top:0}
+.construction p{color:var(--muted-color)}
 footer{margin-top:60px;border-top:1px solid var(--border-color);padding-top:20px;font-size:.8rem;color:var(--muted-color);text-align:center}
 .error-page{text-align:center;padding:40px 0}
 .error-page h1{font-size:4rem;margin:0}
