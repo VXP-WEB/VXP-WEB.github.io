@@ -11,9 +11,13 @@
       '?_x_tr_sl=es&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp';
   }
   if (me && me.src) {
-    var s = document.createElement('script');
-    s.src = me.src.replace('lang.js', 'secretos.js');
-    s.defer = true;
-    document.body.appendChild(s);
+    var load = function (name, next) {
+      var s = document.createElement('script');
+      s.src = me.src.replace('lang.js', name); s.defer = true;
+      if (next) { s.onload = next; s.onerror = next; }
+      document.body.appendChild(s);
+    };
+    // Primero tus frases (si existen) y después los secretos
+    load('frases.js', function () { load('secretos.js'); });
   }
 })();

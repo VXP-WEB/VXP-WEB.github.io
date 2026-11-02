@@ -1,0 +1,47 @@
+/* Tus frases para cada secreto.
+   - Escribe tu texto entre las comillas de cada línea.
+   - Si lo dejas vacío (""), se usa el texto por defecto.
+   - No uses comillas dobles dentro del texto (usa « » o comillas simples).
+   - No cambies el nombre de la izquierda. */
+window.VXP_FRASES = {
+  "Pokémon": "",
+  "Halo": "",
+  "Resident Evil": "",
+  "Zelda": "",
+  "Halloween": "",
+  "Dragon Ball": "",
+  "Naruto": "",
+  "Rayados de Monterrey": "",
+  "Skyrim": "",
+  "Assassin's Creed": "",
+  "Minecraft": "",
+  "Dark Souls": "",
+  "Black Ops Zombies": "",
+  "Grand Theft Auto": "",
+  "Star Wars": "",
+  "El Señor de los Anillos": "",
+  "Game of Thrones": "",
+  "Harry Potter": "",
+  "Apex Legends": "",
+  "League of Legends": "",
+  "Rekkles": "",
+  "Fnatic": "",
+  "Highschool DxD": "",
+  "To Love Ru": "",
+  "Marvel": "",
+  "The Last of Us": "",
+  "Mortal Kombat": "",
+  "Dua Lipa": "",
+  "Hayley Williams": "",
+  "Eminem": "",
+  "Green Day": "",
+  "Blink-182": "",
+  "Fall Out Boy": "",
+  "Red Hot Chili Peppers": "",
+  "La Rosalía": "",
+  "Imagine Dragons": "",
+  "Canserbero": "",
+  "Linkin Park": "",
+  "Sputnik": "",
+  "Alec Benjamin": ""
+};
