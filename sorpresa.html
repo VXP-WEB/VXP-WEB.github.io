@@ -42,7 +42,7 @@
 
     <main id="world" class="world" hidden>
         <div class="item" style="top:46%;left:36%"><p><em>Mueve la luz…</em></p></div>
-        <div class="item" style="top:14%;left:8%"><p><strong>Gracias por llegar hasta aquí.</strong><br>Encontraste los 36 secretos. Cada uno era algo que me gusta, y ahora ya lo sabes.</p></div>
+        <div class="item" style="top:14%;left:8%"><p><strong>Gracias por llegar hasta aquí.</strong><br>Encontraste los 40 secretos. Cada uno era algo que me gusta, y ahora ya lo sabes.</p></div>
         <div class="item" style="top:34%;left:58%"><p><em>Fragmento sin título</em><br>Cada noche, la luz del muelle se enciende sola. Nadie sabe quién la cuida. Esta vez alguien dejó una linterna en la orilla, todavía tibia, apuntando al agua. Y el agua, por primera vez, estaba quieta.</p></div>
         <div class="item" style="top:70%;left:10%"><p>Lo que viene: mis historias, mis juegos y mi música. Si quieres enterarte primero, <a href="index.html" class="buy-link">suscríbete a la bitácora</a>.</p></div>
         <div class="item" style="top:82%;left:60%"><p>Esta sala no existe. Nunca estuviste aquí.<br>— Julio, VXP</p></div>
@@ -61,7 +61,7 @@
     <script>
     (function () {
         var ok = false;
-        try { ok = (JSON.parse(localStorage.getItem('vxp_secretos')) || []).length >= 36; } catch (e) {}
+        try { ok = (JSON.parse(localStorage.getItem('vxp_secretos2')) || []).length >= 40; } catch (e) {}
         var w = document.getElementById('world'), g = document.getElementById('gate'),
             d = document.getElementById('dark'), b = document.getElementById('luz-toggle');
         if (!ok) { d.hidden = true; b.hidden = true; g.hidden = false; return; }

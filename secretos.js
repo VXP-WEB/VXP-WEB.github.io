@@ -2,46 +2,52 @@
 (function () {
   var base = (document.currentScript && document.currentScript.src || '').replace(/[^\/]*$/, '');
   var D = [
-    "umbrella|Resident Evil|Una farmacéutica con un paraguas que no cubre de nada|Cuidado con los pasillos largos: siempre hay algo detrás de la siguiente puerta.",
-    "haddonfield|Halloween|Una noche de octubre en un pueblo de Illinois|Michael Myers nunca corre, y aun así siempre te alcanza.",
-    "pikachu|Pokémon|Amarillo, mejillas rojas y cola de rayo|Un Pokémon salvaje apareció y se llevó tu tarde entera.",
-    "kamehameha|Dragon Ball|Manos juntas, grito largo y una ola azul|Tu nivel de poder acaba de subir de forma sospechosa.",
-    "rasengan|Naruto|Una esfera de viento girando en la palma|Nunca te rindas, ni cuando el entrenamiento duele.",
-    "spartan|Halo|Armadura verde, casco dorado y un anillo gigante|Un anillo, una armadura y cero ganas de descansar.",
-    "triforce|Zelda|Tres triángulos dorados en la mano|Tres piezas de oro, un héroe con ocarina y años de nostalgia.",
-    "rayados|Rayados de Monterrey|Azul y blanco, con el Cerro de la Silla al fondo|Azul y blanco hasta el final: la fe del aficionado no se negocia.",
-    "dovahkiin|Skyrim|Un nacido bajo el grito de un dragón|Ibas a salvar el mundo, pero primero explorar una cueva más.",
-    "animus|Assassin's Creed|Una máquina que revive recuerdos ajenos|Un salto de fe, un montón de heno y cero miedo a las alturas.",
-    "creeper|Minecraft|Verde, silencioso y termina con un siseo|Ssssss… tranquilo, esta vez solo era un secreto.",
-    "praisethesun|Dark Souls|Un caballero con los brazos en alto ante el sol|Has muerto, pero tu paciencia sigue en pie. La hoguera está cerca.",
-    "juggernog|Black Ops Zombies|Una bebida roja que te hace aguantar más golpes|Una ronda más. Siempre dices que es la última.",
-    "grovestreet|GTA San Andreas|Una calle verde en Los Santos|Moraleja: perseguir un tren en bicicleta nunca sale bien a la primera.",
-    "jedi|Star Wars|Un sable de luz y mucho drama familiar|Una galaxia muy, muy lejana… pero este secreto estaba a un clic.",
-    "mellon|El Señor de los Anillos|La palabra élfica para «amigo», que abre una puerta|Una puerta antigua, una palabra olvidada y un anillo que nadie debería llevar.",
-    "dracarys|Game of Thrones|Una palabra en valyrio que invoca fuego|Piénsalo dos veces antes de aceptar una invitación a una boda en Poniente.",
-    "expelliarmus|Harry Potter|Un hechizo que desarma al rival|Si tu carta de Hogwarts no llegó, seguramente la lechuza se perdió.",
-    "wraith|Apex Legends|Una voz que susurra atajos desde otra dimensión|Te susurró un atajo… y era una trampa.",
-    "pentakill|League of Legends|Cinco bajas seguidas en la grieta|Cinco derribos, un sonido legendario y tu equipo pidiendo la repetición.",
-    "rekkles|Rekkles|Un tirador sueco de mirada tranquila|Jugar con calma también es una forma de hacer ruido.",
-    "radiant|Valorant|El rango más alto del juego|Plantar la spike y rezar: sigue siendo el plan favorito.",
-    "fnatic|Fnatic|Naranja y negro, con mucha historia en Europa|Naranja, negro y un equipo que nunca deja de ser tu equipo.",
-    "riasgremory|Highschool DxD|Una cabellera roja y un club de ocultismo|Hay secretos que es mejor guardar sin hacer demasiadas preguntas. xd",
-    "lala|To Love Ru|Una princesa alienígena con muy mala suerte|Tropezar justo en el momento equivocado: la especialidad de la casa. xd",
-    "excelsior|Marvel|La palabra con la que firmaba el creador de los héroes|El universo más largo del cine, y todavía te falta una serie por ver.",
-    "clicker|The Last of Us|Sonidos que chasquean en la oscuridad|Silencio, agáchate y que ese ladrillo no falle.",
-    "fatality|Mortal Kombat|La palabra con la que termina una pelea sin piedad|Una pelea sin piedad, un final sangriento y una victoria muy dudosa.",
-    "dualipa|Dua Lipa|Pop de pista de baile nacido en Londres|Muévete: este secreto merece una pista de baile.",
-    "paramore|Hayley Williams|La voz pelirroja de una banda de Tennessee|Una voz que ha acompañado más de una época de tu vida.",
-    "slimshady|Eminem|El alter ego rubio del rapero de Detroit|Rapidez, rimas y una historia que empezó en Detroit.",
-    "greenday|Green Day|Punk californiano con tres integrantes|Tres acordes, mucha energía y nostalgia de otra época.",
-    "blink182|Blink-182|Pop punk con tres cifras|Pop punk, bromas y esa vibra de verano que no se va.",
-    "falloutboy|Fall Out Boy|Emo pop con nombre de historieta, de Chicago|Un nombre de cómic y estribillos que se te quedan en la cabeza.",
-    "californication|Red Hot Chili Peppers|Un álbum con nombre de estado soñado|Bajo con groove, funk y un ritmo que se queda en las piernas.",
-    "motomami|La Rosalía|Un álbum con nombre de moto|Flamenco, reguetón y un cambio de piel con cada disco."
+    "Pokémon|Escribe el nombre de uno de mis Pokémon favoritos.|Tu equipo ya está listo: solo falta decidir quién lidera.|Toxtricity;Decidueye;Gardevoir;Minccino;Tyranitar;Blaziken;Milotic;Gastrodon;Conkeldurr;Ampharos",
+    "Halo|El Jefe Maestro, su armadura verde y un anillo.|Un héroe no necesita hablar. Cuando se haya ido, el mundo hablará por él.|Noble;Spartan;Cortana;John;117;Flood;XBOX",
+    "Resident Evil|Raccoon City, zombis y una corporación con paraguas.|Tenemos que enfrentar nuestros miedos antes de poder superarlos.|Leon;Chris;Rebecca;Claire;Ada;Jill;Ethan;Tyrant;Raccoon;T-Virus;Umbrella;Wesker",
+    "Zelda|El héroe de verde, la princesa y la Trifuerza.|Tres piezas de oro, un héroe con ocarina y años de nostalgia.|Ocarina;Link;Ganon;Ganondorf;Gerudo;Zora;Orni;Goron;Trifuerza;Coraje;Poder;Sabiduria;Leyenda;Hyrule;NINTENDO",
+    "Halloween|Una máscara blanca y una noche de octubre.|Michael Myers nunca corre, y aun así siempre te alcanza.|Laurie;Myers;Loomis;Mascara;Haddonfield;1978;Michael Myers",
+    "Dragon Ball|Saiyajins, esferas del dragón y un grito de energía.|Tu nivel de poder acaba de subir de forma sospechosa.|Goku;Gohan;Vegeta;Goten;Trunks;Kamehameha;Genkidama;Esferas",
+    "Naruto|Ninjas de Konoha y el sueño de ser Hokage.|Todo el esfuerzo es inútil, si no crees en ti mismo.|Sasuke;Sakura;Kakashi;Rasengan;Chidori;Sharingan;Jutsu;Hokage",
+    "Rayados de Monterrey|Mi equipo: azul y blanco, de Monterrey.|Azul y blanco hasta el final: la fe del aficionado no se negocia.|Chupete;Suazo;Funes Mori;Monty;Rayados;La Raya;Adiccion;Carne Asada",
+    "Skyrim|El Sangre de Dragón y su grito.|Ibas a salvar el mundo, pero primero explorar una cueva más.|Dovahkiin;Tamriel;FusRoDah;bollodulce;Ruiseñor",
+    "Assassin's Creed|Asesinos contra templarios, con saltos de fe.|Nada es verdad, todo está permitido.|Altair;Ezio;Edward;Arno;Connor;Credo;Animus;Templario;Kenway;Auditore",
+    "Minecraft|Bloques, picos y un creeper detrás de ti.|Ssssss… tranquilo, esta vez solo era un secreto.|WaterDrop;Creeper;Nether;Diamante;Redstone;Mina",
+    "Dark Souls|Hogueras, muertes y alabar al sol.|¿Por qué no ayudarnos unos a otros en este viaje solitario?|Estus;La flama;Hueco;Gwyn;Solaire;Lordran",
+    "Black Ops Zombies|Cuatro sobrevivientes y rondas infinitas.|El honor es el camino a través de los momentos más oscuros.|Takeo;Dempsey;Nikolai;Richtofen;Primis;Victis;Ultimis;Raygun;Baston Elemental;Arco Elemental;Origins",
+    "Grand Theft Auto|Mundo abierto de crimen: Los Santos, Liberty City…|Como dice en el libro: estamos bendecidos y maldecidos a la vez.|GTA;Niko;CJ;BigSmoke;Roman;Michael;Trevor;Franklin;GroveStreet;LasVenturas;LosSantos;LibertyCity;ViceCity",
+    "Star Wars|Jedi, Sith y una galaxia muy lejana.|Hazlo o no lo hagas, pero no lo intentes.|Anakin;Luke;Leia;Skywalker;Jedi;Sith;SabledeLuz;Palpatine;Vader;ObiWan;Kenobi;HelloThere",
+    "El Señor de los Anillos|Una comunidad, un anillo y la Tierra Media.|Una puerta antigua, una palabra olvidada y un anillo que nadie debería llevar.|Gandalf;Frodo;Sam;Merry;Pippin;Boromir;Legolas;Aragorn;Gimli;Anillo;Mellon;Bilbo;Gollum",
+    "Game of Thrones|Casas nobles, tronos y dragones en Poniente.|Piénsalo dos veces antes de aceptar una invitación a una boda en Poniente.|Westeros;Essos;JonSnow;Stark;Lannister;Baratheon;Targaryen;Arryn;Martell;Greyjoy;Velaryon;Hightower;Tyrell;Tully;Snow;Rhaenyra;Eddard;Daenerys;Tyrion",
+    "Harry Potter|Un mago con cicatriz y su escuela.|Si tu carta de Hogwarts no llegó, seguramente la lechuza se perdió.|Expelliarmus;Patronum;Leviosa;Potter;Wesley;Granger;Malfoy;Voldemort",
+    "Apex Legends|Leyendas y un battle royale con armas pesadas.|No confíes en las voces, confía en lo que puedes hacer ahora.|R-99;R-301;Wingman;Peacekeeper;Kraber;Wraith;Wattson",
+    "League of Legends|Campeones y una grieta de cinco contra cinco.|Cinco derribos, un sonido legendario y tu equipo pidiendo la repetición.|Kai’sa;Neeko;Ashe;LeeSin;ADC;TOP;JG;MID;SUPP;Zeri;Draven;Kalista;Ezreal;Xayah;Sivir;Nilah;Yunara;Aphelios;Ziggs;Caitlyn;Lucian;Jinx;Varus;Kog’Maw;MissFortune;Corki;Smolder;Kennen;Vayne;Samira;Yasuo;LOL",
+    "Rekkles|El tirador sueco, leyenda de mi equipo favorito.|Jugar con calma también es una forma de hacer ruido.|Pentakill;MSI;Worlds;Sweden;Jhin;Tristana",
+    "Fnatic|Naranja y negro, equipo europeo de LoL.|Los Reyes sin corona de un trono olvidado.|Selfmade;Razork;Broxah;Soaz;Hylissang;Boaster;Humanoid;Xpeke;Mikyx;Werlyb;Caps;Wunder;Nemesis;Bwipo;Upset",
+    "Highschool DxD|Demonios, ángeles y un club escolar.|Hay secretos que es mejor guardar sin hacer demasiadas preguntas. xd|Rias;Gremory;Issei;Akeno;Demonio;Angel;AngelCaido;Asia;Xenovia;Irina;Koneko;Rossweisse;Gasper;RedDragon;WhiteDragon;Boost;Divide;DXD",
+    "To Love Ru|Comedia alienígena con una princesa y mala suerte.|Estoy luchando por entenderme a mí mismo en este momento.|Darkness;Lala;Momo;Nana;Rito;Yuki;Haruna;Yami",
+    "Marvel|Héroes, un martillo y un escudo.|Pero ¿qué es el duelo, sino el amor que perdura?|Stark;CapitanAmerica;IronMan;SpiderMan;Wolverine;Gambit;Hulk;Hawkeye;Excelsior;Maximoff;WinterSoldier;AntMan;Nightcrawler;DarkPhoenix;Cyclops;X-Men;FantasticFour;Avengers;Shield",
+    "The Last of Us|Un mundo infectado y un viaje entre dos.|Cuando estés perdido en la oscuridad, busca la luz.|Joel;Tommy;Ellie;Dina;Luciernaga;Jackson;Clicker;PLAYSTATION;Abby;Yara;Lev;Santaolalla;Maria;Jesse;Sarah;Miller",
+    "Mortal Kombat|Un torneo de pelea con fatalities.|Nacemos solos. Morimos solos.|NoobSaibot;Scorpion;Subzero;JohnnyCage;Kitana;Milena;Ermac;Tremor;Reptile;Smoke;Fatality;Mercy;Flawless;FinishHim;Skarlet;Jade;Rain;Sektor;Tanya;Frost;Brutality;LinKuei;ShiraiRyu",
+    "Dua Lipa|Pop de pista de baile: escribe una canción o un álbum.|Muévete: este secreto merece una pista de baile.|FallingForever;RadicalOptimism;HappyForYou;Don’tStartNow;Fever;DulaPeep;Lipa;Dua;Duolingo;Physical;FutureNostalgia;ColdHeart",
+    "Hayley Williams|La voz pelirroja de Paramore: un álbum o una canción.|Una voz que ha acompañado más de una época de tu vida.|EgoDeath;Paramore;MiseryBusiness;MisseryBussines;Glum;Parachute;Simmer;CrystalClear;PetalsForArmor;Whim;Hard;Mirtazapine",
+    "Eminem|El rapero de Detroit: su alter ego, un álbum o una canción.|Rapidez, rimas y una historia que empezó en Detroit.|SlimShady;Renegade;Kamikaze;Venom;Mockingbird;Infinite;WithoutMe;Monster;RapGod;Stan;LoseYourself;8Mille",
+    "Green Day|Punk californiano: un álbum, una canción o un integrante.|Tres acordes, mucha energía y nostalgia de otra época.|Warning;21Guns;BasketCase;Dookie;Nimrod;SeptemberEnds;BrokenDreams;RevolutionRadio;AmericanIdiot;Insomnia;Kerplunk;FatherOfAll;Shenanigans;Tre;Mike;Billie;Armstrong;Saviors",
+    "Blink-182|Pop punk: un integrante, un álbum o una canción.|Pop punk, bromas y esa vibra de verano que no se va.|Tom;Mark;Travis;Matt;NINE;Buddha;CheshireCat;DudeRanch;EnemaOfTheState;TakeOffYourPantsAndJacket;TakeOfYourPantsAndJacket;Blink;182;California;ONEMORETIME;MissYou;SmallThings;MyAge",
+    "Fall Out Boy|Emo pop de Chicago: un álbum o una canción.|Un nombre de cómic y estribillos que se te quedan en la cabeza.|FallOutBoy;DanceDance;SaveRockNRoll;InfinityOnHigh;SoMuchForStardust;TnksFrThMmrs;MissMissingYou",
+    "Red Hot Chili Peppers|Funk rock californiano: un álbum, una canción o el bajista.|Bajo con groove, funk y un ritmo que se queda en las piernas.|ChilliPepper;RedHot;Flea;Can’tStop;DaniCalifornia;DarkNecessities;Cabron;Encore;Californication",
+    "La Rosalía|Flamenco pop: un álbum o una canción.|Flamenco, reguetón y un cambio de piel con cada disco.|Rosalia;Motomami;BarefootInThePark;LUX;LLYLM;Despechá",
+    "Imagine Dragons|Rock alternativo de Las Vegas: un álbum o una canción.|Tambores que retumban, coros que se cantan solos y estadios llenos.|Demons;NightVisions;InYourCorner;Roots;Amsterdam;BadLiar;Bones;Enemy;Loom;Evolve;Smoke+Mirrors",
+    "Canserbero|El rapero venezolano: un álbum o una canción.|Palabras que pesan, rimas que se quedan y una voz que sigue sonando.|Maquiavélico;StupidLoveStory;Can;EsÉpico;MundoDePiedra;AllWeNeedIsLove;Muerte;Vida;GiveMe5;DeLaVidaComoPelicula;TragediaComediaYFiccion;Bendecidos",
+    "Linkin Park|Nu metal: un álbum, una canción o un integrante.|Guitarras pesadas, un grito y una época que se recuerda completa.|HybridTheory;Meteora;Metheora;MinutesToMidnight;Reanimation;ThousandSuns;LivingThings;OneMoreLight;Recharged;TheHuntingParty;FromZero;InTheEnd;Numb;EmptinessMachine;OverEachOther;BleedItOut;Crawling;WaitingForTheEnd;GoodThingsGo;MrHan;Chester;Emily;Shinoda;Brad;Collin;Dave;Rob",
+    "Sputnik|La banda mexicana: una canción o un álbum.|Rock mexicano con mucho corazón y ganas de hacerlo a tu manera.|Joe;Trouble;Amarela;Delirio;TerriblesTerrores;Problemas;NoMeRevientes;GranBlanco;Monumentos;DiasDeTrueno;DanzaDespierta;NaturalezaMuerta",
+    "Alec Benjamin|Cantautor: una canción o un álbum.|Historias contadas en voz baja, de esas que se sienten propias.|Steve;NarratedForYou;TheseTwoWindows;12Notes;UnCommentary;WaterFountain;LetMeDownSlowly;FollowMe;JustLikeYou;TheWayYouFelt"
   ];
   function norm(s) { return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
-  var S = D.map(function (r) { var p = r.split('|'); return { c: p[0], n: p[1], h: p[2], r: p[3], k: norm(p[1]) }; });
-  var KEY = 'vxp_secretos', got = [];
+  var S = D.map(function (r) { var p = r.split('|'); return { id: norm(p[0]), n: p[0], h: p[1], r: p[2], ks: (p[3] || '').split(';').concat(p[0]).map(norm).filter(Boolean) }; });
+  var F = window.VXP_FRASES || {};
+  S.forEach(function (s) { if (typeof F[s.n] === 'string' && F[s.n].trim()) s.r = F[s.n]; });
+  var KEY = 'vxp_secretos2', got = [];
   try { got = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
   function save() { try { localStorage.setItem(KEY, JSON.stringify(got)); } catch (e) {} }
 
@@ -89,7 +95,7 @@
     var l = document.getElementById('secretos-list'); if (!l) return;
     l.innerHTML = '';
     S.forEach(function (s) {
-      var ok = got.indexOf(s.c) > -1, d = document.createElement('div');
+      var ok = got.indexOf(s.id) > -1, d = document.createElement('div');
       d.className = 'secret-item' + (ok ? ' open' : '');
       var h = document.createElement('strong'), p = document.createElement('p');
       h.textContent = ok ? '🗝 ' + s.n : '🔒 ???';
@@ -104,24 +110,34 @@
     if (sb) sb.textContent = '🔊 Sonido: ' + (soundOn() ? 'sí' : 'no');
   }
   function unlock(s) {
-    if (got.indexOf(s.c) > -1) { toast('Ya lo tenías', '«' + s.n + '» ya está en tu diario.'); return; }
-    got.push(s.c); save();
+    if (got.indexOf(s.id) > -1) { toast('Ya lo tenías', '«' + s.n + '» ya está en tu diario.'); return; }
+    got.push(s.id); save();
     toast('🗝 Secreto desbloqueado: ' + s.n, s.r); chime();
     if (got.length === S.length) setTimeout(function () { toast('🏆 ¡Los encontraste todos!', 'Entra al diario: hay una sala oculta esperándote.'); fanfare(); }, 5300);
     counter(); render();
   }
-  function match(v) { return S.find(function (x) { return v.endsWith(x.c) || v.endsWith(x.k); }); }
+  function pick(l) { return l.find(function (x) { return got.indexOf(x.id) < 0; }) || l[0]; }
+  function findExact(v) { var l = S.filter(function (x) { return x.ks.indexOf(v) > -1; }); return l.length ? pick(l) : null; }
+  function findEnd(b) {
+    var best = 0, l = [];
+    S.forEach(function (x) { x.ks.forEach(function (k) {
+      if (k.length >= 4 && b.endsWith(k)) {
+        if (k.length > best) { best = k.length; l = [x]; } else if (k.length === best && l.indexOf(x) < 0) l.push(x);
+      }
+    }); });
+    return l.length ? pick(l) : null;
+  }
 
   // Teclado: escribe el nombre en cualquier página
-  var buf = '';
+  var buf = '', timer;
   addEventListener('keydown', function (e) {
     var t = e.target;
     if ((t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) || e.ctrlKey || e.metaKey || e.altKey) return;
     var k = e.key && e.key.length === 1 ? e.key.toLowerCase() : '';
     if (!/[a-z0-9]/.test(k)) return;
-    buf = (buf + k).slice(-30);
-    var s = match(buf);
-    if (s) { buf = ''; unlock(s); }
+    buf = (buf + k).slice(-40);
+    clearTimeout(timer);
+    timer = setTimeout(function () { var s = findEnd(buf); if (s) { buf = ''; unlock(s); } }, 650);
   });
 
   // Puerta secreta: el símbolo © del pie de página
@@ -136,7 +152,7 @@
   var i = document.getElementById('secreto-input'), b = document.getElementById('secreto-btn');
   function go() {
     var v = norm(i.value); i.value = ''; if (!v) return;
-    var s = match(v);
+    var s = findExact(v);
     if (s) unlock(s); else { toast('Nada por aquí…', 'Ese código no abre nada. Sigue buscando.'); nope(); }
   }
   if (i && b) { b.addEventListener('click', go); i.addEventListener('keydown', function (e) { if (e.key === 'Enter') go(); }); }
