@@ -45,6 +45,28 @@
   try { got = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
   function save() { try { localStorage.setItem(KEY, JSON.stringify(got)); } catch (e) {} }
 
+  // Sonido sintetizado (sin archivos de audio)
+  var ac = null;
+  function soundOn() { try { return localStorage.getItem('vxp_sonido') !== '0'; } catch (e) { return true; } }
+  function tone(notes, type, step, vol) {
+    if (!soundOn()) return;
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      if (ac.state === 'suspended') ac.resume();
+      notes.forEach(function (f, i) {
+        var t = ac.currentTime + i * step, o = ac.createOscillator(), g = ac.createGain();
+        o.type = type; o.frequency.value = f;
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(vol, t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + step * 2.2);
+        o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + step * 2.4);
+      });
+    } catch (e) {}
+  }
+  function chime() { tone([659, 880, 1175], 'triangle', 0.09, 0.15); }
+  function fanfare() { tone([523, 659, 784, 1047, 1319, 1568], 'triangle', 0.13, 0.18); }
+  function nope() { tone([196, 147], 'sine', 0.12, 0.12); }
+
   function toast(t, m) {
     var d = document.createElement('div');
     d.className = 'toast'; d.setAttribute('role', 'status');
@@ -78,12 +100,14 @@
     if (c) c.textContent = got.length + ' / ' + S.length;
     var w = document.getElementById('secretos-win');
     if (w) w.hidden = got.length < S.length;
+    var sb = document.getElementById('secreto-sonido');
+    if (sb) sb.textContent = '🔊 Sonido: ' + (soundOn() ? 'sí' : 'no');
   }
   function unlock(s) {
     if (got.indexOf(s.c) > -1) { toast('Ya lo tenías', '«' + s.n + '» ya está en tu diario.'); return; }
     got.push(s.c); save();
-    toast('🗝 Secreto desbloqueado: ' + s.n, s.r);
-    if (got.length === S.length) setTimeout(function () { toast('🏆 ¡Los encontraste todos!', 'Hay una sorpresa final en camino.'); }, 5300);
+    toast('🗝 Secreto desbloqueado: ' + s.n, s.r); chime();
+    if (got.length === S.length) setTimeout(function () { toast('🏆 ¡Los encontraste todos!', 'Entra al diario: hay una sala oculta esperándote.'); fanfare(); }, 5300);
     counter(); render();
   }
   function match(v) { return S.find(function (x) { return v.endsWith(x.c) || v.endsWith(x.k); }); }
@@ -113,9 +137,19 @@
   function go() {
     var v = norm(i.value); i.value = ''; if (!v) return;
     var s = match(v);
-    if (s) unlock(s); else toast('Nada por aquí…', 'Ese código no abre nada. Sigue buscando.');
+    if (s) unlock(s); else { toast('Nada por aquí…', 'Ese código no abre nada. Sigue buscando.'); nope(); }
   }
   if (i && b) { b.addEventListener('click', go); i.addEventListener('keydown', function (e) { if (e.key === 'Enter') go(); }); }
+
+  var sb = document.getElementById('secreto-sonido'), rb = document.getElementById('secreto-reset');
+  if (sb) sb.addEventListener('click', function () {
+    try { localStorage.setItem('vxp_sonido', soundOn() ? '0' : '1'); } catch (e) {}
+    render(); chime();
+  });
+  if (rb) rb.addEventListener('click', function () {
+    if (!confirm('¿Reiniciar tu progreso? Se borrarán todos los secretos desbloqueados.')) return;
+    got = []; save(); counter(); render(); toast('Progreso reiniciado', 'Vuelve a empezar la búsqueda.');
+  });
 
   // Viernes 13: la página cambia a rojo
   var d = new Date();
