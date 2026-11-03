@@ -55,14 +55,17 @@
   });
   var F = window.VXP_FRASES || {};
   S.forEach(function (s) { if (typeof F[s.n] === 'string' && F[s.n].trim()) s.r = F[s.n]; });
-  var TK = S.reduce(function (a, s) { return a + s.gs.length; }, 0), RETOS = 3;
+  var TK = S.reduce(function (a, s) { return a + s.gs.length; }, 0);
   var KEY = 'vxp_secretos3', got = [];
   try { got = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
   function has(s, g) { return got.indexOf(s.id + ':' + g[0]) > -1; }
   function cnt(s) { return s.gs.filter(function (g) { return has(s, g); }).length; }
   function nOpen() { return S.filter(function (s) { return cnt(s) > 0; }).length; }
   function nKeys() { return S.reduce(function (a, s) { return a + cnt(s); }, 0); }
-  function retos() { try { return JSON.parse(localStorage.getItem('vxp_retos')) || []; } catch (e) { return []; } }
+  function rOk() { try { return localStorage.getItem('vxp_retos_ok') === '1'; } catch (e) { return false; } }
+  function rOn() { try { return localStorage.getItem('vxp_retos_on') === '1'; } catch (e) { return false; } }
+  function rN() { try { return (JSON.parse(localStorage.getItem('vxp_retos2')) || []).length; } catch (e) { return 0; } }
+  function rT() { try { return +localStorage.getItem('vxp_retos_total') || 10; } catch (e) { return 10; } }
   function save() {
     try {
       localStorage.setItem(KEY, JSON.stringify(got));
@@ -126,10 +129,10 @@
     }
     var q = document.getElementById('secretos-req');
     if (q) {
-      var r = retos().length, ok = nKeys() === TK && r >= RETOS;
+      var ok = nKeys() === TK && rOk();
       q.innerHTML = '<p>🗝 Secretos: <strong>' + nOpen() + ' / ' + S.length + '</strong><br>🔑 Llaves: <strong>' + nKeys() + ' / ' + TK +
-        '</strong><br>🎮 Retos: <strong>' + r + ' / ' + RETOS + '</strong> · <a href="' + base + 'retos.html" class="buy-link">Ir a los retos →</a></p>' +
-        (ok ? '<p>🏆 Lo lograste. <a href="' + base + 'sorpresa.html" class="buy-link">Entra a la sala oculta →</a></p>' : '<p>Para abrir la sala oculta necesitas todos los secretos, todas las llaves y los tres retos.</p>');
+        '</strong><br>🎮 Retos: <strong>' + (rOn() ? rN() + ' / ' + rT() + '</strong> · <a href="' + base + 'retos.html" class="buy-link">Ir a los retos →</a>' : '???</strong>') + '</p>' +
+        (ok ? '<p>🏆 Lo lograste. <a href="' + base + 'sorpresa.html" class="buy-link">Entra a la sala oculta →</a></p>' : '<p>Para abrir la sala oculta necesitas todos los secretos, todas las llaves y todos los retos.</p>');
     }
     var sb = document.getElementById('secreto-sonido');
     if (sb) sb.textContent = '🔊 Sonido: ' + (soundOn() ? 'sí' : 'no');
@@ -144,7 +147,7 @@
     else if (c === s.gs.length) toast('🔑 ¡' + s.n + ' completo!', 'Encontraste todas sus llaves (' + c + '/' + s.gs.length + ').');
     else toast('🔑 Nueva llave de ' + s.n, 'Llaves: ' + c + '/' + s.gs.length);
     chime();
-    if (nKeys() === TK) setTimeout(function () { toast('🏆 ¡Tienes todas las llaves!', retos().length >= RETOS ? 'La sala oculta está abierta.' : 'Solo te faltan los retos.'); fanfare(); }, 5300);
+    if (nKeys() === TK) setTimeout(function () { toast('🏆 ¡Tienes todas las llaves!', rOk() ? 'La sala oculta está abierta.' : 'Solo te faltan los retos.'); fanfare(); }, 5300);
     counter(); render();
   }
   function pick(l) { return l.find(function (m) { return !has(m.s, m.g); }) || l[0]; }
@@ -182,6 +185,14 @@
     f.addEventListener('click', function (e) { if (e.target.id === 'secret-door') location.href = base + 'secretos.html'; });
   }
   counter(); render();
+  if (nKeys() === TK && rOk()) {
+    document.documentElement.classList.add('completo');
+    var pg = location.pathname.split('/').pop(), mn = document.querySelector('main');
+    if (mn && (pg === '' || pg === 'index.html')) {
+      var bn = document.createElement('a'); bn.href = base + 'sorpresa.html'; bn.className = 'secret-banner'; bn.textContent = '🗝 La sala oculta está abierta';
+      mn.parentNode.insertBefore(bn, mn);
+    }
+  }
 
   // Diario: entrada de códigos (sirve también en celular)
   var i = document.getElementById('secreto-input'), b = document.getElementById('secreto-btn');
@@ -198,7 +209,7 @@
   });
   if (rb) rb.addEventListener('click', function () {
     if (!confirm('¿Reiniciar tu progreso? Se borrarán secretos, llaves y retos.')) return;
-    got = []; save(); try { localStorage.removeItem('vxp_retos'); } catch (e) {}
+    got = []; save(); try { localStorage.removeItem('vxp_retos2'); localStorage.removeItem('vxp_retos_ok'); } catch (e) {}
     counter(); render(); toast('Progreso reiniciado', 'Vuelve a empezar la búsqueda.');
   });
 

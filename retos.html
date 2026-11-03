@@ -41,32 +41,30 @@
     </header>
 
     <main>
-        <section class="bio-card">
-            <h1>Retos</h1>
-            <p>Supera los tres retos para abrir la sala oculta (además de encontrar todos los secretos y llaves). Superados: <strong id="retos-n">0</strong> / 3</p>
-        </section>
-        <section class="bio-card">
-            <h2 style="margin-top:0">1. Memoria del matraz <span class="ok" id="ok-memoria" hidden>✔</span></h2>
-            <p>Repite la secuencia de colores. Llega a 6 rondas.</p>
-            <div class="pads"><button class="pad" type="button" style="background:#bb86fc"></button><button class="pad" type="button" style="background:#4cc9f0"></button><button class="pad" type="button" style="background:#f7b267"></button><button class="pad" type="button" style="background:#7ee787"></button></div>
-            <p id="memo-msg">Pulsa Empezar.</p>
-            <button id="memo-start" class="support-button" type="button">Empezar</button>
-        </section>
-        <section class="bio-card">
-            <h2 style="margin-top:0">2. Reflejos en el lago <span class="ok" id="ok-reflejos" hidden>✔</span></h2>
-            <p>Cuando la caja se ponga verde, púlsala en menos de medio segundo. Tres veces seguidas.</p>
-            <div id="ref-box" class="ref-box">Pulsa Empezar.</div>
-            <button id="ref-start" class="support-button" type="button">Empezar</button>
-        </section>
-        <section class="bio-card">
-            <h2 style="margin-top:0">3. Tecleo veloz <span class="ok" id="ok-tecleo" hidden>✔</span></h2>
-            <p>Escribe la frase exacta en 20 segundos (no se puede pegar).</p>
-            <p id="tec-frase" style="color:#fff"></p>
-            <input id="tec-in" class="newsletter-input" style="width:100%" disabled aria-label="Escribe la frase" autocomplete="off">
-            <p id="tec-msg" style="margin-top:10px"></p>
-            <button id="tec-start" class="support-button" type="button">Empezar</button>
-        </section>
-        <p><a href="secretos.html" class="buy-link">← Volver al diario</a></p>
+        <div id="r-no" class="bio-card" hidden><p>Aquí no hay nada que ver.</p><a href="index.html" class="buy-link">← Inicio</a></div>
+        <div id="r-yes" hidden>
+            <section class="bio-card">
+                <h1>Retos</h1>
+                <p id="r-prog"></p>
+                <button id="intro-ver" class="support-button" type="button">Ver la introducción</button>
+            </section>
+            <div id="r-hub" class="retos-grid"></div>
+            <section class="bio-card" id="r-area" style="margin-top:20px" hidden>
+                <h2 id="r-title" style="margin-top:0"></h2>
+                <div id="r-game"></div>
+            </section>
+            <p style="margin-top:20px"><a href="secretos.html" class="buy-link">← Diario de secretos</a></p>
+        </div>
+        <div id="intro" class="overlay" hidden>
+            <div class="bio-card" style="max-width:520px;margin:0">
+                <h2 style="margin-top:0">Lo encontraste</h2>
+                <p>Esto son los retos: pruebas de reflejos, memoria, precisión y conocimiento. Habrá diez.</p>
+                <p>Pero la sala oculta pide tres cosas a la vez:</p>
+                <p>🎮 superar todos los retos<br>🗝 abrir los 40 secretos escondidos por la página<br>🔑 encontrar todas las llaves de cada secreto</p>
+                <p>Los secretos empiezan en el símbolo © del pie de página. Escribe el nombre de cosas que me gustan.</p>
+                <button id="intro-ok" class="newsletter-button" type="button">Entendido</button>
+            </div>
+        </div>
     </main>
 
 
@@ -85,44 +83,6 @@
     </footer>
 
     <script src="lang.js" defer></script>
-    <script>
-    (function () {
-        var P = []; try { P = JSON.parse(localStorage.getItem('vxp_retos')) || []; } catch (e) {}
-        function $(id) { return document.getElementById(id); }
-        function mark() { $('retos-n').textContent = P.length; ['memoria', 'reflejos', 'tecleo'].forEach(function (id) { $('ok-' + id).hidden = P.indexOf(id) < 0; }); }
-        function pass(id) { if (P.indexOf(id) < 0) { P.push(id); try { localStorage.setItem('vxp_retos', JSON.stringify(P)); } catch (e) {} } mark(); beep([523, 659, 784, 1047]); }
-        var ac; function beep(ns) { try { if (localStorage.getItem('vxp_sonido') === '0') return; ac = ac || new (window.AudioContext || window.webkitAudioContext)(); ns.forEach(function (f, i) { var t = ac.currentTime + i * 0.1, o = ac.createOscillator(), g = ac.createGain(); o.type = 'triangle'; o.frequency.value = f; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.15, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.3); o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + 0.35); }); } catch (e) {} }
-        mark();
-        // 1. Memoria
-        var pads = [].slice.call(document.querySelectorAll('.pad')), FQ = [330, 392, 494, 587], seq = [], step = 0, busy = true, mm = $('memo-msg');
-        function flash(i, cb) { pads[i].classList.add('on'); beep([FQ[i]]); setTimeout(function () { pads[i].classList.remove('on'); if (cb) cb(); }, 350); }
-        function play() { busy = true; var k = 0; mm.textContent = 'Mira la secuencia…'; (function n() { if (k >= seq.length) { busy = false; step = 0; mm.textContent = 'Tu turno (' + seq.length + ' / 6)'; return; } flash(seq[k++], function () { setTimeout(n, 150); }); })(); }
-        function nxt() { seq.push(Math.floor(Math.random() * 4)); setTimeout(play, 500); }
-        $('memo-start').onclick = function () { seq = []; nxt(); };
-        pads.forEach(function (p, i) { p.onclick = function () {
-            if (busy) return; flash(i);
-            if (i !== seq[step]) { busy = true; seq = []; mm.textContent = 'Fallaste. Pulsa Empezar.'; return; }
-            if (++step === seq.length) { busy = true; if (seq.length >= 6) { mm.textContent = '¡Superado!'; pass('memoria'); } else { mm.textContent = 'Bien…'; nxt(); } }
-        }; });
-        // 2. Reflejos
-        var rb = $('ref-box'), rt, rt0, rw = false, rg = false, rs = 0;
-        function rr() { rb.className = 'ref-box wait'; rb.textContent = 'Espera…'; rw = true; rt = setTimeout(function () { rb.className = 'ref-box go'; rb.textContent = '¡YA!'; rt0 = performance.now(); rw = false; rg = true; }, 1000 + Math.random() * 3000); }
-        $('ref-start').onclick = function () { clearTimeout(rt); rg = false; rs = 0; rr(); };
-        rb.onclick = function () {
-            if (rw) { clearTimeout(rt); rw = false; rs = 0; rb.className = 'ref-box'; rb.textContent = 'Demasiado pronto. Pulsa Empezar.'; return; }
-            if (!rg) return; rg = false; var d = performance.now() - rt0;
-            if (d <= 500) { if (++rs >= 3) { rb.className = 'ref-box'; rb.textContent = '¡Superado!'; pass('reflejos'); } else { rb.className = 'ref-box'; rb.textContent = Math.round(d) + ' ms (' + rs + '/3)'; setTimeout(rr, 900); } }
-            else { rs = 0; rb.className = 'ref-box'; rb.textContent = Math.round(d) + ' ms: muy lento. Pulsa Empezar.'; }
-        };
-        // 3. Tecleo
-        var tf = 'El agua está quieta y nadie sabe quién enciende la luz del muelle.', ti = $('tec-in'), tm = $('tec-msg'), tt, t0;
-        $('tec-start').onclick = function () {
-            $('tec-frase').textContent = tf; ti.value = ''; ti.disabled = false; ti.focus(); t0 = Date.now(); clearInterval(tt);
-            tt = setInterval(function () { var s = 20 - Math.floor((Date.now() - t0) / 1000); tm.textContent = 'Tiempo: ' + s + ' s'; if (s <= 0) { clearInterval(tt); ti.disabled = true; tm.textContent = 'Se acabó el tiempo. Pulsa Empezar.'; } }, 250);
-        };
-        ti.addEventListener('paste', function (e) { e.preventDefault(); });
-        ti.addEventListener('input', function () { if (ti.value.trim() === tf) { clearInterval(tt); ti.disabled = true; tm.textContent = '¡Superado!'; pass('tecleo'); } });
-    })();
-    </script>
+    <script src="retos.js"></script>
 </body>
 </html>

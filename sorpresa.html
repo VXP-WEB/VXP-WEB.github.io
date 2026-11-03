@@ -58,14 +58,14 @@
 
     <section id="gate" class="gate" hidden>
         <h1>Sala cerrada</h1>
-        <p>Para entrar necesitas todos los secretos, todas sus llaves y los tres retos.</p>
+        <p>Para entrar necesitas todos los secretos, todas sus llaves y todos los retos.</p>
         <p><a href="secretos.html" class="buy-link">Ir al diario →</a> · <a href="retos.html" class="buy-link">Ir a los retos →</a></p>
     </section>
 
     <script>
     (function () {
         var ok = false;
-        try { ok = localStorage.getItem('vxp_keysok') === '1' && (JSON.parse(localStorage.getItem('vxp_retos')) || []).length >= 3; } catch (e) {}
+        try { ok = localStorage.getItem('vxp_keysok') === '1' && localStorage.getItem('vxp_retos_ok') === '1'; } catch (e) {}
         var w = document.getElementById('world'), g = document.getElementById('gate'),
             d = document.getElementById('dark'), b = document.getElementById('luz-toggle');
         if (!ok) { d.hidden = true; b.hidden = true; g.hidden = false; return; }
