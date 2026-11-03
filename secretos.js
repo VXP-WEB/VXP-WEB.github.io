@@ -30,26 +30,46 @@
     "The Last of Us|Un mundo infectado y un viaje entre dos.|Cuando estés perdido en la oscuridad, busca la luz.|Joel;Tommy;Ellie;Dina;Luciernaga;Jackson;Clicker;PLAYSTATION;Abby;Yara;Lev;Santaolalla;Maria;Jesse;Sarah;Miller",
     "Mortal Kombat|Un torneo de pelea con fatalities.|Nacemos solos. Morimos solos.|NoobSaibot;Scorpion;Subzero;JohnnyCage;Kitana;Milena;Ermac;Tremor;Reptile;Smoke;Fatality;Mercy;Flawless;FinishHim;Skarlet;Jade;Rain;Sektor;Tanya;Frost;Brutality;LinKuei;ShiraiRyu",
     "Dua Lipa|Pop de pista de baile: escribe una canción o un álbum.|Muévete: este secreto merece una pista de baile.|FallingForever;RadicalOptimism;HappyForYou;Don’tStartNow;Fever;DulaPeep;Lipa;Dua;Duolingo;Physical;FutureNostalgia;ColdHeart",
-    "Hayley Williams|La voz pelirroja de Paramore: un álbum o una canción.|Una voz que ha acompañado más de una época de tu vida.|EgoDeath;Paramore;MiseryBusiness;MisseryBussines;Glum;Parachute;Simmer;CrystalClear;PetalsForArmor;Whim;Hard;Mirtazapine",
+    "Hayley Williams|La voz pelirroja de Paramore: un álbum o una canción.|Una voz que ha acompañado más de una época de tu vida.|EgoDeath;Paramore;MisseryBussines=MiseryBusiness;Glum;Parachute;Simmer;CrystalClear;PetalsForArmor;Whim;Hard;Mirtazapine",
     "Eminem|El rapero de Detroit: su alter ego, un álbum o una canción.|Rapidez, rimas y una historia que empezó en Detroit.|SlimShady;Renegade;Kamikaze;Venom;Mockingbird;Infinite;WithoutMe;Monster;RapGod;Stan;LoseYourself;8Mille",
     "Green Day|Punk californiano: un álbum, una canción o un integrante.|Tres acordes, mucha energía y nostalgia de otra época.|Warning;21Guns;BasketCase;Dookie;Nimrod;SeptemberEnds;BrokenDreams;RevolutionRadio;AmericanIdiot;Insomnia;Kerplunk;FatherOfAll;Shenanigans;Tre;Mike;Billie;Armstrong;Saviors",
-    "Blink-182|Pop punk: un integrante, un álbum o una canción.|Pop punk, bromas y esa vibra de verano que no se va.|Tom;Mark;Travis;Matt;NINE;Buddha;CheshireCat;DudeRanch;EnemaOfTheState;TakeOffYourPantsAndJacket;TakeOfYourPantsAndJacket;Blink;182;California;ONEMORETIME;MissYou;SmallThings;MyAge",
+    "Blink-182|Pop punk: un integrante, un álbum o una canción.|Pop punk, bromas y esa vibra de verano que no se va.|Tom;Mark;Travis;Matt;NINE;Buddha;CheshireCat;DudeRanch;EnemaOfTheState;TakeOfYourPantsAndJacket=TakeOffYourPantsAndJacket;Blink;182;California;ONEMORETIME;MissYou;SmallThings;MyAge",
     "Fall Out Boy|Emo pop de Chicago: un álbum o una canción.|Un nombre de cómic y estribillos que se te quedan en la cabeza.|FallOutBoy;DanceDance;SaveRockNRoll;InfinityOnHigh;SoMuchForStardust;TnksFrThMmrs;MissMissingYou",
     "Red Hot Chili Peppers|Funk rock californiano: un álbum, una canción o el bajista.|Bajo con groove, funk y un ritmo que se queda en las piernas.|ChilliPepper;RedHot;Flea;Can’tStop;DaniCalifornia;DarkNecessities;Cabron;Encore;Californication",
-    "La Rosalía|Flamenco pop: un álbum o una canción.|Flamenco, reguetón y un cambio de piel con cada disco.|Rosalia;Motomami;BarefootInThePark;LUX;LLYLM;Despechá",
+    "La Rosalía|Flamenco pop: un álbum o una canción.|Flamenco, reguetón y un cambio de piel con cada disco.|Rosalia=LaRosalia;Motomami;BarefootInThePark;LUX;LLYLM;Despechá",
     "Imagine Dragons|Rock alternativo de Las Vegas: un álbum o una canción.|Tambores que retumban, coros que se cantan solos y estadios llenos.|Demons;NightVisions;InYourCorner;Roots;Amsterdam;BadLiar;Bones;Enemy;Loom;Evolve;Smoke+Mirrors",
     "Canserbero|El rapero venezolano: un álbum o una canción.|Palabras que pesan, rimas que se quedan y una voz que sigue sonando.|Maquiavélico;StupidLoveStory;Can;EsÉpico;MundoDePiedra;AllWeNeedIsLove;Muerte;Vida;GiveMe5;DeLaVidaComoPelicula;TragediaComediaYFiccion;Bendecidos",
-    "Linkin Park|Nu metal: un álbum, una canción o un integrante.|Guitarras pesadas, un grito y una época que se recuerda completa.|HybridTheory;Meteora;Metheora;MinutesToMidnight;Reanimation;ThousandSuns;LivingThings;OneMoreLight;Recharged;TheHuntingParty;FromZero;InTheEnd;Numb;EmptinessMachine;OverEachOther;BleedItOut;Crawling;WaitingForTheEnd;GoodThingsGo;MrHan;Chester;Emily;Shinoda;Brad;Collin;Dave;Rob",
+    "Linkin Park|Nu metal: un álbum, una canción o un integrante.|Guitarras pesadas, un grito y una época que se recuerda completa.|HybridTheory;Metheora=Meteora;MinutesToMidnight;Reanimation;ThousandSuns;LivingThings;OneMoreLight;Recharged;TheHuntingParty;FromZero;InTheEnd;Numb;EmptinessMachine;OverEachOther;BleedItOut;Crawling;WaitingForTheEnd;GoodThingsGo;MrHan;Chester;Emily;Shinoda;Brad;Collin;Dave;Rob",
     "Sputnik|La banda mexicana: una canción o un álbum.|Rock mexicano con mucho corazón y ganas de hacerlo a tu manera.|Joe;Trouble;Amarela;Delirio;TerriblesTerrores;Problemas;NoMeRevientes;GranBlanco;Monumentos;DiasDeTrueno;DanzaDespierta;NaturalezaMuerta",
     "Alec Benjamin|Cantautor: una canción o un álbum.|Historias contadas en voz baja, de esas que se sienten propias.|Steve;NarratedForYou;TheseTwoWindows;12Notes;UnCommentary;WaterFountain;LetMeDownSlowly;FollowMe;JustLikeYou;TheWayYouFelt"
   ];
   function norm(s) { return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
-  var S = D.map(function (r) { var p = r.split('|'); return { id: norm(p[0]), n: p[0], h: p[1], r: p[2], ks: (p[3] || '').split(';').concat(p[0]).map(norm).filter(Boolean) }; });
+  // Cada secreto tiene grupos de llaves; "a=b" son variantes de la misma llave
+  var S = D.map(function (r) {
+    var p = r.split('|'), gs = [];
+    (p[3] || '').split(';').concat(p[0]).forEach(function (k) {
+      var g = k.split('=').map(norm).filter(Boolean);
+      if (g.length && !gs.some(function (x) { return x.some(function (a) { return g.indexOf(a) > -1; }); })) gs.push(g);
+    });
+    return { id: norm(p[0]), n: p[0], h: p[1], r: p[2], gs: gs };
+  });
   var F = window.VXP_FRASES || {};
   S.forEach(function (s) { if (typeof F[s.n] === 'string' && F[s.n].trim()) s.r = F[s.n]; });
-  var KEY = 'vxp_secretos2', got = [];
+  var TK = S.reduce(function (a, s) { return a + s.gs.length; }, 0), RETOS = 3;
+  var KEY = 'vxp_secretos3', got = [];
   try { got = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(got)); } catch (e) {} }
+  function has(s, g) { return got.indexOf(s.id + ':' + g[0]) > -1; }
+  function cnt(s) { return s.gs.filter(function (g) { return has(s, g); }).length; }
+  function nOpen() { return S.filter(function (s) { return cnt(s) > 0; }).length; }
+  function nKeys() { return S.reduce(function (a, s) { return a + cnt(s); }, 0); }
+  function retos() { try { return JSON.parse(localStorage.getItem('vxp_retos')) || []; } catch (e) { return []; } }
+  function save() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(got));
+      localStorage.setItem('vxp_keysok', nKeys() === TK ? '1' : '0');
+      localStorage.setItem('vxp_stats', JSON.stringify({ s: nOpen(), k: nKeys(), t: TK }));
+    } catch (e) {}
+  }
 
   // Sonido sintetizado (sin archivos de audio)
   var ac = null;
@@ -89,46 +109,61 @@
       a = document.createElement('a'); a.id = 'secret-count'; a.href = base + 'secretos.html';
       f.appendChild(document.createTextNode(' · ')); f.appendChild(a);
     }
-    a.textContent = '🗝 ' + got.length + '/' + S.length;
+    a.textContent = '🗝 ' + nOpen() + '/' + S.length + ' · 🔑 ' + nKeys() + '/' + TK;
   }
   function render() {
-    var l = document.getElementById('secretos-list'); if (!l) return;
-    l.innerHTML = '';
-    S.forEach(function (s) {
-      var ok = got.indexOf(s.id) > -1, d = document.createElement('div');
-      d.className = 'secret-item' + (ok ? ' open' : '');
-      var h = document.createElement('strong'), p = document.createElement('p');
-      h.textContent = ok ? '🗝 ' + s.n : '🔒 ???';
-      p.textContent = ok ? s.r : 'Pista: ' + s.h;
-      d.append(h, p); l.appendChild(d);
-    });
-    var c = document.getElementById('secretos-count');
-    if (c) c.textContent = got.length + ' / ' + S.length;
-    var w = document.getElementById('secretos-win');
-    if (w) w.hidden = got.length < S.length;
+    var l = document.getElementById('secretos-list');
+    if (l) {
+      l.innerHTML = '';
+      S.forEach(function (s) {
+        var c = cnt(s), d = document.createElement('div');
+        d.className = 'secret-item' + (c ? ' open' : '');
+        var h = document.createElement('strong'), p = document.createElement('p');
+        h.textContent = c ? '🗝 ' + s.n + ' · 🔑 ' + c + '/' + s.gs.length : '🔒 ???';
+        p.textContent = c ? s.r : 'Pista: ' + s.h;
+        d.append(h, p); l.appendChild(d);
+      });
+    }
+    var q = document.getElementById('secretos-req');
+    if (q) {
+      var r = retos().length, ok = nKeys() === TK && r >= RETOS;
+      q.innerHTML = '<p>🗝 Secretos: <strong>' + nOpen() + ' / ' + S.length + '</strong><br>🔑 Llaves: <strong>' + nKeys() + ' / ' + TK +
+        '</strong><br>🎮 Retos: <strong>' + r + ' / ' + RETOS + '</strong> · <a href="' + base + 'retos.html" class="buy-link">Ir a los retos →</a></p>' +
+        (ok ? '<p>🏆 Lo lograste. <a href="' + base + 'sorpresa.html" class="buy-link">Entra a la sala oculta →</a></p>' : '<p>Para abrir la sala oculta necesitas todos los secretos, todas las llaves y los tres retos.</p>');
+    }
     var sb = document.getElementById('secreto-sonido');
     if (sb) sb.textContent = '🔊 Sonido: ' + (soundOn() ? 'sí' : 'no');
   }
-  function unlock(s) {
-    if (got.indexOf(s.id) > -1) { toast('Ya lo tenías', '«' + s.n + '» ya está en tu diario.'); return; }
-    got.push(s.id); save();
-    toast('🗝 Secreto desbloqueado: ' + s.n, s.r); chime();
-    if (got.length === S.length) setTimeout(function () { toast('🏆 ¡Los encontraste todos!', 'Entra al diario: hay una sala oculta esperándote.'); fanfare(); }, 5300);
+  function unlock(m) {
+    var s = m.s, g = m.g;
+    if (has(s, g)) { toast('Ya tenías esa llave', 'Esa palabra ya la encontraste en «' + s.n + '».'); return; }
+    var first = cnt(s) === 0;
+    got.push(s.id + ':' + g[0]); save();
+    var c = cnt(s);
+    if (first) toast('🗝 Secreto desbloqueado: ' + s.n, s.r);
+    else if (c === s.gs.length) toast('🔑 ¡' + s.n + ' completo!', 'Encontraste todas sus llaves (' + c + '/' + s.gs.length + ').');
+    else toast('🔑 Nueva llave de ' + s.n, 'Llaves: ' + c + '/' + s.gs.length);
+    chime();
+    if (nKeys() === TK) setTimeout(function () { toast('🏆 ¡Tienes todas las llaves!', retos().length >= RETOS ? 'La sala oculta está abierta.' : 'Solo te faltan los retos.'); fanfare(); }, 5300);
     counter(); render();
   }
-  function pick(l) { return l.find(function (x) { return got.indexOf(x.id) < 0; }) || l[0]; }
-  function findExact(v) { var l = S.filter(function (x) { return x.ks.indexOf(v) > -1; }); return l.length ? pick(l) : null; }
+  function pick(l) { return l.find(function (m) { return !has(m.s, m.g); }) || l[0]; }
+  function findExact(v) {
+    var l = []; S.forEach(function (s) { s.gs.forEach(function (g) { if (g.indexOf(v) > -1) l.push({ s: s, g: g }); }); });
+    return l.length ? pick(l) : null;
+  }
   function findEnd(b) {
     var best = 0, l = [];
-    S.forEach(function (x) { x.ks.forEach(function (k) {
+    S.forEach(function (s) { s.gs.forEach(function (g) { g.forEach(function (k) {
       if (k.length >= 4 && b.endsWith(k)) {
-        if (k.length > best) { best = k.length; l = [x]; } else if (k.length === best && l.indexOf(x) < 0) l.push(x);
+        if (k.length > best) { best = k.length; l = [{ s: s, g: g }]; }
+        else if (k.length === best && !l.some(function (x) { return x.s === s && x.g === g; })) l.push({ s: s, g: g });
       }
-    }); });
+    }); }); });
     return l.length ? pick(l) : null;
   }
 
-  // Teclado: escribe el nombre en cualquier página
+  // Teclado: escribe una palabra en cualquier página
   var buf = '', timer;
   addEventListener('keydown', function (e) {
     var t = e.target;
@@ -137,7 +172,7 @@
     if (!/[a-z0-9]/.test(k)) return;
     buf = (buf + k).slice(-40);
     clearTimeout(timer);
-    timer = setTimeout(function () { var s = findEnd(buf); if (s) { buf = ''; unlock(s); } }, 650);
+    timer = setTimeout(function () { var m = findEnd(buf); if (m) { buf = ''; unlock(m); } }, 650);
   });
 
   // Puerta secreta: el símbolo © del pie de página
@@ -148,23 +183,23 @@
   }
   counter(); render();
 
-  // Página del diario: entrada de códigos (sirve también en celular)
+  // Diario: entrada de códigos (sirve también en celular)
   var i = document.getElementById('secreto-input'), b = document.getElementById('secreto-btn');
   function go() {
     var v = norm(i.value); i.value = ''; if (!v) return;
-    var s = findExact(v);
-    if (s) unlock(s); else { toast('Nada por aquí…', 'Ese código no abre nada. Sigue buscando.'); nope(); }
+    var m = findExact(v);
+    if (m) unlock(m); else { toast('Nada por aquí…', 'Esa palabra no abre nada. Sigue buscando.'); nope(); }
   }
   if (i && b) { b.addEventListener('click', go); i.addEventListener('keydown', function (e) { if (e.key === 'Enter') go(); }); }
-
   var sb = document.getElementById('secreto-sonido'), rb = document.getElementById('secreto-reset');
   if (sb) sb.addEventListener('click', function () {
     try { localStorage.setItem('vxp_sonido', soundOn() ? '0' : '1'); } catch (e) {}
     render(); chime();
   });
   if (rb) rb.addEventListener('click', function () {
-    if (!confirm('¿Reiniciar tu progreso? Se borrarán todos los secretos desbloqueados.')) return;
-    got = []; save(); counter(); render(); toast('Progreso reiniciado', 'Vuelve a empezar la búsqueda.');
+    if (!confirm('¿Reiniciar tu progreso? Se borrarán secretos, llaves y retos.')) return;
+    got = []; save(); try { localStorage.removeItem('vxp_retos'); } catch (e) {}
+    counter(); render(); toast('Progreso reiniciado', 'Vuelve a empezar la búsqueda.');
   });
 
   // Viernes 13: la página cambia a rojo

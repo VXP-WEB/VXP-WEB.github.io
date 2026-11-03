@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retos — VXP</title>
+    <meta name="description" content="Retos de VXP.">
+    <link rel="canonical" href="https://vxp-web.github.io/retos.html">
+    <link rel="icon" type="image/x-icon" href="/vxp.ico">
+
+    <!-- Vista previa al compartir (Open Graph) -->
+    <meta property="og:site_name" content="VXP">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Retos — VXP">
+    <meta property="og:description" content="Retos de VXP.">
+    <meta property="og:url" content="https://vxp-web.github.io/retos.html">
+    <meta property="og:image" content="https://vxp-web.github.io/vxp.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Contador de visitas -->
+    <script data-goatcounter="https://vxp-web.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <meta name="robots" content="noindex">
+</head>
+<body>
+    <header class="site-header">
+        <a href="index.html"><img src="vxp.png" alt="vxp logo" class="site-logo"></a>
+        <p class="subtitle">Bitácora de reseñas, mis historias de ficción y otros rastros.</p>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="resenas.html">Reseñas</a>
+            <a href="bitacora.html">Bitácora</a>
+            <a href="historias.html">Historias</a>
+            <a href="juegos.html">Juegos</a>
+            <a href="musica.html">Música</a>
+            <a href="calendario.html">Calendario</a>
+            <a href="about.html">Sobre el proyecto</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="bio-card">
+            <h1>Retos</h1>
+            <p>Supera los tres retos para abrir la sala oculta (además de encontrar todos los secretos y llaves). Superados: <strong id="retos-n">0</strong> / 3</p>
+        </section>
+        <section class="bio-card">
+            <h2 style="margin-top:0">1. Memoria del matraz <span class="ok" id="ok-memoria" hidden>✔</span></h2>
+            <p>Repite la secuencia de colores. Llega a 6 rondas.</p>
+            <div class="pads"><button class="pad" type="button" style="background:#bb86fc"></button><button class="pad" type="button" style="background:#4cc9f0"></button><button class="pad" type="button" style="background:#f7b267"></button><button class="pad" type="button" style="background:#7ee787"></button></div>
+            <p id="memo-msg">Pulsa Empezar.</p>
+            <button id="memo-start" class="support-button" type="button">Empezar</button>
+        </section>
+        <section class="bio-card">
+            <h2 style="margin-top:0">2. Reflejos en el lago <span class="ok" id="ok-reflejos" hidden>✔</span></h2>
+            <p>Cuando la caja se ponga verde, púlsala en menos de medio segundo. Tres veces seguidas.</p>
+            <div id="ref-box" class="ref-box">Pulsa Empezar.</div>
+            <button id="ref-start" class="support-button" type="button">Empezar</button>
+        </section>
+        <section class="bio-card">
+            <h2 style="margin-top:0">3. Tecleo veloz <span class="ok" id="ok-tecleo" hidden>✔</span></h2>
+            <p>Escribe la frase exacta en 20 segundos (no se puede pegar).</p>
+            <p id="tec-frase" style="color:#fff"></p>
+            <input id="tec-in" class="newsletter-input" style="width:100%" disabled aria-label="Escribe la frase" autocomplete="off">
+            <p id="tec-msg" style="margin-top:10px"></p>
+            <button id="tec-start" class="support-button" type="button">Empezar</button>
+        </section>
+        <p><a href="secretos.html" class="buy-link">← Volver al diario</a></p>
+    </main>
+
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.instagram.com/vxp_web/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.youtube.com/@vxp2244" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a href="https://x.com/VoidXP22" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://discord.gg/rK3q6EGvtJ" target="_blank" rel="noopener noreferrer">Discord</a>
+            <a href="https://substack.com/@vxpweb" target="_blank" rel="noopener noreferrer">Substack</a>
+            <a href="https://ko-fi.com/vxpweb" target="_blank" rel="noopener noreferrer">Ko-fi</a>
+            <a href="mailto:vxpweb1@outlook.com">Correo</a>
+            <a href="https://vxp--web-github-io.translate.goog/?_x_tr_sl=es&amp;_x_tr_tl=en&amp;_x_tr_hl=en&amp;_x_tr_pto=wapp" id="translate-link" title="Traducción automática con Google Translate" rel="noopener">English</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 VXP. Todos los derechos reservados. · <a href="privacidad.html">Privacidad</a></p>
+    </footer>
+
+    <script src="lang.js" defer></script>
+    <script>
+    (function () {
+        var P = []; try { P = JSON.parse(localStorage.getItem('vxp_retos')) || []; } catch (e) {}
+        function $(id) { return document.getElementById(id); }
+        function mark() { $('retos-n').textContent = P.length; ['memoria', 'reflejos', 'tecleo'].forEach(function (id) { $('ok-' + id).hidden = P.indexOf(id) < 0; }); }
+        function pass(id) { if (P.indexOf(id) < 0) { P.push(id); try { localStorage.setItem('vxp_retos', JSON.stringify(P)); } catch (e) {} } mark(); beep([523, 659, 784, 1047]); }
+        var ac; function beep(ns) { try { if (localStorage.getItem('vxp_sonido') === '0') return; ac = ac || new (window.AudioContext || window.webkitAudioContext)(); ns.forEach(function (f, i) { var t = ac.currentTime + i * 0.1, o = ac.createOscillator(), g = ac.createGain(); o.type = 'triangle'; o.frequency.value = f; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.15, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.3); o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + 0.35); }); } catch (e) {} }
+        mark();
+        // 1. Memoria
+        var pads = [].slice.call(document.querySelectorAll('.pad')), FQ = [330, 392, 494, 587], seq = [], step = 0, busy = true, mm = $('memo-msg');
+        function flash(i, cb) { pads[i].classList.add('on'); beep([FQ[i]]); setTimeout(function () { pads[i].classList.remove('on'); if (cb) cb(); }, 350); }
+        function play() { busy = true; var k = 0; mm.textContent = 'Mira la secuencia…'; (function n() { if (k >= seq.length) { busy = false; step = 0; mm.textContent = 'Tu turno (' + seq.length + ' / 6)'; return; } flash(seq[k++], function () { setTimeout(n, 150); }); })(); }
+        function nxt() { seq.push(Math.floor(Math.random() * 4)); setTimeout(play, 500); }
+        $('memo-start').onclick = function () { seq = []; nxt(); };
+        pads.forEach(function (p, i) { p.onclick = function () {
+            if (busy) return; flash(i);
+            if (i !== seq[step]) { busy = true; seq = []; mm.textContent = 'Fallaste. Pulsa Empezar.'; return; }
+            if (++step === seq.length) { busy = true; if (seq.length >= 6) { mm.textContent = '¡Superado!'; pass('memoria'); } else { mm.textContent = 'Bien…'; nxt(); } }
+        }; });
+        // 2. Reflejos
+        var rb = $('ref-box'), rt, rt0, rw = false, rg = false, rs = 0;
+        function rr() { rb.className = 'ref-box wait'; rb.textContent = 'Espera…'; rw = true; rt = setTimeout(function () { rb.className = 'ref-box go'; rb.textContent = '¡YA!'; rt0 = performance.now(); rw = false; rg = true; }, 1000 + Math.random() * 3000); }
+        $('ref-start').onclick = function () { clearTimeout(rt); rg = false; rs = 0; rr(); };
+        rb.onclick = function () {
+            if (rw) { clearTimeout(rt); rw = false; rs = 0; rb.className = 'ref-box'; rb.textContent = 'Demasiado pronto. Pulsa Empezar.'; return; }
+            if (!rg) return; rg = false; var d = performance.now() - rt0;
+            if (d <= 500) { if (++rs >= 3) { rb.className = 'ref-box'; rb.textContent = '¡Superado!'; pass('reflejos'); } else { rb.className = 'ref-box'; rb.textContent = Math.round(d) + ' ms (' + rs + '/3)'; setTimeout(rr, 900); } }
+            else { rs = 0; rb.className = 'ref-box'; rb.textContent = Math.round(d) + ' ms: muy lento. Pulsa Empezar.'; }
+        };
+        // 3. Tecleo
+        var tf = 'El agua está quieta y nadie sabe quién enciende la luz del muelle.', ti = $('tec-in'), tm = $('tec-msg'), tt, t0;
+        $('tec-start').onclick = function () {
+            $('tec-frase').textContent = tf; ti.value = ''; ti.disabled = false; ti.focus(); t0 = Date.now(); clearInterval(tt);
+            tt = setInterval(function () { var s = 20 - Math.floor((Date.now() - t0) / 1000); tm.textContent = 'Tiempo: ' + s + ' s'; if (s <= 0) { clearInterval(tt); ti.disabled = true; tm.textContent = 'Se acabó el tiempo. Pulsa Empezar.'; } }, 250);
+        };
+        ti.addEventListener('paste', function (e) { e.preventDefault(); });
+        ti.addEventListener('input', function () { if (ti.value.trim() === tf) { clearInterval(tt); ti.disabled = true; tm.textContent = '¡Superado!'; pass('tecleo'); } });
+    })();
+    </script>
+</body>
+</html>

@@ -34,15 +34,19 @@
         .dark{position:fixed;inset:0;z-index:3;pointer-events:none;background:radial-gradient(circle 130px at var(--x,50%) var(--y,50%),rgba(0,0,0,0) 0,rgba(0,0,0,.35) 55%,rgba(0,0,0,.985) 100%)}
         .dark.off{display:none}
         .gate{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
+    .dip{position:fixed;inset:0;z-index:10;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;padding:16px}.dip-box{max-width:min(900px,100%)}.dip-box canvas{width:100%;height:auto;border-radius:8px}.dip-ctl{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
     </style>
 </head>
 <body class="luz">
     <a href="secretos.html" class="back-link luz-back">← Volver al diario</a>
     <button id="luz-toggle" class="luz-btn" type="button">💡 Encender la luz</button>
+    <button id="dip-btn" class="luz-btn" type="button" style="right:150px" hidden>🎖 Mi diploma</button>
+    <div id="dip" class="dip" hidden><div class="dip-box"><canvas id="dip-c" width="900" height="560"></canvas><div class="dip-ctl"><input id="dip-name" class="newsletter-input" placeholder="Tu nombre (opcional)" maxlength="28" aria-label="Tu nombre"><button id="dip-dl" class="newsletter-button" type="button">Descargar PNG</button><button id="dip-x" class="support-button" type="button">Cerrar</button></div></div></div>
+    <canvas id="confeti" style="position:fixed;inset:0;z-index:8;pointer-events:none"></canvas>
 
     <main id="world" class="world" hidden>
         <div class="item" style="top:46%;left:36%"><p><em>Mueve la luz…</em></p></div>
-        <div class="item" style="top:14%;left:8%"><p><strong>Gracias por llegar hasta aquí.</strong><br>Encontraste los 40 secretos. Cada uno era algo que me gusta, y ahora ya lo sabes.</p></div>
+        <div class="item" style="top:14%;left:8%"><p><strong>Gracias por llegar hasta aquí.</strong><br>Encontraste los 40 secretos, todas sus llaves y superaste los retos. Cada cosa que buscaste es algo que me gusta, y ahora ya lo sabes.</p></div>
         <div class="item" style="top:34%;left:58%"><p><em>Fragmento sin título</em><br>Cada noche, la luz del muelle se enciende sola. Nadie sabe quién la cuida. Esta vez alguien dejó una linterna en la orilla, todavía tibia, apuntando al agua. Y el agua, por primera vez, estaba quieta.</p></div>
         <div class="item" style="top:70%;left:10%"><p>Lo que viene: mis historias, mis juegos y mi música. Si quieres enterarte primero, <a href="index.html" class="buy-link">suscríbete a la bitácora</a>.</p></div>
         <div class="item" style="top:82%;left:60%"><p>Esta sala no existe. Nunca estuviste aquí.<br>— Julio, VXP</p></div>
@@ -54,18 +58,42 @@
 
     <section id="gate" class="gate" hidden>
         <h1>Sala cerrada</h1>
-        <p>Todavía te faltan secretos por encontrar.</p>
-        <a href="secretos.html" class="buy-link">Ir al diario de secretos →</a>
+        <p>Para entrar necesitas todos los secretos, todas sus llaves y los tres retos.</p>
+        <p><a href="secretos.html" class="buy-link">Ir al diario →</a> · <a href="retos.html" class="buy-link">Ir a los retos →</a></p>
     </section>
 
     <script>
     (function () {
         var ok = false;
-        try { ok = (JSON.parse(localStorage.getItem('vxp_secretos2')) || []).length >= 40; } catch (e) {}
+        try { ok = localStorage.getItem('vxp_keysok') === '1' && (JSON.parse(localStorage.getItem('vxp_retos')) || []).length >= 3; } catch (e) {}
         var w = document.getElementById('world'), g = document.getElementById('gate'),
             d = document.getElementById('dark'), b = document.getElementById('luz-toggle');
         if (!ok) { d.hidden = true; b.hidden = true; g.hidden = false; return; }
-        w.hidden = false;
+        w.hidden = false; $('dip-btn').hidden = false;
+        function $(id) { return document.getElementById(id); }
+        // Confeti
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            var cv = $('confeti'), cx = cv.getContext('2d'), ps = [], t0 = Date.now(); cv.width = innerWidth; cv.height = innerHeight;
+            for (var n = 0; n < 160; n++) ps.push({ x: Math.random() * cv.width, y: -Math.random() * cv.height, v: 2 + Math.random() * 4, s: 4 + Math.random() * 6, c: ['#bb86fc', '#7ee787', '#f7b267', '#4cc9f0', '#fff'][n % 5] });
+            (function f() { cx.clearRect(0, 0, cv.width, cv.height); ps.forEach(function (p) { p.y += p.v; cx.fillStyle = p.c; cx.fillRect(p.x, p.y, p.s, p.s); }); if (Date.now() - t0 < 4500) requestAnimationFrame(f); else cx.clearRect(0, 0, cv.width, cv.height); })();
+        }
+        // Diploma descargable
+        function draw() {
+            var c = $('dip-c'), x = c.getContext('2d'), st = { s: 40, k: 0 }; try { st = JSON.parse(localStorage.getItem('vxp_stats')) || st; } catch (e) {}
+            var F = '"Space Mono", monospace'; x.textAlign = 'center';
+            x.fillStyle = '#121212'; x.fillRect(0, 0, 900, 560); x.strokeStyle = '#bb86fc'; x.lineWidth = 6; x.strokeRect(24, 24, 852, 512); x.lineWidth = 1; x.strokeRect(40, 40, 820, 480);
+            x.fillStyle = '#bb86fc'; x.font = 'bold 54px ' + F; x.fillText('VXP', 450, 120);
+            x.fillStyle = '#fff'; x.font = 'bold 34px ' + F; x.fillText('CAZADOR DE SECRETOS', 450, 190);
+            x.fillStyle = '#a0a0a0'; x.font = '20px ' + F; x.fillText('Este diploma certifica que', 450, 250);
+            x.fillStyle = '#fff'; x.font = 'bold 40px ' + F; x.fillText($('dip-name').value.trim() || 'Visitante misterioso', 450, 310);
+            x.fillStyle = '#a0a0a0'; x.font = '18px ' + F; x.fillText('encontró ' + st.s + ' secretos, ' + st.k + ' llaves y superó los 3 retos', 450, 370);
+            x.fillText(new Date().toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' }), 450, 420);
+            x.fillStyle = '#bb86fc'; x.fillText('🗝  vxp-web.github.io  🧪', 450, 490);
+        }
+        $('dip-btn').onclick = function () { $('dip').hidden = false; draw(); };
+        $('dip-x').onclick = function () { $('dip').hidden = true; };
+        $('dip-name').oninput = draw;
+        $('dip-dl').onclick = function () { $('dip-c').toBlob(function (b) { var a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'diploma-vxp.png'; a.click(); }); };
         function mv(e) { var p = e.touches ? e.touches[0] : e; d.style.setProperty('--x', p.clientX + 'px'); d.style.setProperty('--y', p.clientY + 'px'); }
         addEventListener('pointermove', mv); addEventListener('pointerdown', mv); addEventListener('touchmove', mv, { passive: true });
         b.addEventListener('click', function () { var off = d.classList.toggle('off'); b.textContent = off ? '🌑 Apagar la luz' : '💡 Encender la luz'; });

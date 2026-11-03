@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario — VXP</title>
+    <meta name="description" content="Calendario de entradas de VXP.">
+    <link rel="canonical" href="https://vxp-web.github.io/calendario.html">
+    <link rel="icon" type="image/x-icon" href="/vxp.ico">
+
+    <!-- Vista previa al compartir (Open Graph) -->
+    <meta property="og:site_name" content="VXP">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calendario — VXP">
+    <meta property="og:description" content="Calendario de entradas de VXP.">
+    <meta property="og:url" content="https://vxp-web.github.io/calendario.html">
+    <meta property="og:image" content="https://vxp-web.github.io/vxp.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Contador de visitas -->
+    <script data-goatcounter="https://vxp-web.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <a href="index.html"><img src="vxp.png" alt="vxp logo" class="site-logo"></a>
+        <p class="subtitle">Bitácora de reseñas, mis historias de ficción y otros rastros.</p>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="resenas.html">Reseñas</a>
+            <a href="bitacora.html">Bitácora</a>
+            <a href="historias.html">Historias</a>
+            <a href="juegos.html">Juegos</a>
+            <a href="musica.html">Música</a>
+            <a href="calendario.html">Calendario</a>
+            <a href="about.html">Sobre el proyecto</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Calendario</h1>
+        <p class="subtitle">Los días marcados tienen algo nuevo. Pulsa uno para verlo.</p>
+        <section class="bio-card">
+            <div class="cal-head">
+                <button id="cal-prev" class="support-button" type="button" aria-label="Mes anterior">←</button>
+                <strong id="cal-title"></strong>
+                <button id="cal-next" class="support-button" type="button" aria-label="Mes siguiente">→</button>
+            </div>
+            <div id="cal-grid" class="cal-grid"></div>
+        </section>
+        <section class="bio-card" id="cal-list"><p style="margin:0">Elige un día marcado.</p></section>
+    </main>
+
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.instagram.com/vxp_web/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.youtube.com/@vxp2244" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a href="https://x.com/VoidXP22" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://discord.gg/rK3q6EGvtJ" target="_blank" rel="noopener noreferrer">Discord</a>
+            <a href="https://substack.com/@vxpweb" target="_blank" rel="noopener noreferrer">Substack</a>
+            <a href="https://ko-fi.com/vxpweb" target="_blank" rel="noopener noreferrer">Ko-fi</a>
+            <a href="mailto:vxpweb1@outlook.com">Correo</a>
+            <a href="https://vxp--web-github-io.translate.goog/?_x_tr_sl=es&amp;_x_tr_tl=en&amp;_x_tr_hl=en&amp;_x_tr_pto=wapp" id="translate-link" title="Traducción automática con Google Translate" rel="noopener">English</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 VXP. Todos los derechos reservados. · <a href="privacidad.html">Privacidad</a></p>
+    </footer>
+
+    <script src="lang.js" defer></script>
+    <script src="entradas.js"></script>
+    <script>
+    (function () {
+        var E = window.VXP_ENTRADAS || [], MS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'], now = new Date(), by = {}, y, m, sel = '';
+        E.forEach(function (e) { (by[e.fecha] = by[e.fecha] || []).push(e); });
+        function k(y, m, d) { return y + '-' + ('0' + (m + 1)).slice(-2) + '-' + ('0' + d).slice(-2); }
+        var ks = Object.keys(by).sort(), cur = k(now.getFullYear(), now.getMonth(), 1).slice(0, 7);
+        if (!ks.length || ks.some(function (x) { return x.slice(0, 7) === cur; })) { y = now.getFullYear(); m = now.getMonth(); }
+        else { var l = ks[ks.length - 1].split('-'); y = +l[0]; m = +l[1] - 1; }
+        function show(key) {
+            sel = key; var box = document.getElementById('cal-list'), p = key.split('-'); box.innerHTML = '';
+            var h = document.createElement('strong'); h.textContent = +p[2] + ' de ' + MS[+p[1] - 1] + ', ' + p[0]; box.appendChild(h);
+            by[key].forEach(function (e) {
+                var d = document.createElement('p'), a = document.createElement('a'), t = document.createElement('span');
+                a.href = e.url; a.textContent = e.titulo; a.className = 'buy-link'; t.className = 'tag'; t.textContent = e.tipo || '';
+                d.style.margin = '12px 0 0'; d.append(a, t); box.appendChild(d);
+            });
+            draw();
+        }
+        function draw() {
+            document.getElementById('cal-title').textContent = MS[m] + ' ' + y;
+            var g = document.getElementById('cal-grid'); g.innerHTML = '';
+            ['Lu','Ma','Mi','Ju','Vi','Sa','Do'].forEach(function (w) { var c = document.createElement('div'); c.className = 'cal-wd'; c.textContent = w; g.appendChild(c); });
+            for (var i = 0; i < (new Date(y, m, 1).getDay() + 6) % 7; i++) g.appendChild(document.createElement('div'));
+            for (var d = 1, n = new Date(y, m + 1, 0).getDate(); d <= n; d++) {
+                var key = k(y, m, d), has = !!by[key], c = document.createElement(has ? 'button' : 'div');
+                c.className = 'cal-day' + (has ? ' has' : '') + (key === sel ? ' sel' : '') + (key === k(now.getFullYear(), now.getMonth(), now.getDate()) ? ' today' : '');
+                c.textContent = d;
+                if (has) { c.type = 'button'; c.setAttribute('aria-label', d + ' de ' + MS[m] + ': hay entradas'); (function (kk) { c.onclick = function () { show(kk); }; })(key); }
+                g.appendChild(c);
+            }
+        }
+        document.getElementById('cal-prev').onclick = function () { if (--m < 0) { m = 11; y--; } draw(); };
+        document.getElementById('cal-next').onclick = function () { if (++m > 11) { m = 0; y++; } draw(); };
+        draw();
+    })();
+    </script>
+</body>
+</html>
