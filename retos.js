@@ -1,6 +1,6 @@
-/* Retos de VXP (entrega 1: 5 de 10) */
+/* Retos de VXP */
 (function () {
-  var TOTAL = 5; // subir a 10 cuando estén los 10 retos
+  var TOTAL = 10;
   function $(s, r) { return (r || document).querySelector(s); }
   var timers = [], offs = [], raf = 0, ac;
   function clr() { timers.forEach(function (t) { clearTimeout(t); clearInterval(t); }); timers = []; cancelAnimationFrame(raf); offs.forEach(function (f) { f(); }); offs = []; }
@@ -166,8 +166,257 @@
     $('#t-go', A).onclick = function () { clearInterval(tt); load(); };
   }
 
-  var GAMES = [{ id: 'smite', n: '1. Smite or Die', d: 'Difícil · Reflejos', f: smite }, { id: 'maestre', n: '2. El maestre' }, { id: 'menisco', n: '3. El menisco perfecto', d: 'Difícil · Precisión', f: menisco },
-    { id: 'rekkles', n: '4. Rekkles Mode' }, { id: 'arquero', n: '5. El arquero' }, { id: 'huerto', n: '6. El huerto' }, { id: 'clave', n: '7. La contraseña' },
+  /* 2. El maestre */
+  var QS = [
+    ['Literatura', '¿Cómo se conoce a Catelyn Stark tras volver a la vida en los libros?', ['Lady Stoneheart', 'La Dama Gris', 'Lady Blackwater', 'La Viuda Roja'], 0],
+    ['Literatura', '¿Cuál es el segundo libro de Canción de hielo y fuego?', ['Juego de tronos', 'Choque de reyes', 'Tormenta de espadas', 'Festín de cuervos'], 1],
+    ['Idiomas', '¿Quién creó el Alto Valyrio y el dothraki para la serie?', ['David J. Peterson', 'George R. R. Martin', 'Marc Okrand', 'Christopher Tolkien'], 0],
+    ['Literatura', '¿Qué creó Tolkien antes que sus historias, según él mismo?', ['Los mapas', 'Las lenguas élficas', 'Los poemas', 'Los nombres de los reinos'], 1],
+    ['Literatura', '¿Cuántos Anillos de Poder se forjaron para los Elfos?', ['Uno', 'Tres', 'Siete', 'Nueve'], 1],
+    ['Videojuegos', '¿Qué determina la forma (aguda o grave) de Toxtricity?', ['Su naturaleza', 'Su nivel', 'Su objeto', 'Su entrenador'], 0],
+    ['Videojuegos', '¿En qué región transcurren Pokémon Rubí y Zafiro?', ['Kanto', 'Johto', 'Hoenn', 'Sinnoh'], 2],
+    ['Videojuegos', '¿Quién es la Campeona zora en Breath of the Wild?', ['Mipha', 'Urbosa', 'Revali', 'Daruk'], 0],
+    ['Videojuegos', '¿Cuántas semillas Korok hay en Breath of the Wild?', ['600', '800', '900', '1000'], 2],
+    ['Videojuegos', '¿Qué campeón de LoL usa una armadura simbiótica del Vacío?', ["Kai'Sa", "Vel'Koz", 'Kassadin', "Kha'Zix"], 0],
+    ['Videojuegos', '¿Qué reino es el escenario de Dark Souls 1?', ['Lordran', 'Drangleic', 'Lothric', 'Yharnam'], 0],
+    ['Videojuegos', '¿Cuál es la IA que acompaña al Jefe Maestro en Halo?', ['Cortana', 'Athena', 'GLaDOS', 'Navi'], 0],
+    ['Esports', '¿Qué jugador fue campeón del mundo en 2024 como suplente de T1 sin jugar una partida?', ['Rekkles', 'Caps', 'Upset', 'Humanoid'], 0],
+    ['Esports', '¿Qué colores representan a Fnatic?', ['Naranja y negro', 'Azul y blanco', 'Rojo y blanco', 'Verde y negro'], 0],
+    ['Deportes', '¿Contra quién marcó Funes Mori su chilena en la final de ida del Apertura 2019?', ['América', 'Tigres', 'Cruz Azul', 'Pumas'], 0],
+    ['Deportes', '¿Cómo ganó Monterrey la final de vuelta del Apertura 2019?', ['Por penales', 'Con gol de oro', '3-0 en 90 minutos', 'Por goles de visitante'], 0],
+    ['Anime', '¿Cuál es la técnica de rayo de Kakashi?', ['Rasengan', 'Chidori', 'Amaterasu', 'Kirin'], 1],
+    ['Anime', '¿Cuántos universos participan en el Torneo del Poder de Dragon Ball Super?', ['6', '8', '10', '12'], 1],
+    ['Anime', '¿Quiénes lideraban al bando enemigo en la Cuarta Gran Guerra Ninja?', ['Obito y Madara', 'Orochimaru y Kabuto', 'Pain y Konan', 'Danzo y Root'], 0],
+    ['Cine', '¿Quién dirigió Halloween (1978)?', ['John Carpenter', 'Wes Craven', 'Sean S. Cunningham', 'Rob Zombie'], 0],
+    ['Cine', '¿Qué actor es Joel en The Last of Us y Din Djarin en The Mandalorian?', ['Pedro Pascal', 'Oscar Isaac', 'Diego Luna', 'Bryan Cranston'], 0],
+    ['Cine', '¿Qué astronauta mexicano inspira la película A Million Miles Away?', ['José Hernández', 'Rodolfo Neri Vela', 'Carlos Noriega', 'Ellen Ochoa'], 0],
+    ['Cine', '¿Quién escribió la novela Project Hail Mary?', ['Andy Weir', 'Arthur C. Clarke', 'Isaac Asimov', 'Carl Sagan'], 0],
+    ['Ciencia', 'La leche es un ejemplo de…', ['Solución', 'Emulsión', 'Aleación', 'Compuesto puro'], 1],
+    ['Ciencia', '¿Qué isótopo del hidrógeno tiene un neutrón?', ['Protio', 'Deuterio', 'Tritio', 'Helio'], 1],
+    ['Ciencia', '¿Cuál NO es un alótropo del carbono?', ['Grafito', 'Diamante', 'Grafeno', 'Cuarzo'], 3],
+    ['Ciencia', 'La doxiciclina pertenece a la familia de las…', ['Penicilinas', 'Tetraciclinas', 'Macrólidos', 'Quinolonas'], 1],
+    ['Ciencia', 'Al aforar un matraz, el volumen se lee en…', ['El borde superior del menisco', 'La parte inferior del menisco', 'El tapón', 'La etiqueta'], 1],
+    ['Ciencia', '¿Qué planeta tiene un día más largo que su año?', ['Venus', 'Mercurio', 'Marte', 'Neptuno'], 0],
+    ['Historia', '¿En qué año se fundó Monterrey?', ['1521', '1596', '1646', '1810'], 1],
+    ['Idiomas', 'En alemán, «U-Bahn» significa…', ['Metro', 'Autobús', 'Tranvía', 'Aeropuerto'], 0],
+    ['Música', '¿Cuál es la afinación estándar de un bajo de 4 cuerdas (de grave a aguda)?', ['Mi, La, Re, Sol', 'Do, Mi, Sol, Si', 'Re, La, Mi, Si', 'La, Re, Sol, Do'], 0]
+  ];
+  function maestre(A, win) {
+    var qs = [], i = 0, ok = 0, tt, t0 = 0, lock = true;
+    A.innerHTML = '<p id="q-i" style="color:#fff;margin:0 0 8px"></p><div class="bar"><div id="q-b" class="barin" style="background:var(--accent-color)"></div></div><p id="q-q" style="color:#fff;font-size:1.05rem;margin:14px 0"></p><div id="q-o" style="display:grid;gap:8px"></div><p id="q-m"></p><button id="q-go" class="support-button" type="button">Empezar</button>';
+    var inf = $('#q-i', A), bar = $('#q-b', A), qq = $('#q-q', A), o = $('#q-o', A), m = $('#q-m', A);
+    function ask() {
+      var q = qs[i]; lock = false; inf.textContent = 'Pregunta ' + (i + 1) + '/10 · ' + q[0] + ' · Aciertos: ' + ok; qq.textContent = q[1]; m.textContent = ''; o.innerHTML = '';
+      q[2].map(function (t, k) { return { t: t, c: k === q[3] }; }).sort(function () { return Math.random() - 0.5; }).forEach(function (x) {
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'support-button'; b.style.textAlign = 'left'; b.textContent = x.t; b.onclick = function () { answer(x.c, false); }; o.appendChild(b);
+      });
+      t0 = performance.now(); clearInterval(tt); tt = setInterval(function () { var s = 12 - (performance.now() - t0) / 1000; bar.style.width = Math.max(s, 0) / 12 * 100 + '%'; if (s <= 0) answer(false, true); }, 100); timers.push(tt);
+    }
+    function answer(c, to) {
+      if (lock) return; lock = true; clearInterval(tt); if (c) ok++;
+      m.textContent = c ? '✔ Correcto' : (to ? '⏱ Se acabó el tiempo' : '✘ Incorrecto'); beep(c ? [660, 880] : [196, 147], 0.1, c ? 'triangle' : 'sine');
+      [].forEach.call(o.querySelectorAll('button'), function (b) { b.disabled = true; });
+      after(function () { if (++i >= 10) fin(); else ask(); }, 800);
+    }
+    function fin() {
+      o.innerHTML = ''; qq.textContent = ''; bar.style.width = '0%';
+      if (ok >= 8) { m.textContent = 'Aciertos: ' + ok + '/10. ¡Superado! Digno de la Ciudadela.'; win(); }
+      else { m.textContent = 'Aciertos: ' + ok + '/10 (necesitas 8). Pulsa Empezar para otra tanda.'; $('#q-go', A).hidden = false; }
+    }
+    $('#q-go', A).onclick = function () { qs = QS.slice().sort(function () { return Math.random() - 0.5; }).slice(0, 10); i = 0; ok = 0; $('#q-go', A).hidden = true; ask(); };
+  }
+
+  /* 4. Rekkles Mode */
+  function rekkles(A, win) {
+    A.innerHTML = '<div class="secret-form"><button id="k-kai" class="support-button" type="button">Jugar con Kai\'Sa</button><button id="k-ash" class="support-button" type="button">Jugar con Ashe</button></div><canvas id="k-c" width="600" height="320" style="width:100%;background:#0d0d0d;border:1px solid #2d2d2d;border-radius:8px;touch-action:none;margin-top:8px"></canvas><button id="k-atk" class="newsletter-button" type="button" style="width:100%;margin-top:8px">ATACAR (espacio)</button><p id="k-m">Muévete con WASD o las flechas (o arrastra sobre la pantalla). Sobrevive 45 s, remata 10 súbditos cuando les quede poca vida (30 o menos) y no recibas más de 2 impactos. Kai\'Sa es más veloz; Ashe ataca de más lejos.</p>';
+    var cv = $('#k-c', A), cx = cv.getContext('2d'), m = $('#k-m', A), keys = {}, tgt = null, run = false, G, last = 0;
+    on(document, 'keydown', function (e) { var k = e.key.toLowerCase(); keys[k] = true; if (run && (e.code === 'Space' || k.indexOf('arrow') === 0)) e.preventDefault(); if (run && e.code === 'Space') atk(); });
+    on(document, 'keyup', function (e) { keys[e.key.toLowerCase()] = false; });
+    function pos(e) { var r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) / r.width * 600, y: (e.clientY - r.top) / r.height * 320 }; }
+    cv.onpointerdown = function (e) { tgt = pos(e); }; cv.onpointermove = function (e) { if (tgt) tgt = pos(e); }; cv.onpointerup = cv.onpointerleave = function () { tgt = null; };
+    $('#k-atk', A).onclick = function () { if (run) atk(); };
+    $('#k-kai', A).onclick = function () { start('k'); }; $('#k-ash', A).onclick = function () { start('a'); };
+    function start(ch) { cancelAnimationFrame(raf); G = { ch: ch, t: 0, p: { x: 80, y: 160, r: 10, sp: ch === 'k' ? 240 : 210, rg: ch === 'k' ? 90 : 150, cd: 0, inv: 0 }, mi: [], hz: [], cs: 0, hits: 0, sm: 0, sh: 1, fl: 0 }; run = true; last = 0; m.textContent = ''; raf = requestAnimationFrame(loop); }
+    function atk() {
+      var p = G.p; if (p.cd > 0) return; p.cd = 0.45; G.fl = 0.12; var b = null, bd = 1e9;
+      G.mi.forEach(function (q) { var d = Math.hypot(q.x - p.x, q.y - p.y); if (d < p.rg && d < bd) { b = q; bd = d; } });
+      if (!b) return; b.hp -= 30; if (b.hp <= 0) { G.cs++; G.mi.splice(G.mi.indexOf(b), 1); beep([880], 0.05); }
+    }
+    function spawn() {
+      var t = G.t, r = Math.random(), y = 20 + Math.random() * 280;
+      if (t > 12 && r < 0.25) G.hz.push({ k: 'r', y: y, t: 0, w: 0.9 });
+      else if (t > 20 && r < 0.45) G.hz.push({ k: 's', x: 80 + Math.random() * 480, y: y, R: 46, t: 0, w: 0.8 });
+      else G.hz.push({ k: 'b', x: 610, y: y, vx: -(150 + t * 4), vy: (Math.random() - 0.5) * 70, r: 7, t: 0 });
+    }
+    function end(ok, text) {
+      run = false; var g = G;
+      m.textContent = (ok ? '¡Superado! ' : text + ' ') + 'KDA 0/' + g.hits + '/0 · CS ' + g.cs + ' · Daño recibido ' + g.hits * 300 + '. ' + (ok ? 'Rekkles estaría orgulloso.' : 'Elige un campeón para reintentar.');
+      if (ok) win(); else beep([196, 147], 0.12, 'sine');
+    }
+    function draw() {
+      var g = G, p = g.p; cx.clearRect(0, 0, 600, 320);
+      g.mi.forEach(function (q) { cx.fillStyle = q.hp <= 30 ? '#ffb347' : '#8a5a1e'; cx.beginPath(); cx.arc(q.x, q.y, 9, 0, 7); cx.fill(); cx.fillStyle = '#7ee787'; cx.fillRect(q.x - 10, q.y - 15, 20 * Math.min(q.hp, 130) / 130, 3); });
+      g.hz.forEach(function (h) {
+        if (h.k === 'b') { cx.fillStyle = '#ff5e5b'; cx.beginPath(); cx.arc(h.x, h.y, h.r, 0, 7); cx.fill(); }
+        else if (h.k === 'r') { cx.fillStyle = h.t < h.w ? 'rgba(255,94,91,.25)' : '#ff5e5b'; cx.fillRect(0, h.y - (h.t < h.w ? 1 : 8), 600, h.t < h.w ? 2 : 16); }
+        else { cx.beginPath(); cx.arc(h.x, h.y, h.R, 0, 7); if (h.t < h.w) { cx.strokeStyle = 'rgba(255,94,91,.6)'; cx.stroke(); } else { cx.fillStyle = 'rgba(255,94,91,.7)'; cx.fill(); } }
+      });
+      if (g.fl > 0) { cx.strokeStyle = 'rgba(255,255,255,.3)'; cx.beginPath(); cx.arc(p.x, p.y, p.rg, 0, 7); cx.stroke(); g.fl -= 0.016; }
+      if (p.inv <= 0 || Math.floor(g.t * 12) % 2) { cx.fillStyle = g.ch === 'k' ? '#bb86fc' : '#4cc9f0'; cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 7); cx.fill(); }
+      cx.fillStyle = '#ff7a1a'; cx.font = '13px monospace'; cx.fillText('Tiempo ' + Math.min(45, g.t).toFixed(0) + '/45 · CS ' + g.cs + '/10 · Impactos ' + g.hits + '/2', 10, 18);
+    }
+    function loop(now) {
+      if (!run) return; var dt = Math.min((now - (last || now)) / 1000, 0.05); last = now; var g = G, p = g.p; g.t += dt;
+      var dx = (keys.d || keys.arrowright ? 1 : 0) - (keys.a || keys.arrowleft ? 1 : 0), dy = (keys.s || keys.arrowdown ? 1 : 0) - (keys.w || keys.arrowup ? 1 : 0);
+      if (tgt) { var ex = tgt.x - p.x, ey = tgt.y - p.y, d = Math.hypot(ex, ey); if (d > 6) { dx = ex / d; dy = ey / d; } } else if (dx && dy) { dx *= 0.707; dy *= 0.707; }
+      p.x = Math.max(10, Math.min(590, p.x + dx * p.sp * dt)); p.y = Math.max(10, Math.min(310, p.y + dy * p.sp * dt)); p.cd -= dt; p.inv -= dt;
+      g.sm -= dt; if (g.sm <= 0) { g.sm = 1.5; g.mi.push({ x: 610, y: 25 + Math.random() * 270, hp: 55 + Math.random() * 70 }); }
+      g.mi.forEach(function (q) { q.x -= 28 * dt; q.hp -= (6 + g.t * 0.1) * dt; }); g.mi = g.mi.filter(function (q) { return q.hp > 0 && q.x > -10; });
+      g.sh -= dt; if (g.sh <= 0) { g.sh = Math.max(0.4, 1.25 - g.t * 0.018); spawn(); }
+      g.hz.forEach(function (h) { h.t += dt; if (h.k === 'b') { h.x += h.vx * dt; h.y += h.vy * dt; } });
+      g.hz = g.hz.filter(function (h) { return h.k === 'b' ? h.x > -20 && h.y > -20 && h.y < 340 : h.t < h.w + 0.25; });
+      if (p.inv <= 0) g.hz.forEach(function (h) {
+        var hit = h.k === 'b' ? Math.hypot(h.x - p.x, h.y - p.y) < h.r + p.r : h.t < h.w ? false : h.k === 'r' ? Math.abs(h.y - p.y) < 9 + p.r * 0.5 : Math.hypot(h.x - p.x, h.y - p.y) < h.R + p.r * 0.5;
+        if (hit && p.inv <= 0) { g.hits++; p.inv = 1; beep([196, 147], 0.08, 'sawtooth'); }
+      });
+      draw();
+      if (g.hits > 2) return end(false, 'ADC GAP: te borraron del mapa.');
+      if (g.t >= 45) return end(g.cs >= 10, 'Te faltó farmeo: ' + g.cs + '/10 súbditos.');
+      raf = requestAnimationFrame(loop);
+    }
+  }
+
+  /* 5. El arquero */
+  function arquero(A, win) {
+    var RD = [[300, 28, 0], [380, 24, 0], [400, 14, 0], [430, 22, 40], [500, 18, 40]], i = 0, pts = [], fly = null, trace = [], V = 5.2, GV = 400, X0 = 60, Y0 = 250, live = true;
+    A.innerHTML = '<p id="a-i" style="color:#fff;margin:0"></p><canvas id="a-c" width="600" height="300" style="width:100%;background:#0d0d0d;border:1px solid #2d2d2d;border-radius:8px"></canvas><label>Ángulo: <strong id="a-av">45</strong>°<input id="a-a" type="range" min="10" max="80" value="45" style="width:100%"></label><label>Potencia: <strong id="a-pv">60</strong><input id="a-p" type="range" min="20" max="100" value="60" style="width:100%"></label><button id="a-f" class="newsletter-button" type="button" style="width:100%;margin-top:8px">Disparar</button><p id="a-m">Cinco disparos, 50 puntos posibles. Necesitas 35. El centro (manzana dorada) vale 10. Tu disparo anterior queda dibujado como guía.</p>';
+    var cv = $('#a-c', A), cx = cv.getContext('2d'), m = $('#a-m', A), sa = $('#a-a', A), sp = $('#a-p', A), inf = $('#a-i', A);
+    sa.oninput = function () { $('#a-av', A).textContent = sa.value; }; sp.oninput = function () { $('#a-pv', A).textContent = sp.value; };
+    function ty(tm) { return 190 + RD[i][2] * Math.sin(6.2832 * tm / 2.5); }
+    function scene(now) {
+      cx.clearRect(0, 0, 600, 300); var s = RD[i], tx = X0 + s[0], tm = now / 1000, y = ty(tm);
+      cx.strokeStyle = '#2d2d2d'; cx.beginPath(); cx.moveTo(0, 272); cx.lineTo(600, 272); cx.stroke();
+      cx.fillStyle = '#bb86fc'; cx.fillRect(X0 - 6, Y0 - 14, 4, 28); cx.strokeStyle = '#bb86fc'; cx.beginPath(); cx.arc(X0 - 6, Y0, 16, -1.2, 1.2); cx.stroke();
+      [1, 0.8, 0.6, 0.4, 0.2].forEach(function (f, k) { cx.fillStyle = ['#5b3a1a', '#8a5a1e', '#b8863a', '#d6a64a', '#f2c94c'][k]; cx.beginPath(); cx.arc(tx, y, s[1] * f, 0, 7); cx.fill(); });
+      if (i === 4) { cx.font = '22px serif'; cx.textAlign = 'center'; cx.fillText('🦉', tx, y - s[1] - 6); cx.textAlign = 'left'; }
+      if (trace.length) { cx.fillStyle = 'rgba(255,255,255,.25)'; trace.forEach(function (q, k) { if (k % 4 === 0) cx.fillRect(q[0], q[1], 2, 2); }); }
+      if (fly) { var k = Math.min(fly.p.length - 1, Math.floor((now - fly.t0) / 10)); cx.fillStyle = '#fff'; cx.fillRect(fly.p[k][0] - 5, fly.p[k][1] - 1, 10, 2); }
+    }
+    function frame(now) { if (!live) return; scene(now); if (fly && (now - fly.t0) / 10 >= fly.p.length - 1) { var f = fly; fly = null; land(f); } raf = requestAnimationFrame(frame); }
+    function land(f) {
+      var sc = f.hit ? Math.max(0, Math.round(10 * (1 - f.dy / RD[i][1]))) : 0; pts.push(sc); trace = f.p;
+      m.textContent = f.hit ? (sc >= 10 ? '¡En el centro! +10' : sc ? '+' + sc + ' puntos' : 'Rozaste el borde: 0 puntos') : 'Cayó antes de llegar: 0 puntos';
+      beep(sc ? [660, 880] : [196, 147], 0.1, sc ? 'triangle' : 'sine');
+      var tot = pts.reduce(function (a, b) { return a + b; }, 0);
+      if (++i >= 5) { live = false; $('#a-f', A).hidden = false; if (tot >= 35) { m.textContent += ' Total ' + tot + '/50. ¡Superado!'; win(); } else { m.textContent += ' Total ' + tot + '/50 (necesitas 35). Pulsa Disparar para reintentar.'; i = 0; pts = []; live = true; raf = requestAnimationFrame(frame); } }
+      info();
+    }
+    function info() { inf.textContent = 'Disparo ' + (i + 1) + '/5 · Puntos: ' + pts.reduce(function (a, b) { return a + b; }, 0); }
+    $('#a-f', A).onclick = function () {
+      if (fly) return; var a = sa.value * Math.PI / 180, v = sp.value * V, s = RD[i], tx = X0 + s[0], p = [], t = 0, x, y, hit = false, dy = 0, now = performance.now();
+      for (; t < 6; t += 0.01) { x = X0 + v * Math.cos(a) * t; y = Y0 - v * Math.sin(a) * t + 0.5 * GV * t * t; p.push([x, y]); if (x >= tx) { hit = true; dy = Math.abs(y - ty(now / 1000 + t)); break; } if (y > 272) break; }
+      fly = { p: p, t0: now, hit: hit, dy: dy };
+    };
+    info(); raf = requestAnimationFrame(frame);
+  }
+var EVH = {
+  1: { t: 'El suelo está seco.', f: function (S, k) { S.a -= 20 * k; } },
+  5: { t: 'Se aproxima una ola de calor.', f: function (S, k) { S.a -= 25 * k; S.l += 10; } },
+  10: { t: 'El árbol necesita nutrientes.', f: function (S, k) { S.n -= 25 * k; } },
+  12: { t: 'Nacho y Tania escarban cerca de las raíces.', f: function (S, k) { S.s -= 12 * k; } },
+  15: { t: 'Lluvias abundantes.', f: function (S, k) { S.a += 35 * (k < 1 ? 0.3 : 1); } },
+  18: { t: 'Un búho se posa en las ramas y vigila.', f: function (S) { S.s += 8; } },
+  22: { t: 'Aparece una plaga.', f: function (S, k) { S.s -= 40 * k; } },
+  26: { t: 'Llega una helada nocturna.', f: function (S, k) { S.s -= 20 * k; S.l -= 15 * k; } }
+};
+function cl(v) { return Math.max(0, Math.min(100, v)); }
+function hstep(S, day, act, rnd) {
+  var prot = act === 'p', k = prot ? 0.3 : 1;
+  if (act === 'r') S.a += 30;
+  if (act === 'a') { S.n += 30; S.a -= 4; }
+  if (act === 'e') { S.l += 4; S.s += 1; }
+  if (prot) S.s += 2;
+  if (EVH[day]) EVH[day].f(S, k);
+  S.a -= 6; S.n -= 3; S.l += rnd() * 22 - 12;
+  S.a = cl(S.a); S.n = cl(S.n); S.l = Math.max(20, cl(S.l)); S.s = cl(S.s);
+  var d = 0;
+  if (S.a < 35 || S.a > 88) d -= 6;
+  if (S.n < 25) d -= 4;
+  if (S.l < 30) d -= 3;
+  if (S.a >= 40 && S.a <= 80 && S.n >= 40 && S.l >= 45) d += 2;
+  S.s = cl(S.s + d);
+}
+
+  /* 6. El huerto */
+  function huerto(A, win) {
+    var day = 1, S = null, done = true;
+    A.innerHTML = '<p id="h-t" style="color:#fff;margin:0"></p><div id="h-tree" style="font-size:3rem;text-align:center;margin:6px 0">🌱</div><div id="h-bars"></div><p id="h-e" style="color:#fff;margin:10px 0 2px"></p><p id="h-w" style="color:var(--muted-color);margin:0 0 10px"></p><div class="secret-form"><button class="support-button" type="button" data-a="r">💧 Regar</button><button class="support-button" type="button" data-a="a">🌿 Abonar</button><button class="support-button" type="button" data-a="e">⏳ Esperar</button><button class="support-button" type="button" data-a="p">🛡 Proteger</button></div><p id="h-m">Cuida a Prūbres durante 30 días y llega al final con al menos 80 de salud. Cada acción consume un día.</p><button id="h-go" class="support-button" type="button">Empezar</button>';
+    var m = $('#h-m', A);
+    function bar(n, v, c) { return '<div style="margin:4px 0;font-size:.85rem">' + n + ' ' + Math.round(v) + '<div class="bar" style="height:10px"><div class="barin" style="width:' + v + '%;background:' + c + '"></div></div></div>'; }
+    function render() {
+      $('#h-t', A).textContent = 'Día ' + Math.min(day, 30) + '/30 · Prūbres';
+      $('#h-tree', A).textContent = day < 6 ? '🌱' : day < 13 ? '🌿' : day < 25 ? '🌳' : '🌳🍎';
+      $('#h-bars', A).innerHTML = bar('💧 Agua', S.a, '#4cc9f0') + bar('☀️ Luz', S.l, '#f2c94c') + bar('🌿 Nutrientes', S.n, '#bb86fc') + bar('❤️ Salud', S.s, '#7ee787');
+      $('#h-e', A).textContent = 'Hoy: ' + (EVH[day] ? EVH[day].t : 'un día tranquilo.');
+      $('#h-w', A).textContent = EVH[day + 1] ? 'Mañana: ' + EVH[day + 1].t : '';
+    }
+    function lose(t) { done = true; m.textContent = t + ' Pulsa Empezar para plantar otra semilla.'; $('#h-go', A).hidden = false; beep([196, 147], 0.12, 'sine'); }
+    [].forEach.call(A.querySelectorAll('[data-a]'), function (b) {
+      b.onclick = function () {
+        if (done) return; hstep(S, day, b.getAttribute('data-a'), Math.random); day++;
+        if (S.s <= 0) { render(); return lose('Tu árbol no lo logró.'); }
+        if (day > 30) {
+          done = true; $('#h-bars', A).innerHTML = bar('❤️ Salud', S.s, '#7ee787'); $('#h-e', A).textContent = ''; $('#h-w', A).textContent = '';
+          if (S.s >= 80) { $('#h-tree', A).textContent = '🌳🍎✨'; m.textContent = 'Salud ' + Math.round(S.s) + '/100. Prūbres da una manzana dorada, grande, jugosa y tierna.'; win(); }
+          else { $('#h-tree', A).textContent = '🌳'; lose('Salud ' + Math.round(S.s) + '/100 (necesitas 80).'); }
+          return;
+        }
+        render(); m.textContent = '';
+      };
+    });
+    $('#h-go', A).onclick = function () { S = { a: 60, l: 70, n: 60, s: 55 }; day = 1; done = false; $('#h-go', A).hidden = true; m.textContent = ''; render(); };
+  }
+
+  /* 7. La contraseña */
+  function nrm(s) { return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
+  var RQ = {
+    A: [['No soy español, ni inglés, ni alemán. Nací para dragones y llevo 800 días con él en una aplicación del búho verde.', ['altovalyrio', 'valyrio', 'altovalirio', 'valirio'], 'Lo habla Daenerys.'],
+      ['Tengo cuatro cuerdas, sonido grave y soy negro, de marca Yamaha. Doy el ritmo desde las sombras.', ['bajo', 'bajoelectrico'], 'Flea me toca.'],
+      ['Fui un pollito de fuego en Hoenn y acabé siendo un luchador con mega evolución.', ['blaziken'], 'Mi forma inicial se llama Torchic.'],
+      ['Soy la princesa zora que fue campeona. Mi historia emocionó mucho a Void en Breath of the Wild.', ['mipha'], 'Su nombre empieza con M.']],
+    B: [['No tengo cuerpo y corro sin internet en una computadora. Mi avatar es un búho con lentes. ¿Cómo me llamo?', ['john'], 'Mi creador me imagina como un Jarvis amable.'],
+      ['Pequeño, gris, ordenado y limpio: sería el compañero que llevaría al hombro.', ['minccino'], 'Es un Pokémon chinchilla.'],
+      ['Pokémon eléctrico y veneno, bajista y punk. Lo elijo porque se parece a mí.', ['toxtricity'], 'Su forma depende de su naturaleza.'],
+      ['Naranja y negro desde 2018. Mi mejor amigo apoya a su rival: G2.', ['fnatic'], 'Rekkles brilló aquí.']],
+    C: [['Campeón del mundo sin jugar una sola partida. Es el ADC que siempre defiendo ante PepeChambas.', ['rekkles'], 'Es sueco.'],
+      ['Caballo negro de Hyrule bautizado con el nombre de un dragón de ASOIAF.', ['vermax'], 'Era el dragón de Jacaerys.'],
+      ['En una competencia de aforo, el volumen era cada vez menor. ¿Cuántos mL fue el último? (solo el número)', ['1', '1ml', 'unml', 'unmililitro'], 'Es menos que una micropipeta de 300 µL.']],
+    D: [['Estuve rodeado de uno sin saberlo: era la mascota de mi facultad.', ['buho', 'lechuza'], 'Mi IA lleva uno con lentes.']],
+    E: [['Nos metió al LoL a mí, a BAD (su hermano) y a PepeChambas. En el juego lo llaman…', ['plazma', 'mauro'], 'Empieza con P.'],
+      ['Grité «Uy, ese ___ es mío» justo antes de que un Rengar fedeado me borrara delante de mis amigos.', ['red', 'buffrojo', 'bufrojo', 'rojo'], 'Es un color y un buff.']]
+  };
+  function clave(A, win) {
+    var qs = [], i = 0, ok = 0, err = 0, lock = true, tt, t0 = 0, usedHint = false;
+    A.innerHTML = '<p id="c-i" style="color:#fff;margin:0 0 8px"></p><div class="bar"><div id="c-b" class="barin" style="background:var(--accent-color)"></div></div><p id="c-q" style="color:#fff;font-size:1.05rem;margin:14px 0"></p><p id="c-h" style="color:var(--muted-color);margin:0 0 8px"></p><input id="c-in" class="newsletter-input" style="width:100%" disabled autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Tu respuesta"><div class="secret-form"><button id="c-ok" class="newsletter-button" type="button">Responder</button><button id="c-hint" class="support-button" type="button">💡 Pista (−0,5)</button></div><p id="c-m">Diez acertijos sobre mí, 20 segundos cada uno, sin pegar. Puedes fallar dos veces (una pista cuesta medio error).</p><button id="c-go" class="support-button" type="button">Empezar</button>';
+    var inf = $('#c-i', A), bar = $('#c-b', A), qq = $('#c-q', A), hh = $('#c-h', A), inp = $('#c-in', A), m = $('#c-m', A);
+    function pickN(a, n) { return a.slice().sort(function () { return Math.random() - 0.5; }).slice(0, n); }
+    function stat() { inf.textContent = 'Acertijo ' + (i + 1) + '/10 · Aciertos: ' + ok + ' · Errores: ' + String(err).replace('.', ',') + '/2'; }
+    function ask() { lock = false; usedHint = false; stat(); qq.textContent = qs[i][0]; hh.textContent = ''; inp.value = ''; inp.disabled = false; inp.focus(); t0 = performance.now(); clearInterval(tt); tt = setInterval(function () { var s = 20 - (performance.now() - t0) / 1000; bar.style.width = Math.max(s, 0) / 20 * 100 + '%'; if (s <= 0) submit(true); }, 100); timers.push(tt); }
+    function after1(good, text) { m.textContent = text; beep(good ? [660, 880] : [196, 147], 0.1, good ? 'triangle' : 'sine'); stat(); if (err > 2) { return fail('Demasiados errores.'); } after(function () { if (++i >= 10) { m.textContent = 'Aciertos: ' + ok + '/10. ¡Superado! Sí que me conoces.'; qq.textContent = ''; hh.textContent = ''; win(); } else ask(); }, 900); }
+    function submit(to) {
+      if (lock) return; lock = true; clearInterval(tt); inp.disabled = true; var v = nrm(inp.value);
+      if (!to && qs[i][1].indexOf(v) > -1) { ok++; after1(true, '✔ Correcto'); } else { err++; after1(false, to ? '⏱ Se acabó el tiempo.' : '✘ Incorrecto.'); }
+    }
+    function fail(t) { lock = true; clearInterval(tt); m.textContent = t + ' Pulsa Empezar para reintentar con otros acertijos.'; $('#c-go', A).hidden = false; }
+    on(inp, 'paste', function (e) { e.preventDefault(); }); on(inp, 'drop', function (e) { e.preventDefault(); });
+    on(inp, 'keydown', function (e) { if (e.key === 'Enter') submit(false); });
+    $('#c-ok', A).onclick = function () { submit(false); };
+    $('#c-hint', A).onclick = function () { if (lock || usedHint) return; usedHint = true; err += 0.5; hh.textContent = 'Pista: ' + qs[i][2]; stat(); if (err > 2) { clearInterval(tt); inp.disabled = true; lock = true; fail('Demasiados errores.'); } };
+    $('#c-go', A).onclick = function () { qs = pickN(RQ.A, 3).concat(pickN(RQ.B, 3), pickN(RQ.C, 2), pickN(RQ.D, 1), pickN(RQ.E, 1)); i = 0; ok = 0; err = 0; m.textContent = ''; $('#c-go', A).hidden = true; ask(); };
+  }
+
+  var GAMES = [{ id: 'smite', n: '1. Smite or Die', d: 'Difícil · Reflejos', f: smite }, { id: 'maestre', n: '2. El maestre', d: 'Medio-difícil · Conocimiento', f: maestre }, { id: 'menisco', n: '3. El menisco perfecto', d: 'Difícil · Precisión', f: menisco },
+    { id: 'rekkles', n: '4. Rekkles Mode', d: 'Difícil · Coordinación', f: rekkles }, { id: 'arquero', n: '5. El arquero', d: 'Medio-difícil · Precisión', f: arquero }, { id: 'huerto', n: '6. El huerto', d: 'Medio · Administración', f: huerto }, { id: 'clave', n: '7. La contraseña', d: 'Muy difícil · Deducción', f: clave },
     { id: 'memoria', n: '8. Memoria', d: 'Difícil · Concentración', f: memoria }, { id: 'reflejos', n: '9. Reflejos', d: 'Muy difícil · Atención', f: reflejos }, { id: 'tecleo', n: '10. Tecleo veloz', d: 'Difícil · Precisión', f: tecleo }];
   var IDS = GAMES.filter(function (g) { return g.f; }).map(function (g) { return g.id; }), P = [];
   try { P = JSON.parse(localStorage.getItem('vxp_retos2')) || []; } catch (e) {}
