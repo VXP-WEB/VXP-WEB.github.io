@@ -18,6 +18,6 @@
       document.body.appendChild(s);
     };
     // Primero tus frases (si existen) y después los secretos
-    load('frases.js', function () { load('secretos.js'); });
+    load('frases.js', function () { load('llaves.js', function () { load('secretos.js'); }); });
   }
 })();

@@ -122,6 +122,13 @@ html.completo .site-logo{filter:drop-shadow(0 0 12px var(--accent-color))}
 .secret-banner{display:block;text-align:center;background-color:var(--card-bg);border:1px solid var(--accent-color);border-radius:6px;padding:12px;margin-bottom:25px;color:#fff;text-decoration:none;animation:glow 2.5s ease-in-out infinite alternate}
 @keyframes glow{from{box-shadow:0 0 4px var(--accent-color)}to{box-shadow:0 0 16px var(--accent-color)}}
 @media (prefers-reduced-motion:reduce){.secret-banner{animation:none}}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background-color:#121212;color:var(--text-color);border:1px solid var(--border-color);border-radius:20px;padding:4px 12px;font-family:inherit;font-size:.8rem;cursor:pointer}
+.chip:hover{border-color:var(--accent-color)}
+.chip.lock{opacity:.35;cursor:default;border-style:dashed;padding:4px 8px}
+.secret-quick{text-align:center;font-size:.85rem;color:var(--muted-color);border:1px dashed var(--border-color);border-radius:6px;padding:10px;margin-bottom:20px}
+.secret-quick a{color:var(--accent-color);text-decoration:none}
+.secret-quick a:hover{text-decoration:underline}
 footer{margin-top:60px;border-top:1px solid var(--border-color);padding-top:20px;font-size:.8rem;color:var(--muted-color);text-align:center}
 .error-page{text-align:center;padding:40px 0}
 .error-page h1{font-size:4rem;margin:0}

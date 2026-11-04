@@ -46,12 +46,12 @@
   function norm(s) { return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
   // Cada secreto tiene grupos de llaves; "a=b" son variantes de la misma llave
   var S = D.map(function (r) {
-    var p = r.split('|'), gs = [];
+    var p = r.split('|'), gs = [], ds = [];
     (p[3] || '').split(';').concat(p[0]).forEach(function (k) {
       var g = k.split('=').map(norm).filter(Boolean);
-      if (g.length && !gs.some(function (x) { return x.some(function (a) { return g.indexOf(a) > -1; }); })) gs.push(g);
+      if (g.length && !gs.some(function (x) { return x.some(function (a) { return g.indexOf(a) > -1; }); })) { gs.push(g); ds.push(k.split('=')[0].trim()); }
     });
-    return { id: norm(p[0]), n: p[0], h: p[1], r: p[2], gs: gs };
+    return { id: norm(p[0]), n: p[0], h: p[1], r: p[2], gs: gs, ds: ds };
   });
   var F = window.VXP_FRASES || {};
   S.forEach(function (s) { if (typeof F[s.n] === 'string' && F[s.n].trim()) s.r = F[s.n]; });
@@ -131,11 +131,34 @@
     if (q) {
       var ok = nKeys() === TK && rOk();
       q.innerHTML = '<p>🗝 Secretos: <strong>' + nOpen() + ' / ' + S.length + '</strong><br>🔑 Llaves: <strong>' + nKeys() + ' / ' + TK +
-        '</strong><br>🎮 Retos: <strong>' + (rOn() ? rN() + ' / ' + rT() + '</strong> · <a href="' + base + 'retos.html" class="buy-link">Ir a los retos →</a>' : '???</strong>') + '</p>' +
+        '</strong>' + (nKeys() ? ' · <a href="' + base + 'llaves.html" class="buy-link">Ver mis llaves →</a>' : '') + '<br>🎮 Retos: <strong>' + (rOn() ? rN() + ' / ' + rT() + '</strong> · <a href="' + base + 'retos.html" class="buy-link">Ir a los retos →</a>' : '???</strong>') + '</p>' +
         (ok ? '<p>🏆 Lo lograste. <a href="' + base + 'sorpresa.html" class="buy-link">Entra a la sala oculta →</a></p>' : '<p>Para abrir la sala oculta necesitas todos los secretos, todas las llaves y todos los retos.</p>');
     }
     var sb = document.getElementById('secreto-sonido');
     if (sb) sb.textContent = '🔊 Sonido: ' + (soundOn() ? 'sí' : 'no');
+    renderKeys();
+  }
+  function showKey(s, k) {
+    var d = document.getElementById('llaves-detail'); if (!d) return;
+    var L = window.VXP_LLAVES || {}, t = (L[s.n] && L[s.n][s.ds[k]]) || '';
+    d.textContent = '«' + s.ds[k] + '» · llave de ' + s.n + '. ' + (t || 'Aún no tiene descripción.');
+  }
+  function renderKeys() {
+    var box = document.getElementById('llaves-list'); if (!box) return;
+    var qe = document.getElementById('llaves-q'), q = qe ? norm(qe.value) : '', any = false;
+    box.innerHTML = '';
+    S.forEach(function (s) {
+      var c = cnt(s); if (!c) return; any = true;
+      var sec = document.createElement('section'), h = document.createElement('h2'), w = document.createElement('div');
+      sec.className = 'bio-card'; h.style.marginTop = '0'; h.textContent = '🗝 ' + s.n + ' · 🔑 ' + c + '/' + s.gs.length; w.className = 'chips';
+      s.gs.forEach(function (g, k) {
+        if (!has(s, g)) { if (!q) { var z = document.createElement('span'); z.className = 'chip lock'; z.textContent = '•••'; w.appendChild(z); } return; }
+        if (q && norm(s.ds[k]).indexOf(q) < 0) return;
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.textContent = s.ds[k]; b.onclick = function () { showKey(s, k); }; w.appendChild(b);
+      });
+      sec.append(h, w); box.appendChild(sec);
+    });
+    if (!any) { var p = document.createElement('p'); p.textContent = 'Todavía no tienes llaves. Escribe nombres de cosas que me gusten y empieza a buscar.'; box.appendChild(p); }
   }
   function unlock(m) {
     var s = m.s, g = m.g;
@@ -185,10 +208,24 @@
     f.addEventListener('click', function (e) { if (e.target.id === 'secret-door') location.href = base + 'secretos.html'; });
   }
   counter(); render();
+  var lq = document.getElementById('llaves-q'); if (lq) lq.addEventListener('input', renderKeys);
+  function fl(k) { try { return localStorage.getItem(k) === '1'; } catch (e) { return false; } }
+  var pg = location.pathname.split('/').pop(), mn = document.querySelector('main');
+  try { if (pg === 'secretos.html') localStorage.setItem('vxp_d_sec', '1'); if (pg === 'llaves.html') localStorage.setItem('vxp_d_llaves', '1'); } catch (e) {}
+  var home = mn && (pg === '' || pg === 'index.html');
+  // Acceso directo: aparece al descubrir los retos, el diario y las llaves
+  if (home && rOn() && fl('vxp_d_sec') && fl('vxp_d_llaves')) {
+    var qc = document.createElement('div'); qc.className = 'secret-quick';
+    [['Secretos', 'secretos.html'], ['Llaves', 'llaves.html'], ['Retos', 'retos.html']].forEach(function (x, k) {
+      if (k) qc.appendChild(document.createTextNode(' · '));
+      var a = document.createElement('a'); a.href = base + x[1]; a.textContent = x[0]; qc.appendChild(a);
+    });
+    qc.insertBefore(document.createTextNode('🗝 Acceso rápido: '), qc.firstChild);
+    mn.parentNode.insertBefore(qc, mn);
+  }
   if (nKeys() === TK && rOk()) {
     document.documentElement.classList.add('completo');
-    var pg = location.pathname.split('/').pop(), mn = document.querySelector('main');
-    if (mn && (pg === '' || pg === 'index.html')) {
+    if (home) {
       var bn = document.createElement('a'); bn.href = base + 'sorpresa.html'; bn.className = 'secret-banner'; bn.textContent = '🗝 La sala oculta está abierta';
       mn.parentNode.insertBefore(bn, mn);
     }
@@ -209,7 +246,7 @@
   });
   if (rb) rb.addEventListener('click', function () {
     if (!confirm('¿Reiniciar tu progreso? Se borrarán secretos, llaves y retos.')) return;
-    got = []; save(); try { localStorage.removeItem('vxp_retos2'); localStorage.removeItem('vxp_retos_ok'); } catch (e) {}
+    got = []; save(); try { ['vxp_retos2', 'vxp_retos_ok', 'vxp_retos_on', 'vxp_retos_intro', 'vxp_d_sec', 'vxp_d_llaves'].forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {}
     counter(); render(); toast('Progreso reiniciado', 'Vuelve a empezar la búsqueda.');
   });
 
