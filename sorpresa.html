@@ -85,14 +85,17 @@
   };
   var L = {
     a1: [{ es: 'Bienvenido, señor. Disculpe el polvo: la última visita fue… nunca.', en: 'Welcome, sir. Do excuse the dust: the last visitor was… never.' }, { es: 'Hay seis cosas escondidas en la oscuridad. Las oirá antes de verlas. Mueva la luz.', en: 'Six things are hidden in the dark. You will hear them before you see them. Move the light.' }],
-    q: [{ es: 'Excelente. Una letra más.', en: 'Splendid. One more letter.' }, { es: 'Eso estaba ahí desde siempre. Qué vergüenza.', en: 'That was there all along. How embarrassing.' }, { es: 'Anote la letra, señor. Yo nunca apunto nada.', en: 'Mind the letter, sir. I never write anything down.' }, { es: 'Otra más. Mis lentes siguen sin aparecer.', en: 'Another one. My glasses are still missing.' }],
+    q: [{ es: 'Excelente. La primera, y ya me siento observado.', en: 'Splendid. The first one, and I already feel watched.' }, { es: 'Eso estaba ahí desde siempre. Qué vergüenza.', en: 'That was there all along. How embarrassing.' }, { es: 'Anote la letra, señor. Yo nunca apunto nada.', en: 'Mind the letter, sir. I never write anything down.' }, { es: 'Otra más. Mis lentes siguen sin aparecer.', en: 'Another one. My glasses are still missing.' }, { es: 'Una más y la bóveda queda a su merced. Si acierta el orden, claro.', en: 'One more and the vault is at your mercy. If you get the order right, that is.' }],
     a1d: [{ es: 'Seis letras. Revueltas, claro: no iba a ser tan fácil. Recuérdelas: la puerta las pedirá.', en: 'Six letters. Scrambled, of course: it was never going to be easy. Remember them; the door will ask.' }],
     a2: [{ es: 'Cuarenta secretos. Yo apenas encuentro mis lentes.', en: 'Forty secrets. I can barely find my glasses.' }, { es: 'Mire cómo se encienden, uno a uno.', en: 'Watch them light up, one by one.' }],
     a2d: [{ es: 'Un búho. Qué casualidad… ¿no cree?', en: 'An owl. What a coincidence… do you not think?' }],
     a3: [{ es: 'La puerta pide una palabra. Una palabra para los amigos.', en: 'The door asks for a word. A word for friends.' }],
-    bad: [{ es: 'Esa no es.', en: 'That is not it.' }], hint: [{ es: 'Pista: es élfico, y significa «amigo».', en: 'Hint: it is Elvish, and it means “friend”.' }],
+    bad: [{ es: 'Esa no es.', en: 'That is not it.' }], hint2: [{ es: 'Seis letras: las que encontró en la oscuridad, en el orden correcto.', en: 'Six letters: the ones you found in the dark, in the right order.' }], hint: [{ es: 'Pista: es élfico, y significa «amigo».', en: 'Hint: it is Elvish, and it means “friend”.' }],
     open: [{ es: 'Debo confesarle algo, señor. Fui yo quien escondió los secretos.', en: 'I must confess something, sir. It was I who hid the secrets.' }, { es: 'Julio solo escribió las llaves… y a veces olvida dónde las deja.', en: 'Julio only wrote the keys… and he sometimes forgets where he leaves them.' }, { es: 'Gracias por llegar hasta aquí. Es usted, oficialmente, un cazador de secretos.', en: 'Thank you for coming this far. You are, officially, a secret hunter.' }]
   };
+
+  var EGG = [[["gandalf"], "Un gran mago, sí. Pero la puerta no se deja impresionar por barbas.", "A great wizard, yes. But the door is not impressed by beards."], [["frodo"], "El anillo se queda fuera de la bóveda, por favor.", "The ring stays outside the vault, please."], [["gollum"], "Nada de «preciosos» aquí dentro, señor.", "No “precious” things in here, sir."], [["amigo", "friend"], "Cerca. Dígalo en élfico.", "Close. Say it in Elvish."], [["melon", "mellon"], "Eso es una fruta, señor. La palabra lleva doble ele.", "That is a fruit, sir. The word has a double L."], [["john"], "Presente. Pero no me corresponde abrir mi propia puerta.", "Present. But it is not for me to open my own door."], [["julio"], "Mi creador. Seguro anda buscando algo que dejó en otro lado.", "My creator. Surely looking for something he left somewhere else."], [["void", "johnboner"], "Un apodo con eco. Interesante, pero no abre nada.", "A nickname with an echo. Interesting, but it opens nothing."], [["vxp"], "El nombre de la casa. No es la llave.", "The name of the house. Not the key."], [["zelda"], "Link no está en la lista de invitados.", "Link is not on the guest list."], [["trifuerza", "triforce"], "Tres triángulos y ninguna cerradura que los quiera.", "Three triangles and no lock that wants them."], [["rekkles"], "Campeón del mundo sin jugar una partida. Aun así, no pasa.", "World champion without playing a game. Still does not get in."], [["fnatic"], "Naranja y negro. Elegante, pero esta puerta es morada.", "Orange and black. Elegant, but this door is purple."], [["plazma"], "El que los metió al LoL. Aquí solo mete problemas.", "The one who got them into LoL. Here he only gets trouble."], [["pepechambas"], "Support oficial. Aquí no hay objetivos que asegurar.", "Official support. No objectives to secure here."], [["bad"], "Tiene pinta de hermano mayor. No abre la puerta, pero lo respeto.", "Sounds like an older brother. It does not open the door, but I respect it."], [["azantys"], "Esa palabra guarda algo que aún no se puede contar.", "That word guards something that cannot be told yet."], [["dracarys"], "Esta puerta es de piedra, señor. No arde.", "This door is stone, sir. It does not burn."], [["minccino"], "Pequeño y ordenado. Muy digno, pero no.", "Small and tidy. Very dignified, but no."], [["toxtricity"], "Demasiado ruido para una sala tan tranquila.", "Far too loud for such a quiet room."], [["nacho", "tania"], "Se oyen ladridos lejanos… ¿serán ellos?", "Distant barking… could it be them?"], [["bajo", "bass"], "Suena grave, pero no es la clave.", "It sounds deep, but it is not the key."], [["prubres", "manzana", "apple"], "Dulce, pero no. La manzana dorada sigue en el rancho.", "Sweet, but no. The golden apple is still on the ranch."], [["password", "contrasena", "clave"], "Qué original. Lamento decirle que no.", "How original. I regret to say no."], [["123456"], "Un clásico. Y no.", "A classic. And no."], [["porfavor", "please"], "Qué educado. Un punto a su favor, pero no.", "How polite. A point in your favor, but no."], [["hola", "hello"], "Buenas noches, señor. La palabra, por favor.", "Good evening, sir. The word, please."], [["jarvis"], "Me halaga. Yo soy bastante menos ordenado.", "I am flattered. I am far less tidy."], [["alfred"], "Prefiero el té. Pero no, tampoco.", "I prefer tea. But no, not that either."], [["buho", "owl"], "Soy yo. Sí, pero no.", "That is me. Yes, but no."], [["lentes", "glasses"], "¿Los ha visto? Los busco desde el primer acto.", "Have you seen them? I have been looking since the first act."], [["abretesesamo"], "Ese es de otro cuento.", "That one belongs to another tale."]];
+  function nz(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ''); }
 
   /* ---------- Audio ---------- */
   var AC = window.AudioContext || window.webkitAudioContext, ctx = null, mast, rev, dg, dr = false;
@@ -173,7 +176,7 @@
         o.f = 1; slots.children[A1.n].textContent = o.l; slots.children[A1.n].className = 'on'; A1.n++;
         burst(o.x, o.y, 50, '#bb86fc'); burst(o.x, o.y, 20, '#ffffff', 90); flash = RM ? 0 : 0.5; shake = RM ? 0 : 6;
         [0, 4, 7, 12].forEach(function (s, k) { tone(hz(72 + s), 1.2, { at: k * 0.07, type: 'triangle', v: 0.16, pan: (o.x - W / 2) / (W / 2), send: 0.6 }); });
-        if (A1.n < 6) say([L.q[Math.floor(Math.random() * L.q.length)]]);
+        if (A1.n < 6) say([L.q[A1.n - 1]]);
         else { $('#acc').hidden = true; setTimeout(function () { say(L.a1d, function () { go(a2Init); }); }, 900); }
       }
     });
@@ -215,24 +218,49 @@
       tone(hz(m), 1.6, { type: 'triangle', v: 0.18, pan: (st.x - W / 2) / (W / 2), send: 0.7 }); burst(st.x, st.y, 14, '#d9b8ff', 70);
       if (A2.lit === 40) { A2.done = t; setTimeout(function () { [0, 4, 7, 12, 16].forEach(function (s, k) { tone(hz(60 + s), 5, { at: k * 0.12, type: 'sine', v: 0.14, a: 0.8, send: 0.9 }); }); flash = RM ? 0 : 0.7; shake = RM ? 0 : 5; say(L.a2d, function () { go(a3Init); }); }, 600); }
     }
-    if (A2.lit >= 13) { var fk = Math.min(1, (t - A2.s[12].t) * 0.8); cx.fillStyle = 'rgba(160,110,240,' + 0.08 * fk + ')'; cx.beginPath(); for (var q = 0; q < 13; q++) cx.lineTo(A2.s[q].x, A2.s[q].y); cx.closePath(); cx.fill(); }
+    if (A2.lit >= 13) {
+      var sk = Math.min(1, (t - A2.s[12].t) * 0.8), sS = A2.s, mi = function (a, b) { return [(a.x + b.x) / 2, (a.y + b.y) / 2]; }, os = Math.min(W * 0.42, H * 0.34), ox = W / 2, oy = H / 2 + 20;
+      cx.beginPath(); cx.moveTo(sS[0].x, sS[0].y); cx.lineTo(sS[1].x, sS[1].y); cx.lineTo(sS[2].x, sS[2].y); cx.lineTo(sS[3].x, sS[3].y);
+      var m0 = mi(sS[3], sS[4]); cx.lineTo(m0[0], m0[1]);
+      for (var bi = 4; bi <= 12; bi++) { var m1 = mi(sS[bi], sS[(bi + 1) % 13]); cx.quadraticCurveTo(sS[bi].x, sS[bi].y, m1[0], m1[1]); }
+      cx.closePath(); cx.fillStyle = 'rgba(130,90,210,' + 0.14 * sk + ')'; cx.fill(); cx.strokeStyle = 'rgba(200,160,255,' + 0.3 * sk + ')'; cx.lineWidth = 1.5; cx.stroke();
+      cx.strokeStyle = 'rgba(200,170,255,' + 0.1 * sk + ')'; cx.lineWidth = 1.2;
+      for (var fr = 0; fr < 4; fr++) for (var fc = -2; fc <= 2; fc++) { var fx = fc * 0.2 + (fr % 2 ? 0.1 : 0); if (Math.abs(fx) > 0.42) continue; cx.beginPath(); cx.arc(ox + fx * os, oy + (0.12 + 0.2 * fr) * os, 0.08 * os, 0, 3.1416); cx.stroke(); }
+      if (A2.lit >= 39) { cx.strokeStyle = 'rgba(130,95,60,' + 0.8 * sk + ')'; cx.lineWidth = 7; cx.lineCap = 'round'; cx.beginPath(); cx.moveTo(ox - 0.85 * os, oy + 1.12 * os); cx.quadraticCurveTo(ox, oy + 1.2 * os, ox + 0.85 * os, oy + 1.1 * os); cx.stroke(); cx.lineCap = 'butt'; }
+    }
     cx.lineWidth = 1.3; OWL.e.forEach(function (e) { var a = A2.s[e[0]], b = A2.s[e[1]], k = Math.min(1, (t - Math.max(a.t, b.t)) * 1.5); if (k > 0 && a.t > -5 && b.t > -5) { cx.strokeStyle = 'rgba(187,134,252,' + 0.55 * k + ')'; cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(b.x, b.y); cx.stroke(); } });
     var hov = null; A2.s.forEach(function (s) {
       if (s.t < -5) return; var k = Math.min(1, (t - s.t) * 2), r = 3 + 3 * k + 1.5 * Math.sin(t * 3 + s.x), g = cx.createRadialGradient(s.x, s.y, 0, s.x, s.y, 22);
       g.addColorStop(0, 'rgba(255,255,255,' + k + ')'); g.addColorStop(0.3, 'rgba(210,170,255,' + 0.5 * k + ')'); g.addColorStop(1, 'rgba(0,0,0,0)'); cx.fillStyle = g; cx.fillRect(s.x - 22, s.y - 22, 44, 44); cx.fillStyle = '#fff'; cx.beginPath(); cx.arc(s.x, s.y, r * 0.5, 0, 7); cx.fill();
       if (Math.hypot(s.x - P.x, s.y - P.y) < 22) hov = s;
     });
-    if (A2.done) { var k = Math.min(1, (t - A2.done) / 2); [-1, 1].forEach(function (d) { var x = W / 2 + d * Math.min(W * 0.42, H * 0.34) * 0.27, y = H / 2 + 20 - Math.min(W * 0.42, H * 0.34) * 0.28, g = cx.createRadialGradient(x, y, 0, x, y, 70 * k + 8 * Math.sin(t * 4)); g.addColorStop(0, 'rgba(255,240,180,' + k + ')'); g.addColorStop(1, 'rgba(255,200,80,0)'); cx.fillStyle = g; cx.fillRect(x - 90, y - 90, 180, 180); }); }
+    if (A2.done) {
+      var k = Math.min(1, (t - A2.done) / 2), os2 = Math.min(W * 0.42, H * 0.34);
+      [-1, 1].forEach(function (d) {
+        var x = W / 2 + d * os2 * 0.27, y = H / 2 + 20 - os2 * 0.28, g = cx.createRadialGradient(x, y, 0, x, y, os2 * 0.2 + 6 * Math.sin(t * 4));
+        g.addColorStop(0, 'rgba(255,240,180,' + k + ')'); g.addColorStop(1, 'rgba(255,200,80,0)'); cx.fillStyle = g; cx.fillRect(x - os2 * 0.3, y - os2 * 0.3, os2 * 0.6, os2 * 0.6);
+        var ang = Math.atan2(P.y - y, P.x - x), dd = Math.min(os2 * 0.06, Math.hypot(P.x - x, P.y - y) / 10), px = x + Math.cos(ang) * dd, py = y + Math.sin(ang) * dd;
+        cx.fillStyle = 'rgba(10,6,20,' + k + ')'; cx.beginPath(); cx.arc(px, py, os2 * 0.075, 0, 7); cx.fill();
+        cx.fillStyle = 'rgba(255,255,255,' + k + ')'; cx.beginPath(); cx.arc(px + os2 * 0.025, py - os2 * 0.03, os2 * 0.02, 0, 7); cx.fill();
+      });
+    }
     var lb = $('#lbl'); if (hov && hov.n) { lb.hidden = false; lb.textContent = '🗝 ' + hov.n; lb.style.left = P.x + 14 + 'px'; lb.style.top = P.y + 14 + 'px'; } else lb.hidden = true;
   }
 
   /* ---------- Acto 3: la bóveda ---------- */
   var A3 = {}, dui = $('#door');
-  function a3Init() { act = 3; $('#lbl').hidden = true; A3 = { open: 0, state: 'locked', bad: 0, bs: 0, sh: 0 }; dui.hidden = false; $('#w').value = ''; $('#w').focus(); droneTo(0.18); say(L.a3); }
+  function a3Init() { act = 3; $('#lbl').hidden = true; A3 = { open: 0, state: 'locked', bad: 0, gen: 0, bs: 0, sh: 0 }; dui.hidden = false; $('#w').value = ''; $('#w').focus(); droneTo(0.18); say(L.a3); }
+  var GEN = [{ es: 'Esa no es.', en: 'That is not it.' }, { es: 'Tampoco.', en: 'Nor that.' }, { es: 'Inténtelo otra vez, señor.', en: 'Try again, sir.' }, { es: 'La puerta no se inmuta.', en: 'The door does not flinch.' }, { es: 'Frío. Muy frío.', en: 'Cold. Very cold.' }];
   function submit() {
-    if (act !== 3 || A3.state !== 'locked') return; var v = $('#w').value.toLowerCase().replace(/[^a-z]/g, ''); if (!v) return;
-    if (v === 'mellon') { A3.state = 'opening'; A3.t0 = t; dui.hidden = true; opening(); }
-    else { A3.bad++; shake = RM ? 0 : 14; flash = 0; A3.red = 1; tone(110, 0.5, { type: 'sawtooth', v: 0.18, to: 70, send: 0.4 }); say(A3.bad >= 2 ? L.bad.concat(L.hint) : L.bad); $('#w').value = ''; }
+    if (act !== 3 || A3.state !== 'locked') return; var v = nz($('#w').value); if (!v) return;
+    if (v === 'mellon') { A3.state = 'opening'; A3.t0 = t; dui.hidden = true; opening(); return; }
+    A3.bad++; var eg = null; EGG.forEach(function (x) { if (x[0].indexOf(v) > -1) eg = x; });
+    if (eg) { tone(330, 0.4, { type: 'triangle', v: 0.15, send: 0.5 }); say([{ es: eg[1], en: eg[2] }]); }
+    else {
+      A3.gen++; shake = RM ? 0 : 14; A3.red = 1; tone(110, 0.5, { type: 'sawtooth', v: 0.18, to: 70, send: 0.4 });
+      var ln = [GEN[(A3.gen - 1) % GEN.length]]; if (A3.gen >= 3) ln = ln.concat(A3.gen >= 6 ? L.hint2 : L.hint); say(ln);
+    }
+    $('#w').value = '';
   }
   function opening() {
     for (var i = 0; i < 8; i++) tone(180 + i * 12, 0.5, { at: 0.4 + i * 0.12, type: 'square', v: 0.12, to: 90, pan: (i - 3.5) / 4, send: 0.5 });
