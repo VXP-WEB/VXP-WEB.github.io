@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sala oculta — VXP</title>
+    <title>La sala oculta — VXP</title>
     <meta name="description" content="Una sala oculta de VXP.">
     <link rel="canonical" href="https://vxp-web.github.io/sorpresa.html">
     <link rel="icon" type="image/x-icon" href="/vxp.ico">
@@ -11,7 +11,7 @@
     <!-- Vista previa al compartir (Open Graph) -->
     <meta property="og:site_name" content="VXP">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Sala oculta — VXP">
+    <meta property="og:title" content="La sala oculta — VXP">
     <meta property="og:description" content="Una sala oculta de VXP.">
     <meta property="og:url" content="https://vxp-web.github.io/sorpresa.html">
     <meta property="og:image" content="https://vxp-web.github.io/vxp.png">
@@ -24,80 +24,294 @@
     <script data-goatcounter="https://vxp-web.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <meta name="robots" content="noindex">
     <style>
-        body.luz{padding:0;max-width:none;height:100vh;height:100dvh;overflow:hidden;background:#050505}
-        .luz-back{position:fixed;top:14px;left:14px;z-index:5}
-        .luz-btn{position:fixed;top:12px;right:14px;z-index:5;background:transparent;color:var(--muted-color);border:1px solid var(--border-color);border-radius:6px;padding:6px 10px;font-family:inherit;font-size:.75rem;cursor:pointer}
-        .world{position:fixed;inset:0;touch-action:none}
-        .item{position:absolute;max-width:min(260px,70vw);color:#d8d8d8;font-size:.9rem;line-height:1.5}
-        .item p{margin:0}
-        .glyph{font-size:1.8rem}
-        .dark{position:fixed;inset:0;z-index:3;pointer-events:none;background:radial-gradient(circle 130px at var(--x,50%) var(--y,50%),rgba(0,0,0,0) 0,rgba(0,0,0,.35) 55%,rgba(0,0,0,.985) 100%)}
-        .dark.off{display:none}
-        .gate{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
-    .dip{position:fixed;inset:0;z-index:10;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;padding:16px}.dip-box{max-width:min(900px,100%)}.dip-box canvas{width:100%;height:auto;border-radius:8px}.dip-ctl{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+        body.sala{margin:0;padding:0;max-width:none;overflow:hidden;background:#000;height:100vh;height:100dvh;font-family:'Space Mono',monospace}
+        #cv{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+        [hidden]{display:none!important}
+        .hud{position:fixed;top:10px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:center;z-index:7;gap:8px}
+        .hud a,.hud button{background:rgba(10,10,14,.7);color:#cfcfcf;border:1px solid #3a3a48;border-radius:6px;padding:6px 10px;font-family:inherit;font-size:.75rem;cursor:pointer;text-decoration:none}
+        .hud div{display:flex;gap:6px}
+        #slots{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:5}
+        #slots span{width:40px;height:50px;border:1px solid #3a3a48;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#d9b8ff;background:rgba(0,0,0,.6)}
+        #slots span.on{border-color:#bb86fc;box-shadow:0 0 16px #bb86fc;animation:pop .45s}
+        @keyframes pop{0%{transform:scale(.4)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+        .john{position:fixed;top:56px;left:50%;transform:translateX(-50%);width:min(560px,92vw);z-index:6;display:flex;gap:12px;align-items:flex-start;background:rgba(10,10,14,.88);border:1px solid #3a3a48;border-radius:10px;padding:12px 14px;font-size:.9rem;color:#e0e0e0;line-height:1.5}
+        .john .av{font-size:1.8rem;line-height:1}
+        #lbl{position:fixed;z-index:6;background:rgba(10,10,14,.9);border:1px solid #bb86fc;border-radius:6px;padding:4px 8px;font-size:.75rem;color:#fff;pointer-events:none}
+        .overlay{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.94);display:flex;align-items:center;justify-content:center;padding:16px;text-align:center}
+        .overlay .box{max-width:460px;color:#e0e0e0}
+        .big{background:#bb86fc;color:#121212;border:none;border-radius:8px;padding:14px 28px;font-family:inherit;font-weight:bold;font-size:1rem;cursor:pointer;margin-top:12px}
+        #door{position:fixed;bottom:34px;left:50%;transform:translateX(-50%);z-index:6;display:flex;gap:8px}
+        #w{width:min(260px,52vw);background:rgba(0,0,0,.75);border:1px solid #bb86fc;border-radius:8px;color:#fff;font-family:inherit;font-size:1.3rem;letter-spacing:.35em;text-align:center;padding:10px;text-transform:uppercase}
+        #w:focus{outline:none;box-shadow:0 0 18px #bb86fc}
+        .final{position:fixed;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;padding:16px;background:radial-gradient(circle at 50% 40%,rgba(255,240,220,.92),rgba(150,90,230,.75) 55%,rgba(5,5,12,.97) 100%)}
+        .final .card{background:rgba(10,10,16,.88);border:1px solid #bb86fc;border-radius:12px;padding:26px;max-width:480px;text-align:center;color:#e0e0e0;box-shadow:0 0 40px rgba(187,134,252,.5)}
+        .final h2{color:#fff;margin:0 0 10px}
+        .final .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+        .final .row a,.final .row button{background:transparent;color:#bb86fc;border:1px solid #bb86fc;border-radius:6px;padding:10px 14px;font-family:inherit;font-size:.85rem;cursor:pointer;text-decoration:none}
+        .dip{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:16px}
+        .dip-box{max-width:min(900px,100%)}.dip-box canvas{width:100%;height:auto;border-radius:8px}
+        .dip-ctl{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+        .dip-ctl input{flex:1;min-width:160px;background:#121212;color:#fff;border:1px solid #2d2d2d;border-radius:6px;padding:10px;font-family:inherit}
+        .dip-ctl button{border-radius:6px;padding:10px 14px;font-family:inherit;cursor:pointer}
+        .gate{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;color:#e0e0e0}
     </style>
 </head>
-<body class="luz">
-    <a href="secretos.html" class="back-link luz-back">← Volver al diario</a>
-    <button id="luz-toggle" class="luz-btn" type="button">💡 Encender la luz</button>
-    <button id="dip-btn" class="luz-btn" type="button" style="right:150px" hidden>🎖 Mi diploma</button>
-    <div id="dip" class="dip" hidden><div class="dip-box"><canvas id="dip-c" width="900" height="560"></canvas><div class="dip-ctl"><input id="dip-name" class="newsletter-input" placeholder="Tu nombre (opcional)" maxlength="28" aria-label="Tu nombre"><button id="dip-dl" class="newsletter-button" type="button">Descargar PNG</button><button id="dip-x" class="support-button" type="button">Cerrar</button></div></div></div>
-    <canvas id="confeti" style="position:fixed;inset:0;z-index:8;pointer-events:none"></canvas>
-
-    <main id="world" class="world" hidden>
-        <div class="item" style="top:46%;left:36%"><p><em>Mueve la luz…</em></p></div>
-        <div class="item" style="top:14%;left:8%"><p><strong>Gracias por llegar hasta aquí.</strong><br>Encontraste los 40 secretos, todas sus llaves y superaste los retos. Cada cosa que buscaste es algo que me gusta, y ahora ya lo sabes.</p></div>
-        <div class="item" style="top:34%;left:58%"><p><em>Fragmento sin título</em><br>Cada noche, la luz del muelle se enciende sola. Nadie sabe quién la cuida. Esta vez alguien dejó una linterna en la orilla, todavía tibia, apuntando al agua. Y el agua, por primera vez, estaba quieta.</p></div>
-        <div class="item" style="top:70%;left:10%"><p>Lo que viene: mis historias, mis juegos y mi música. Si quieres enterarte primero, <a href="index.html" class="buy-link">suscríbete a la bitácora</a>.</p></div>
-        <div class="item" style="top:82%;left:60%"><p>Esta sala no existe. Nunca estuviste aquí.<br>— Julio, VXP</p></div>
-        <div class="item glyph" style="top:22%;left:48%">🗝</div>
-        <div class="item glyph" style="top:58%;left:26%">🧪</div>
-        <div class="item glyph" style="top:62%;left:80%">🔦</div>
-    </main>
-    <div id="dark" class="dark"></div>
-
-    <section id="gate" class="gate" hidden>
-        <h1>Sala cerrada</h1>
-        <p>Para entrar necesitas todos los secretos, todas sus llaves y todos los retos.</p>
-        <p><a href="secretos.html" class="buy-link">Ir al diario →</a> · <a href="retos.html" class="buy-link">Ir a los retos →</a></p>
-    </section>
-
+<body class="sala">
+    <canvas id="cv"></canvas>
+    <div class="hud">
+        <a href="secretos.html">←</a>
+        <div><button id="skip" type="button" hidden title="Saltar">⏭</button><button id="acc" type="button" hidden title="Modo accesible">💡</button><button id="lng" type="button">EN</button><button id="snd" type="button">🔊</button></div>
+    </div>
+    <div id="john" class="john" hidden><span class="av">🦉</span><p id="jt" style="margin:0"></p></div>
+    <div id="lbl" hidden></div>
+    <div id="slots" hidden><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div id="door" hidden><input id="w" maxlength="12" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="······" aria-label="Palabra / Word"><button id="w-ok" class="big" type="button" style="margin:0;padding:10px 18px">⏎</button></div>
+    <div id="final" class="final" hidden><div class="card"><h2 id="f-t"></h2><p id="f-p"></p><div class="row"><button id="f-dip" type="button"></button><a id="f-home" href="index.html"></a><button id="f-again" type="button"></button></div></div></div>
+    <div id="dip" class="dip" hidden><div class="dip-box"><canvas id="dip-c" width="900" height="560"></canvas><div class="dip-ctl"><input id="dip-name" placeholder="Nombre / Name" maxlength="28" aria-label="Name"><button id="dip-dl" type="button" class="big" style="margin:0;padding:10px 16px">PNG</button><button id="dip-x" type="button">✕</button></div></div></div>
+    <div id="start" class="overlay"><div class="box"><h1 id="st-a" style="color:#fff"></h1><p id="st-b"></p><button id="st-go" class="big" type="button"></button></div></div>
+    <section id="gate" class="gate" hidden><h1>Sala cerrada</h1><p>Para entrar necesitas todos los secretos, todas sus llaves y todos los retos.</p><p><a href="secretos.html" class="buy-link">Diario →</a> · <a href="retos.html" class="buy-link">Retos →</a></p></section>
     <script>
-    (function () {
-        var ok = false;
-        try { ok = localStorage.getItem('vxp_keysok') === '1' && localStorage.getItem('vxp_retos_ok') === '1'; } catch (e) {}
-        var w = document.getElementById('world'), g = document.getElementById('gate'),
-            d = document.getElementById('dark'), b = document.getElementById('luz-toggle');
-        if (!ok) { d.hidden = true; b.hidden = true; g.hidden = false; return; }
-        w.hidden = false; $('dip-btn').hidden = false;
-        function $(id) { return document.getElementById(id); }
-        // Confeti
-        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            var cv = $('confeti'), cx = cv.getContext('2d'), ps = [], t0 = Date.now(); cv.width = innerWidth; cv.height = innerHeight;
-            for (var n = 0; n < 160; n++) ps.push({ x: Math.random() * cv.width, y: -Math.random() * cv.height, v: 2 + Math.random() * 4, s: 4 + Math.random() * 6, c: ['#bb86fc', '#7ee787', '#f7b267', '#4cc9f0', '#fff'][n % 5] });
-            (function f() { cx.clearRect(0, 0, cv.width, cv.height); ps.forEach(function (p) { p.y += p.v; cx.fillStyle = p.c; cx.fillRect(p.x, p.y, p.s, p.s); }); if (Date.now() - t0 < 4500) requestAnimationFrame(f); else cx.clearRect(0, 0, cv.width, cv.height); })();
-        }
-        // Diploma descargable
-        function draw() {
-            var c = $('dip-c'), x = c.getContext('2d'), st = { s: 40, k: 0 }; try { st = JSON.parse(localStorage.getItem('vxp_stats')) || st; } catch (e) {}
-            var F = '"Space Mono", monospace'; x.textAlign = 'center';
-            x.fillStyle = '#121212'; x.fillRect(0, 0, 900, 560); x.strokeStyle = '#bb86fc'; x.lineWidth = 6; x.strokeRect(24, 24, 852, 512); x.lineWidth = 1; x.strokeRect(40, 40, 820, 480);
-            x.fillStyle = '#bb86fc'; x.font = 'bold 54px ' + F; x.fillText('VXP', 450, 120);
-            x.fillStyle = '#fff'; x.font = 'bold 34px ' + F; x.fillText('CAZADOR DE SECRETOS', 450, 190);
-            x.fillStyle = '#a0a0a0'; x.font = '20px ' + F; x.fillText('Este diploma certifica que', 450, 250);
-            x.fillStyle = '#fff'; x.font = 'bold 40px ' + F; x.fillText($('dip-name').value.trim() || 'Visitante misterioso', 450, 310);
-            x.fillStyle = '#a0a0a0'; x.font = '18px ' + F; x.fillText('encontró ' + st.s + ' secretos, ' + st.k + ' llaves y superó los 3 retos', 450, 370);
-            x.fillText(new Date().toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' }), 450, 420);
-            x.fillStyle = '#bb86fc'; x.fillText('🗝  vxp-web.github.io  🧪', 450, 490);
-        }
-        $('dip-btn').onclick = function () { $('dip').hidden = false; draw(); };
-        $('dip-x').onclick = function () { $('dip').hidden = true; };
-        $('dip-name').oninput = draw;
-        $('dip-dl').onclick = function () { $('dip-c').toBlob(function (b) { var a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'diploma-vxp.png'; a.click(); }); };
-        function mv(e) { var p = e.touches ? e.touches[0] : e; d.style.setProperty('--x', p.clientX + 'px'); d.style.setProperty('--y', p.clientY + 'px'); }
-        addEventListener('pointermove', mv); addEventListener('pointerdown', mv); addEventListener('touchmove', mv, { passive: true });
-        b.addEventListener('click', function () { var off = d.classList.toggle('off'); b.textContent = off ? '🌑 Apagar la luz' : '💡 Encender la luz'; });
+(function () {
+  'use strict';
+  var $ = function (s) { return document.querySelector(s); };
+  var ok = false; try { ok = localStorage.getItem('vxp_keysok') === '1' && localStorage.getItem('vxp_retos_ok') === '1'; } catch (e) {}
+  if (!ok) { $('#gate').hidden = false; $('#start').hidden = true; return; }
+  var NAMES = ["Pokémon", "Halo", "Resident Evil", "Zelda", "Halloween", "Dragon Ball", "Naruto", "Rayados de Monterrey", "Skyrim", "Assassin's Creed", "Minecraft", "Dark Souls", "Black Ops Zombies", "Grand Theft Auto", "Star Wars", "El Señor de los Anillos", "Game of Thrones", "Harry Potter", "Apex Legends", "League of Legends", "Rekkles", "Fnatic", "Highschool DxD", "To Love Ru", "Marvel", "The Last of Us", "Mortal Kombat", "Dua Lipa", "Hayley Williams", "Eminem", "Green Day", "Blink-182", "Fall Out Boy", "Red Hot Chili Peppers", "La Rosalía", "Imagine Dragons", "Canserbero", "Linkin Park", "Sputnik", "Alec Benjamin"];
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lang = ((navigator.language || 'es').slice(0, 2) === 'es') ? 'es' : 'en';
+  var TX = {
+    start: { es: ['Mejor con auriculares 🎧', 'Hay sonido espacial: te ayudará a encontrar cosas en la oscuridad.', 'Entrar'], en: ['Best with headphones 🎧', 'There is spatial sound: it will help you find things in the dark.', 'Enter'] },
+    fin: { es: ['🏆 Cazador de secretos', 'Abriste la bóveda: 40 secretos, 523 llaves y 10 retos. Nadie te lo puede quitar.', '🎖 Descargar diploma', '🏠 Volver al inicio', '↺ Verlo de nuevo'], en: ['🏆 Secret hunter', 'You opened the vault: 40 secrets, 523 keys and 10 challenges. No one can take that away.', '🎖 Download diploma', '🏠 Back home', '↺ Watch again'] }
+  };
+  var L = {
+    a1: [{ es: 'Bienvenido, señor. Disculpe el polvo: la última visita fue… nunca.', en: 'Welcome, sir. Do excuse the dust: the last visitor was… never.' }, { es: 'Hay seis cosas escondidas en la oscuridad. Las oirá antes de verlas. Mueva la luz.', en: 'Six things are hidden in the dark. You will hear them before you see them. Move the light.' }],
+    q: [{ es: 'Excelente. Una letra más.', en: 'Splendid. One more letter.' }, { es: 'Eso estaba ahí desde siempre. Qué vergüenza.', en: 'That was there all along. How embarrassing.' }, { es: 'Anote la letra, señor. Yo nunca apunto nada.', en: 'Mind the letter, sir. I never write anything down.' }, { es: 'Otra más. Mis lentes siguen sin aparecer.', en: 'Another one. My glasses are still missing.' }],
+    a1d: [{ es: 'Seis letras. Revueltas, claro: no iba a ser tan fácil. Recuérdelas: la puerta las pedirá.', en: 'Six letters. Scrambled, of course: it was never going to be easy. Remember them; the door will ask.' }],
+    a2: [{ es: 'Cuarenta secretos. Yo apenas encuentro mis lentes.', en: 'Forty secrets. I can barely find my glasses.' }, { es: 'Mire cómo se encienden, uno a uno.', en: 'Watch them light up, one by one.' }],
+    a2d: [{ es: 'Un búho. Qué casualidad… ¿no cree?', en: 'An owl. What a coincidence… do you not think?' }],
+    a3: [{ es: 'La puerta pide una palabra. Una palabra para los amigos.', en: 'The door asks for a word. A word for friends.' }],
+    bad: [{ es: 'Esa no es.', en: 'That is not it.' }], hint: [{ es: 'Pista: es élfico, y significa «amigo».', en: 'Hint: it is Elvish, and it means “friend”.' }],
+    open: [{ es: 'Debo confesarle algo, señor. Fui yo quien escondió los secretos.', en: 'I must confess something, sir. It was I who hid the secrets.' }, { es: 'Julio solo escribió las llaves… y a veces olvida dónde las deja.', en: 'Julio only wrote the keys… and he sometimes forgets where he leaves them.' }, { es: 'Gracias por llegar hasta aquí. Es usted, oficialmente, un cazador de secretos.', en: 'Thank you for coming this far. You are, officially, a secret hunter.' }]
+  };
+
+  /* ---------- Audio ---------- */
+  var AC = window.AudioContext || window.webkitAudioContext, ctx = null, mast, rev, dg, dr = false;
+  function sndOn() { try { return localStorage.getItem('vxp_sonido') !== '0'; } catch (e) { return true; } }
+  function audioInit() {
+    if (ctx || !AC) return; ctx = new AC(); mast = ctx.createGain(); mast.gain.value = 0.9; mast.connect(ctx.destination);
+    rev = ctx.createConvolver(); var n = Math.floor(ctx.sampleRate * 2.6), b = ctx.createBuffer(2, n, ctx.sampleRate);
+    for (var c = 0; c < 2; c++) { var d = b.getChannelData(c); for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 2.4); }
+    rev.buffer = b; var w = ctx.createGain(); w.gain.value = 0.5; rev.connect(w); w.connect(mast);
+  }
+  function out(node, pan, send) {
+    var last = node;
+    if (ctx.createStereoPanner) { var p = ctx.createStereoPanner(); p.pan.value = Math.max(-1, Math.min(1, pan || 0)); last.connect(p); last = p; }
+    last.connect(mast); if (send) { var s = ctx.createGain(); s.gain.value = send; last.connect(s); s.connect(rev); }
+  }
+  function tone(f, d, o) {
+    if (!ctx || !sndOn()) return; o = o || {}; var t = ctx.currentTime + (o.at || 0), os = ctx.createOscillator(), g = ctx.createGain();
+    os.type = o.type || 'sine'; os.frequency.setValueAtTime(f, t); if (o.to) os.frequency.exponentialRampToValueAtTime(o.to, t + d);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(o.v || 0.2, t + (o.a || 0.01)); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+    os.connect(g); out(g, o.pan, o.send); os.start(t); os.stop(t + d + 0.05);
+  }
+  function noise(d, f0, f1, v, pan, at) {
+    if (!ctx || !sndOn()) return; var t = ctx.currentTime + (at || 0), n = Math.floor(ctx.sampleRate * d), b = ctx.createBuffer(1, n, ctx.sampleRate), x = b.getChannelData(0);
+    for (var i = 0; i < n; i++) x[i] = Math.random() * 2 - 1;
+    var s = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain(); s.buffer = b; f.type = 'bandpass'; f.Q.value = 2;
+    f.frequency.setValueAtTime(f0, t); f.frequency.exponentialRampToValueAtTime(f1, t + d);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + d * 0.4); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+    s.connect(f); f.connect(g); out(g, pan, 0.4); s.start(t);
+  }
+  function drone() {
+    if (!ctx || dr) return; dr = true; dg = ctx.createGain(); dg.gain.value = 0.0001; var lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 160;
+    [55, 55.45, 82.4].forEach(function (f) { var o = ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.value = f; o.connect(lp); o.start(); });
+    var lf = ctx.createOscillator(), lg = ctx.createGain(); lf.frequency.value = 0.07; lg.gain.value = 70; lf.connect(lg); lg.connect(lp.frequency); lf.start();
+    lp.connect(dg); out(dg, 0, 0.3); dg.gain.exponentialRampToValueAtTime(0.1, ctx.currentTime + 3);
+  }
+  function droneTo(v) { if (dg && ctx) dg.gain.exponentialRampToValueAtTime(Math.max(v, 0.0001), ctx.currentTime + 2); }
+  function hz(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+  function blip() { tone(140 + Math.random() * 40, 0.06, { type: 'square', v: 0.025 }); }
+
+  /* ---------- Lienzo, partículas, efectos ---------- */
+  var cv = $('#cv'), cx = cv.getContext('2d'), W = 0, H = 0, P = { x: 0, y: 0 }, parts = [], flash = 0, shake = 0, tr = null, act = 0, t = 0, last = 0, acc = false;
+  function resize() { var d = window.devicePixelRatio || 1; W = innerWidth; H = innerHeight; cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0); }
+  addEventListener('resize', resize); resize(); P.x = W / 2; P.y = H / 2;
+  function burst(x, y, n, c, sp) { if (RM) n = Math.ceil(n / 4); for (var i = 0; i < n; i++) { var a = Math.random() * 6.283, v = (sp || 160) * (0.3 + Math.random()); parts.push({ x: x, y: y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, l: 0, m: 0.6 + Math.random() * 0.9, c: c, s: 1.5 + Math.random() * 2.5 }); } }
+  function drawParts(dt) {
+    cx.globalCompositeOperation = 'lighter';
+    parts = parts.filter(function (p) { return (p.l += dt) < p.m; });
+    parts.forEach(function (p) { p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 40 * dt; cx.globalAlpha = 1 - p.l / p.m; cx.fillStyle = p.c; cx.fillRect(p.x, p.y, p.s, p.s); });
+    cx.globalAlpha = 1; cx.globalCompositeOperation = 'source-over';
+  }
+  function go(fn) { tr = { p: 0, fn: fn }; }
+  function pt(e) { P.x = e.clientX; P.y = e.clientY; }
+  cv.addEventListener('pointermove', pt); cv.addEventListener('pointerdown', function (e) { pt(e); if (act === 1) a1click(); });
+
+  /* ---------- John ---------- */
+  var jb = $('#john'), jt = $('#jt'), jTok = 0;
+  function say(list, cb) {
+    var tok = ++jTok, i = 0; jb.hidden = false;
+    (function nx() {
+      if (tok !== jTok) return;
+      if (i >= list.length) { setTimeout(function () { if (tok === jTok) { jb.hidden = true; if (cb) cb(); } }, 1200); return; }
+      var s = list[i++][lang], k = 0; jt.textContent = '';
+      (function ty() { if (tok !== jTok) return; if (k < s.length) { jt.textContent += s[k++]; if (k % 2 === 0 && s[k - 1] !== ' ') blip(); setTimeout(ty, 28); } else setTimeout(nx, 1400 + s.length * 12); })();
     })();
+  }
+
+  /* ---------- Acto 1: la oscuridad ---------- */
+  var A1 = {}, slots = $('#slots');
+  function a1Init() {
+    act = 1; var gl = ['🗝', '🧪', '🦉', '🍎', '🎸', '🪶'], ls = 'MELLON'.split('').sort(function () { return Math.random() - 0.5; });
+    A1.o = []; for (var i = 0; i < 6; i++) { var x, y, n = 0; do { x = 60 + Math.random() * (W - 120); y = 110 + Math.random() * (H - 260); n++; } while (n < 300 && A1.o.some(function (o) { return Math.hypot(o.x - x, o.y - y) < 170; })); A1.o.push({ x: x, y: y, g: gl[i], l: ls[i], f: 0 }); }
+    A1.n = 0; A1.next = 0; A1.dust = []; for (i = 0; i < 130; i++) A1.dust.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - 0.5) * 8, vy: (Math.random() - 0.5) * 8, r: 1 + Math.random() * 1.6, s: Math.random() * 9 });
+    slots.hidden = false; [].forEach.call(slots.children, function (s) { s.textContent = ''; s.className = ''; }); $('#acc').hidden = false; droneTo(0.1); say(L.a1);
+  }
+  function a1click() {
+    A1.o.forEach(function (o) {
+      if (!o.f && Math.hypot(o.x - P.x, o.y - P.y) < 52) {
+        o.f = 1; slots.children[A1.n].textContent = o.l; slots.children[A1.n].className = 'on'; A1.n++;
+        burst(o.x, o.y, 50, '#bb86fc'); burst(o.x, o.y, 20, '#ffffff', 90); flash = RM ? 0 : 0.5; shake = RM ? 0 : 6;
+        [0, 4, 7, 12].forEach(function (s, k) { tone(hz(72 + s), 1.2, { at: k * 0.07, type: 'triangle', v: 0.16, pan: (o.x - W / 2) / (W / 2), send: 0.6 }); });
+        if (A1.n < 6) say([L.q[Math.floor(Math.random() * L.q.length)]]);
+        else { $('#acc').hidden = true; setTimeout(function () { say(L.a1d, function () { go(a2Init); }); }, 900); }
+      }
+    });
+  }
+  function a1Draw(dt) {
+    cx.fillStyle = '#05050a'; cx.fillRect(0, 0, W, H);
+    for (var i = 0; i < 3; i++) { var bx = W * (0.3 + 0.4 * Math.sin(t * 0.07 + i * 2)), by = H * (0.5 + 0.3 * Math.cos(t * 0.05 + i * 3)), g = cx.createRadialGradient(bx, by, 0, bx, by, 260); g.addColorStop(0, 'rgba(120,70,200,.10)'); g.addColorStop(1, 'rgba(0,0,0,0)'); cx.fillStyle = g; cx.fillRect(0, 0, W, H); }
+    A1.dust.forEach(function (d) { d.x = (d.x + d.vx * dt + W) % W; d.y = (d.y + d.vy * dt + H) % H; cx.fillStyle = 'rgba(255,240,210,' + (0.25 + 0.25 * Math.sin(t * 2 + d.s)) + ')'; cx.fillRect(d.x, d.y, d.r, d.r); });
+    cx.textAlign = 'center'; cx.font = '34px serif'; A1.o.forEach(function (o) { if (!o.f) cx.fillText(o.g, o.x, o.y + 12); });
+    var R = acc ? Math.max(W, H) : 150 + Math.sin(t * 7) * 3 + Math.sin(t * 3.1) * 4, g2 = cx.createRadialGradient(P.x, P.y, R * 0.15, P.x, P.y, R);
+    g2.addColorStop(0, 'rgba(0,0,0,0)'); g2.addColorStop(0.6, 'rgba(0,0,0,.35)'); g2.addColorStop(1, 'rgba(0,0,0,.985)'); cx.fillStyle = g2; cx.fillRect(0, 0, W, H);
+    cx.globalCompositeOperation = 'lighter'; var g3 = cx.createRadialGradient(P.x, P.y, 0, P.x, P.y, 90); g3.addColorStop(0, 'rgba(255,220,160,.12)'); g3.addColorStop(1, 'rgba(0,0,0,0)'); cx.fillStyle = g3; cx.fillRect(P.x - 90, P.y - 90, 180, 180); cx.globalCompositeOperation = 'source-over';
+    A1.o.forEach(function (o) { if (o.f) { cx.shadowColor = '#bb86fc'; cx.shadowBlur = 24; cx.fillText(o.g, o.x, o.y + 12); cx.shadowBlur = 0; } });
+    // sonar espacial: el objeto más cercano suena, más agudo y rápido cuanto más cerca
+    A1.next -= dt; var b = null, bd = 1e9; A1.o.forEach(function (o) { var d = Math.hypot(o.x - P.x, o.y - P.y); if (!o.f && d < bd) { bd = d; b = o; } });
+    if (b && bd < 460 && A1.next <= 0) { var k = 1 - bd / 460; tone(260 + k * 640, 0.35, { type: 'sine', v: 0.05 + 0.2 * k, pan: (b.x - P.x) / (W / 2), send: 0.5 }); A1.next = 1.3 - k * 1.1; }
+  }
+
+  /* ---------- Acto 2: la constelación ---------- */
+  var A2 = {};
+  var OWL = (function () {
+    var p = [], i, a;
+    for (i = 0; i < 16; i++) { a = i * 6.283 / 16; p.push([0.55 * Math.cos(a), 0.1 + 0.75 * Math.sin(a)]); }
+    p.push([-0.38, -0.92], [0.38, -0.92]);
+    [-0.24, 0.24].forEach(function (c) { for (i = 0; i < 5; i++) { a = i * 6.283 / 5 - 1.57; p.push([c + 0.16 * Math.cos(a), -0.18 + 0.16 * Math.sin(a)]); } });
+    p.push([0, -0.18], [0, 0.02], [0, 0.14], [-0.28, 0.3], [0.28, 0.3], [-0.14, 0.45], [0.14, 0.45], [0, 0.58], [0, 0.32], [-0.2, 0.92], [0.2, 0.92], [0, -0.46]);
+    var e = []; for (i = 0; i < 16; i++) e.push([i, (i + 1) % 16]);
+    e.push([16, 11], [17, 13], [28, 19], [28, 23], [28, 29], [29, 30], [31, 33], [33, 35], [35, 36], [36, 34], [34, 32], [37, 3], [38, 5], [39, 28], [39, 12]);
+    for (i = 0; i < 5; i++) { e.push([18 + i, 18 + (i + 1) % 5]); e.push([23 + i, 23 + (i + 1) % 5]); }
+    return { p: p, e: e };
+  })();
+  function a2Init() {
+    act = 2; slots.hidden = true; $('#acc').hidden = true; var s = Math.min(W * 0.42, H * 0.34), ox = W / 2, oy = H / 2 + 20;
+    A2.s = OWL.p.map(function (q, i) { return { x: ox + q[0] * s, y: oy + q[1] * s, t: -9, n: NAMES[i] || '' }; });
+    A2.lit = 0; A2.tt = 1.2; A2.done = 0; A2.bg = []; for (var i = 0; i < 220; i++) A2.bg.push({ x: Math.random() * W, y: Math.random() * H, z: 0.2 + Math.random() * 0.8, p: Math.random() * 9 });
+    A2.sh = []; A2.ns = 3; droneTo(0.14); say(L.a2);
+  }
+  function a2Draw(dt) {
+    cx.fillStyle = '#04040c'; cx.fillRect(0, 0, W, H);
+    for (var i = 0; i < 3; i++) { var bx = W * (0.25 + 0.5 * i / 2 + 0.06 * Math.sin(t * 0.1 + i)), by = H * (0.35 + 0.2 * Math.cos(t * 0.08 + i * 2)), g = cx.createRadialGradient(bx, by, 0, bx, by, 330); g.addColorStop(0, ['rgba(90,60,200,.16)', 'rgba(30,120,200,.12)', 'rgba(170,60,160,.12)'][i]); g.addColorStop(1, 'rgba(0,0,0,0)'); cx.fillStyle = g; cx.fillRect(0, 0, W, H); }
+    var mx = (P.x - W / 2) / W, my = (P.y - H / 2) / H;
+    A2.bg.forEach(function (b) { var x = b.x - mx * 30 * b.z, y = b.y - my * 30 * b.z; cx.fillStyle = 'rgba(255,255,255,' + (0.25 + 0.6 * b.z * (0.6 + 0.4 * Math.sin(t * 2 + b.p))) + ')'; cx.fillRect(x, y, b.z * 2, b.z * 2); });
+    A2.ns -= dt; if (A2.ns <= 0 && !RM) { A2.ns = 4 + Math.random() * 5; A2.sh.push({ x: Math.random() * W, y: Math.random() * H * 0.4, l: 0 }); noise(0.9, 3000, 800, 0.03, 0); }
+    A2.sh = A2.sh.filter(function (s) { s.l += dt; var k = s.l / 0.9, x = s.x + k * 380, y = s.y + k * 190, g = cx.createLinearGradient(x, y, x - 90, y - 45); g.addColorStop(0, 'rgba(255,255,255,' + (1 - k) + ')'); g.addColorStop(1, 'rgba(255,255,255,0)'); cx.strokeStyle = g; cx.lineWidth = 2; cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x - 90, y - 45); cx.stroke(); return k < 1; });
+    A2.tt -= dt;
+    if (A2.lit < 40 && A2.tt <= 0) {
+      var st = A2.s[A2.lit], m = 48 + [0, 2, 4, 7, 9][A2.lit % 5] + 12 * (Math.floor(A2.lit / 5) % 4); st.t = t; A2.lit++; A2.tt = 0.32;
+      tone(hz(m), 1.6, { type: 'triangle', v: 0.18, pan: (st.x - W / 2) / (W / 2), send: 0.7 }); burst(st.x, st.y, 14, '#d9b8ff', 70);
+      if (A2.lit === 40) { A2.done = t; setTimeout(function () { [0, 4, 7, 12, 16].forEach(function (s, k) { tone(hz(60 + s), 5, { at: k * 0.12, type: 'sine', v: 0.14, a: 0.8, send: 0.9 }); }); flash = RM ? 0 : 0.7; shake = RM ? 0 : 5; say(L.a2d, function () { go(a3Init); }); }, 600); }
+    }
+    cx.lineWidth = 1.3; OWL.e.forEach(function (e) { var a = A2.s[e[0]], b = A2.s[e[1]], k = Math.min(1, (t - Math.max(a.t, b.t)) * 1.5); if (k > 0 && a.t > -5 && b.t > -5) { cx.strokeStyle = 'rgba(187,134,252,' + 0.55 * k + ')'; cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(b.x, b.y); cx.stroke(); } });
+    var hov = null; A2.s.forEach(function (s) {
+      if (s.t < -5) return; var k = Math.min(1, (t - s.t) * 2), r = 3 + 3 * k + 1.5 * Math.sin(t * 3 + s.x), g = cx.createRadialGradient(s.x, s.y, 0, s.x, s.y, 22);
+      g.addColorStop(0, 'rgba(255,255,255,' + k + ')'); g.addColorStop(0.3, 'rgba(210,170,255,' + 0.5 * k + ')'); g.addColorStop(1, 'rgba(0,0,0,0)'); cx.fillStyle = g; cx.fillRect(s.x - 22, s.y - 22, 44, 44); cx.fillStyle = '#fff'; cx.beginPath(); cx.arc(s.x, s.y, r * 0.5, 0, 7); cx.fill();
+      if (Math.hypot(s.x - P.x, s.y - P.y) < 22) hov = s;
+    });
+    if (A2.done) { var k = Math.min(1, (t - A2.done) / 2); [-1, 1].forEach(function (d) { var x = W / 2 + d * Math.min(W * 0.42, H * 0.34) * 0.24, y = H / 2 + 20 - Math.min(W * 0.42, H * 0.34) * 0.18, g = cx.createRadialGradient(x, y, 0, x, y, 70 * k + 8 * Math.sin(t * 4)); g.addColorStop(0, 'rgba(255,240,180,' + k + ')'); g.addColorStop(1, 'rgba(255,200,80,0)'); cx.fillStyle = g; cx.fillRect(x - 90, y - 90, 180, 180); }); }
+    var lb = $('#lbl'); if (hov && hov.n) { lb.hidden = false; lb.textContent = '🗝 ' + hov.n; lb.style.left = P.x + 14 + 'px'; lb.style.top = P.y + 14 + 'px'; } else lb.hidden = true;
+  }
+
+  /* ---------- Acto 3: la bóveda ---------- */
+  var A3 = {}, dui = $('#door');
+  function a3Init() { act = 3; $('#lbl').hidden = true; A3 = { open: 0, state: 'locked', bad: 0, bs: 0, sh: 0 }; dui.hidden = false; $('#w').value = ''; $('#w').focus(); droneTo(0.18); say(L.a3); }
+  function submit() {
+    if (act !== 3 || A3.state !== 'locked') return; var v = $('#w').value.toLowerCase().replace(/[^a-z]/g, ''); if (!v) return;
+    if (v === 'mellon') { A3.state = 'opening'; A3.t0 = t; dui.hidden = true; opening(); }
+    else { A3.bad++; shake = RM ? 0 : 14; flash = 0; A3.red = 1; tone(110, 0.5, { type: 'sawtooth', v: 0.18, to: 70, send: 0.4 }); say(A3.bad >= 2 ? L.bad.concat(L.hint) : L.bad); $('#w').value = ''; }
+  }
+  function opening() {
+    for (var i = 0; i < 8; i++) tone(180 + i * 12, 0.5, { at: 0.4 + i * 0.12, type: 'square', v: 0.12, to: 90, pan: (i - 3.5) / 4, send: 0.5 });
+    tone(55, 4, { at: 1.6, type: 'sine', v: 0.5, to: 30, send: 0.8 }); noise(3, 200, 4000, 0.25, 0, 1.4);
+    [0, 4, 7, 12, 16, 19].forEach(function (s, k) { tone(hz(48 + s), 7, { at: 2 + k * 0.15, type: 'sine', v: 0.13, a: 1.4, send: 0.95 }); tone(hz(60 + s), 7, { at: 2.4 + k * 0.15, type: 'triangle', v: 0.06, a: 1.6, send: 0.95 }); });
+    droneTo(0.04); shake = RM ? 0 : 8;
+    setTimeout(function () { flash = RM ? 0 : 1; burst(W / 2, H * 0.42, 180, '#ffffff', 420); burst(W / 2, H * 0.42, 120, '#bb86fc', 320); say(L.open, finalShow); }, 2800);
+  }
+  function door(c, y, R, rot, op) {
+    var g = cx.createLinearGradient(c - R, y - R, c + R, y + R); g.addColorStop(0, '#3a3f4a'); g.addColorStop(0.5, '#15171c'); g.addColorStop(1, '#2b2f38');
+    cx.fillStyle = g; cx.beginPath(); cx.arc(c, y, R, 0, 7); cx.fill(); cx.lineWidth = 3; cx.strokeStyle = '#6d6f7a'; cx.stroke();
+    for (var k = 0; k < 3; k++) { var r = R * (0.88 - k * 0.22), a0 = rot * (k % 2 ? -1 : 1) * (k + 1); cx.lineWidth = 2; cx.strokeStyle = 'rgba(187,134,252,' + (0.5 - k * 0.1) + ')'; cx.beginPath(); cx.arc(c, y, r, 0, 7); cx.stroke(); for (var j = 0; j < 24; j++) { var a = a0 + j * 6.283 / 24; cx.beginPath(); cx.moveTo(c + Math.cos(a) * (r - 7), y + Math.sin(a) * (r - 7)); cx.lineTo(c + Math.cos(a) * r, y + Math.sin(a) * r); cx.stroke(); } }
+    cx.font = Math.floor(R * 0.42) + 'px serif'; cx.textAlign = 'center'; cx.shadowColor = '#ffd166'; cx.shadowBlur = 20 + 10 * Math.sin(t * 2); cx.fillText('🦉', c, y + R * 0.15); cx.shadowBlur = 0;
+    for (var b = 0; b < 8; b++) { var ba = b * 6.283 / 8, len = R * 0.16 * (1 - Math.min(1, op * 3)); cx.fillStyle = '#8b8d99'; cx.save(); cx.translate(c + Math.cos(ba) * (R + len * 0.2), y + Math.sin(ba) * (R + len * 0.2)); cx.rotate(ba); cx.fillRect(-len / 2, -6, len, 12); cx.restore(); }
+  }
+  function a3Draw(dt) {
+    cx.fillStyle = '#06060b'; cx.fillRect(0, 0, W, H); var c = W / 2, y = H * 0.42, R = Math.min(W * 0.34, H * 0.28), op = 0;
+    if (A3.state === 'opening') op = Math.min(1, (t - A3.t0) / 4.6);
+    if (op > 0.45) { var k = (op - 0.45) / 0.55, g = cx.createRadialGradient(c, y, 0, c, y, Math.max(W, H) * k); g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(0.35, 'rgba(255,214,170,.7)'); g.addColorStop(1, 'rgba(120,60,200,0)'); cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+      cx.globalCompositeOperation = 'lighter'; for (var i = 0; i < 14; i++) { var a = t * 0.2 + i * 6.283 / 14; cx.fillStyle = 'rgba(255,230,190,' + 0.14 * k + ')'; cx.beginPath(); cx.moveTo(c, y); cx.lineTo(c + Math.cos(a - 0.08) * W * 1.5, y + Math.sin(a - 0.08) * W * 1.5); cx.lineTo(c + Math.cos(a + 0.08) * W * 1.5, y + Math.sin(a + 0.08) * W * 1.5); cx.fill(); } cx.globalCompositeOperation = 'source-over'; }
+    var rot = t * 0.15 + (op > 0 ? Math.min(op, 0.6) * 14 : 0);
+    if (op > 0.6) { var d = (op - 0.6) / 0.4 * R * 1.15; cx.save(); cx.beginPath(); cx.rect(0, 0, c, H); cx.clip(); door(c - d, y, R, rot, op); cx.restore(); cx.save(); cx.beginPath(); cx.rect(c, 0, W, H); cx.clip(); door(c + d, y, R, rot, op); cx.restore(); }
+    else door(c, y, R, rot, op);
+    if (A3.red > 0) { cx.fillStyle = 'rgba(255,40,40,' + A3.red * 0.25 + ')'; cx.fillRect(0, 0, W, H); A3.red -= dt * 2; }
+  }
+
+  /* ---------- Final y diploma ---------- */
+  var fin = $('#final');
+  function finalShow() {
+    var f = TX.fin[lang]; $('#f-t').textContent = f[0]; $('#f-p').textContent = f[1]; $('#f-dip').textContent = f[2]; $('#f-home').textContent = f[3]; $('#f-again').textContent = f[4]; fin.hidden = false;
+    try { localStorage.setItem('vxp_sala_ok', '1'); } catch (e) {} $('#skip').hidden = false; act = 4;
+  }
+  function diploma() {
+    var c = $('#dip-c'), x = c.getContext('2d'), st = { s: 40, k: 523 }; try { st = JSON.parse(localStorage.getItem('vxp_stats')) || st; } catch (e) {}
+    var es = lang === 'es', F = '"Space Mono", monospace'; x.textAlign = 'center'; x.fillStyle = '#121212'; x.fillRect(0, 0, 900, 560); x.strokeStyle = '#bb86fc'; x.lineWidth = 6; x.strokeRect(24, 24, 852, 512); x.lineWidth = 1; x.strokeRect(40, 40, 820, 480);
+    x.fillStyle = '#bb86fc'; x.font = 'bold 54px ' + F; x.fillText('VXP', 450, 120); x.fillStyle = '#fff'; x.font = 'bold 32px ' + F; x.fillText(es ? 'CAZADOR DE SECRETOS' : 'SECRET HUNTER', 450, 190);
+    x.fillStyle = '#a0a0a0'; x.font = '20px ' + F; x.fillText(es ? 'Este diploma certifica que' : 'This diploma certifies that', 450, 250);
+    x.fillStyle = '#fff'; x.font = 'bold 40px ' + F; x.fillText($('#dip-name').value.trim() || (es ? 'Visitante misterioso' : 'Mysterious visitor'), 450, 310);
+    x.fillStyle = '#a0a0a0'; x.font = '18px ' + F; x.fillText(es ? 'abrió la bóveda: ' + st.s + ' secretos, ' + st.k + ' llaves y 10 retos' : 'opened the vault: ' + st.s + ' secrets, ' + st.k + ' keys and 10 challenges', 450, 370);
+    x.fillText(new Date().toLocaleDateString(es ? 'es-MX' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' }), 450, 420); x.fillStyle = '#bb86fc'; x.fillText('🗝  vxp-web.github.io  🦉', 450, 490);
+  }
+  $('#f-dip').onclick = function () { $('#dip').hidden = false; diploma(); };
+  $('#dip-x').onclick = function () { $('#dip').hidden = true; }; $('#dip-name').oninput = diploma;
+  $('#dip-dl').onclick = function () { $('#dip-c').toBlob(function (b) { var a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'diploma-vxp.png'; a.click(); }); };
+  $('#f-again').onclick = function () { fin.hidden = true; $('#skip').hidden = false; go(a1Init); };
+
+  /* ---------- Controles ---------- */
+  function texts() { var s = TX.start[lang]; $('#st-a').textContent = s[0]; $('#st-b').textContent = s[1]; $('#st-go').textContent = s[2]; $('#lng').textContent = lang === 'es' ? 'EN' : 'ES'; }
+  texts();
+  $('#lng').onclick = function () { lang = lang === 'es' ? 'en' : 'es'; texts(); if (act === 4) finalShow(); };
+  $('#snd').onclick = function () { var on = sndOn(); try { localStorage.setItem('vxp_sonido', on ? '0' : '1'); } catch (e) {} $('#snd').textContent = on ? '🔇' : '🔊'; if (!on) tone(660, 0.2); };
+  $('#snd').textContent = sndOn() ? '🔊' : '🔇';
+  $('#acc').onclick = function () { acc = !acc; $('#acc').textContent = acc ? '🌑' : '💡'; };
+  $('#skip').onclick = function () { jTok++; jb.hidden = true; dui.hidden = true; fin.hidden = true; if (act === 1) go(a2Init); else if (act === 2) go(a3Init); else if (act === 3) finalShow(); else if (act === 4) go(a1Init); };
+  $('#w').addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(); }); $('#w-ok').onclick = submit;
+  try { if (localStorage.getItem('vxp_sala_ok') === '1') $('#skip').hidden = false; } catch (e) {}
+  $('#st-go').onclick = function () { $('#start').hidden = true; audioInit(); if (ctx && ctx.state === 'suspended') ctx.resume(); drone(); go(a1Init); };
+
+  /* ---------- Bucle ---------- */
+  function loop(now) {
+    var dt = Math.min((now - (last || now)) / 1000, 0.05); last = now; t += dt;
+    cx.save(); if (shake > 0.2) { cx.translate((Math.random() - 0.5) * shake, (Math.random() - 0.5) * shake); shake *= 0.9; }
+    if (act === 1) a1Draw(dt); else if (act === 2) a2Draw(dt); else if (act === 3 || act === 4) a3Draw(dt); else { cx.fillStyle = '#000'; cx.fillRect(0, 0, W, H); }
+    drawParts(dt); cx.restore();
+    if (flash > 0.01) { cx.fillStyle = 'rgba(255,255,255,' + flash + ')'; cx.fillRect(0, 0, W, H); flash *= 0.93; }
+    if (tr) { tr.p += dt * (tr.p < 1 ? 1.4 : 1.4); var a = tr.p < 1 ? tr.p : 2 - tr.p; if (tr.p >= 1 && tr.fn) { var f = tr.fn; tr.fn = null; f(); } cx.fillStyle = 'rgba(0,0,0,' + Math.max(0, Math.min(1, a)) + ')'; cx.fillRect(0, 0, W, H); if (tr.p >= 2) tr = null; }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+
     </script>
 </body>
 </html>
