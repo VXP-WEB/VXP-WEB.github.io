@@ -6,7 +6,9 @@
   function clr() { timers.forEach(function (t) { clearTimeout(t); clearInterval(t); }); timers = []; cancelAnimationFrame(raf); offs.forEach(function (f) { f(); }); offs = []; }
   function after(f, ms) { var t = setTimeout(f, ms); timers.push(t); return t; }
   function on(el, ev, fn) { el.addEventListener(ev, fn); offs.push(function () { el.removeEventListener(ev, fn); }); }
+  function bump(k) { try { var p = JSON.parse(localStorage.getItem('vxp_perf')) || { f: 0, h: 0 }; p[k]++; localStorage.setItem('vxp_perf', JSON.stringify(p)); } catch (e) {} }
   function beep(ns, step, type) {
+    if (ns && ns[0] === 196) bump('f');
     try {
       if (localStorage.getItem('vxp_sonido') === '0') return;
       ac = ac || new (window.AudioContext || window.webkitAudioContext)(); step = step || 0.1;
@@ -103,7 +105,7 @@
     function next() {
       if (n >= RD[rd][0]) {
         rd++; n = 0;
-        if (rd >= 3) { var avg = rt.length ? Math.round(rt.reduce(function (a, b) { return a + b; }, 0) / rt.length) : 0; st = 'off'; box.className = 'ref-box'; box.textContent = '¡Superado! Promedio ' + avg + ' ms · mejor ' + Math.round(Math.min.apply(null, rt.concat([9999]))) + ' ms'; win(); return; }
+        if (rd >= 3) { try { var br = Math.round(Math.min.apply(null, rt.concat([9999]))), ob = +localStorage.getItem('vxp_best_rt') || 9999; if (br < ob) localStorage.setItem('vxp_best_rt', br); } catch (e) {} var avg = rt.length ? Math.round(rt.reduce(function (a, b) { return a + b; }, 0) / rt.length) : 0; st = 'off'; box.className = 'ref-box'; box.textContent = '¡Superado! Promedio ' + avg + ' ms · mejor ' + Math.round(Math.min.apply(null, rt.concat([9999]))) + ' ms'; win(); return; }
       }
       stat(); st = 'gap'; cur = null; box.className = 'ref-box wait'; box.textContent = 'Espera…';
       gapT = after(show, RD[rd][1] * (0.6 + Math.random() * 0.9));
@@ -154,7 +156,7 @@
       var a = nz(tx), b = nz(inp.value), ok = 0; for (var k = 0; k < a.length; k++) if (b[k] === a[k]) ok++;
       var acc = ok / a.length * 100, el = (performance.now() - t0) / 60000, wpm = Math.round(inp.value.length / 5 / Math.max(el, 0.01));
       if (!timeout && b.length >= a.length && acc >= 95) {
-        beep([660, 880]); m.textContent = 'Precisión ' + acc.toFixed(0) + ' % · ' + wpm + ' WPM.';
+        beep([660, 880]); try { if (wpm > (+localStorage.getItem('vxp_best_wpm') || 0)) localStorage.setItem('vxp_best_wpm', wpm); } catch (e) {} m.textContent = 'Precisión ' + acc.toFixed(0) + ' % · ' + wpm + ' WPM.';
         if (++rd >= 4) { m.textContent += ' ¡Superado!'; win(); return; } after(load, 1500);
       } else { beep([196, 147], 0.12, 'sine'); m.textContent = (timeout ? 'Se acabó el tiempo. ' : '') + 'Precisión ' + acc.toFixed(0) + ' % (mínimo 95 %). Pulsa Empezar para reintentar la ronda.'; }
     }
@@ -411,7 +413,7 @@ function hstep(S, day, act, rnd) {
     on(inp, 'paste', function (e) { e.preventDefault(); }); on(inp, 'drop', function (e) { e.preventDefault(); });
     on(inp, 'keydown', function (e) { if (e.key === 'Enter') submit(false); });
     $('#c-ok', A).onclick = function () { submit(false); };
-    $('#c-hint', A).onclick = function () { if (lock || usedHint) return; usedHint = true; err += 0.5; hh.textContent = 'Pista: ' + qs[i][2]; stat(); if (err > 2) { clearInterval(tt); inp.disabled = true; lock = true; fail('Demasiados errores.'); } };
+    $('#c-hint', A).onclick = function () { if (lock || usedHint) return; usedHint = true; err += 0.5; bump('h'); hh.textContent = 'Pista: ' + qs[i][2]; stat(); if (err > 2) { clearInterval(tt); inp.disabled = true; lock = true; fail('Demasiados errores.'); } };
     $('#c-go', A).onclick = function () { qs = pickN(RQ.A, 3).concat(pickN(RQ.B, 3), pickN(RQ.C, 2), pickN(RQ.D, 1), pickN(RQ.E, 1)); i = 0; ok = 0; err = 0; m.textContent = ''; $('#c-go', A).hidden = true; ask(); };
   }
 

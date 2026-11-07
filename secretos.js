@@ -216,7 +216,8 @@
   // Acceso directo: aparece al descubrir los retos, el diario y las llaves
   if (home && rOn() && fl('vxp_d_sec') && fl('vxp_d_llaves')) {
     var qc = document.createElement('div'); qc.className = 'secret-quick';
-    [['Secretos', 'secretos.html'], ['Llaves', 'llaves.html'], ['Retos', 'retos.html']].forEach(function (x, k) {
+    var qa = [['Secretos', 'secretos.html'], ['Llaves', 'llaves.html'], ['Retos', 'retos.html']]; if (fl('vxp_sala_ok')) qa.push(['Temas', 'temas.html']);
+    qa.forEach(function (x, k) {
       if (k) qc.appendChild(document.createTextNode(' · '));
       var a = document.createElement('a'); a.href = base + x[1]; a.textContent = x[0]; qc.appendChild(a);
     });
@@ -246,7 +247,7 @@
   });
   if (rb) rb.addEventListener('click', function () {
     if (!confirm('¿Reiniciar tu progreso? Se borrarán secretos, llaves y retos.')) return;
-    got = []; save(); try { ['vxp_retos2', 'vxp_retos_ok', 'vxp_retos_on', 'vxp_retos_intro', 'vxp_d_sec', 'vxp_d_llaves'].forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {}
+    got = []; save(); try { ['vxp_retos2', 'vxp_retos_ok', 'vxp_retos_on', 'vxp_retos_intro', 'vxp_d_sec', 'vxp_d_llaves', 'vxp_perf', 'vxp_best_rt', 'vxp_best_wpm'].forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {}
     counter(); render(); toast('Progreso reiniciado', 'Vuelve a empezar la búsqueda.');
   });
 

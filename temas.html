@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temas — VXP</title>
+    <meta name="description" content="Temas del sitio.">
+    <link rel="canonical" href="https://vxp-web.github.io/temas.html">
+    <link rel="icon" type="image/x-icon" href="/vxp.ico">
+
+    <!-- Vista previa al compartir (Open Graph) -->
+    <meta property="og:site_name" content="VXP">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Temas — VXP">
+    <meta property="og:description" content="Temas del sitio.">
+    <meta property="og:url" content="https://vxp-web.github.io/temas.html">
+    <meta property="og:image" content="https://vxp-web.github.io/vxp.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script>try{var t=localStorage.getItem('vxp_tema');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+    <script>try{var t=localStorage.getItem('vxp_tema');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Contador de visitas -->
+    <script data-goatcounter="https://vxp-web.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <meta name="robots" content="noindex">
+</head>
+<body>
+    <header class="site-header">
+        <a href="index.html"><img src="vxp.png" alt="vxp logo" class="site-logo"></a>
+        <p class="subtitle">Bitácora de reseñas, mis historias de ficción y otros rastros.</p>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="resenas.html">Reseñas</a>
+            <a href="bitacora.html">Bitácora</a>
+            <a href="historias.html">Historias</a>
+            <a href="juegos.html">Juegos</a>
+            <a href="musica.html">Música</a>
+            <a href="calendario.html">Calendario</a>
+            <a href="about.html">Sobre el proyecto</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="bio-card">
+            <h1>Temas</h1>
+            <p id="th-msg">Elige cómo se ve el sitio. Se guarda en tu navegador.</p>
+        </section>
+        <div id="th-grid" class="theme-grid"></div>
+    </main>
+
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.instagram.com/vxp_web/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.youtube.com/@vxp2244" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a href="https://x.com/VoidXP22" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://discord.gg/rK3q6EGvtJ" target="_blank" rel="noopener noreferrer">Discord</a>
+            <a href="https://substack.com/@vxpweb" target="_blank" rel="noopener noreferrer">Substack</a>
+            <a href="https://ko-fi.com/vxpweb" target="_blank" rel="noopener noreferrer">Ko-fi</a>
+            <a href="mailto:vxpweb1@outlook.com">Correo</a>
+            <a href="https://vxp--web-github-io.translate.goog/?_x_tr_sl=es&amp;_x_tr_tl=en&amp;_x_tr_hl=en&amp;_x_tr_pto=wapp" id="translate-link" title="Traducción automática con Google Translate" rel="noopener">English</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 VXP. Todos los derechos reservados. · <a href="privacidad.html">Privacidad</a></p>
+    </footer>
+
+    <script src="lang.js" defer></script>
+    <script>
+    (function () {
+        var TH = [['morado', 'Morado', 'El original.', '#121212', '#1e1e1e', '#bb86fc'], ['fnatic', 'Fnatic', 'Naranja y negro.', '#0b0b0b', '#171310', '#ff5900'], ['buho', 'Búho', 'Dorado nocturno.', '#130f0a', '#1e1810', '#f2c94c'], ['void', 'Void', 'Negro profundo y cian.', '#04060a', '#0c1118', '#4cc9f0'], ['rayados', 'Rayados', 'Azul y blanco.', '#06101f', '#0b1c36', '#5b9bff']];
+        var ok = false, cur = 'morado'; try { ok = localStorage.getItem('vxp_sala_ok') === '1'; cur = localStorage.getItem('vxp_tema') || 'morado'; } catch (e) {}
+        if (!ok) document.getElementById('th-msg').textContent = 'Los temas se desbloquean al abrir la sala oculta. El original siempre está disponible.';
+        function draw() {
+            var g = document.getElementById('th-grid'); g.innerHTML = '';
+            TH.forEach(function (t) {
+                var b = document.createElement('button'); b.type = 'button'; b.className = 'theme-card' + (t[0] === cur ? ' on' : ''); b.disabled = !ok && t[0] !== 'morado';
+                var sw = document.createElement('div'); sw.className = 'sw'; [t[3], t[4], t[5]].forEach(function (c) { var i = document.createElement('i'); i.style.background = c; sw.appendChild(i); });
+                var s = document.createElement('strong'), d = document.createElement('span'); s.textContent = (b.disabled ? '🔒 ' : '') + t[1]; d.textContent = t[2]; b.append(sw, s, d);
+                b.onclick = function () { cur = t[0]; try { localStorage.setItem('vxp_tema', cur); } catch (e) {} if (cur === 'morado') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', cur); draw(); };
+                g.appendChild(b);
+            });
+        }
+        draw();
+    })();
+    </script>
+</body>
+</html>

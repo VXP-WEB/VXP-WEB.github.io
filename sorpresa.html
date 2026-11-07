@@ -66,8 +66,9 @@
     <div id="lbl" hidden></div>
     <div id="slots" hidden><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     <div id="door" hidden><input id="w" maxlength="12" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="······" aria-label="Palabra / Word"><button id="w-ok" class="big" type="button" style="margin:0;padding:10px 18px">⏎</button></div>
-    <div id="final" class="final" hidden><div class="card"><h2 id="f-t"></h2><p id="f-p"></p><div class="row"><button id="f-dip" type="button"></button><a id="f-home" href="index.html"></a><button id="f-again" type="button"></button></div></div></div>
+    <div id="final" class="final" hidden><div class="card"><h2 id="f-t"></h2><p id="f-p"></p><div class="row"><button id="f-dip" type="button"></button><a id="f-home" href="index.html"></a><button id="f-again" type="button"></button><button id="f-card" type="button"></button><a id="f-th" href="temas.html"></a></div></div></div>
     <div id="dip" class="dip" hidden><div class="dip-box"><canvas id="dip-c" width="900" height="560"></canvas><div class="dip-ctl"><input id="dip-name" placeholder="Nombre / Name" maxlength="28" aria-label="Name"><button id="dip-dl" type="button" class="big" style="margin:0;padding:10px 16px">PNG</button><button id="dip-x" type="button">✕</button></div></div></div>
+    <div id="crd" class="dip" hidden><div class="dip-box" style="max-width:min(380px,100%)"><canvas id="crd-c" width="600" height="900"></canvas><div class="dip-ctl"><input id="crd-name" placeholder="Nombre / Name" maxlength="20" aria-label="Name"><button id="crd-dl" type="button" class="big" style="margin:0;padding:10px 16px">PNG</button><button id="crd-x" type="button">✕</button></div></div></div>
     <div id="start" class="overlay"><div class="box"><h1 id="st-a" style="color:#fff"></h1><p id="st-b"></p><button id="st-go" class="big" type="button"></button></div></div>
     <section id="gate" class="gate" hidden><h1>Sala cerrada</h1><p>Para entrar necesitas todos los secretos, todas sus llaves y todos los retos.</p><p><a href="secretos.html" class="buy-link">Diario →</a> · <a href="retos.html" class="buy-link">Retos →</a></p></section>
     <script>
@@ -81,7 +82,7 @@
   var lang = ((navigator.language || 'es').slice(0, 2) === 'es') ? 'es' : 'en';
   var TX = {
     start: { es: ['Mejor con auriculares 🎧', 'Hay sonido espacial: te ayudará a encontrar cosas en la oscuridad.', 'Entrar'], en: ['Best with headphones 🎧', 'There is spatial sound: it will help you find things in the dark.', 'Enter'] },
-    fin: { es: ['🏆 Cazador de secretos', 'Abriste la bóveda: 40 secretos, 523 llaves y 10 retos. Nadie te lo puede quitar.', '🎖 Descargar diploma', '🏠 Volver al inicio', '↺ Verlo de nuevo'], en: ['🏆 Secret hunter', 'You opened the vault: 40 secrets, 523 keys and 10 challenges. No one can take that away.', '🎖 Download diploma', '🏠 Back home', '↺ Watch again'] }
+    fin: { es: ['🏆 Cazador de secretos', 'Abriste la bóveda: 40 secretos, 523 llaves y 10 retos. Nadie te lo puede quitar.', '🎖 Descargar diploma', '🏠 Volver al inicio', '↺ Verlo de nuevo', '🃏 Tarjeta', '🎨 Temas'], en: ['🏆 Secret hunter', 'You opened the vault: 40 secrets, 523 keys and 10 challenges. No one can take that away.', '🎖 Download diploma', '🏠 Back home', '↺ Watch again', '🃏 Card', '🎨 Themes'] }
   };
   var L = {
     a1: [{ es: 'Bienvenido, señor. Disculpe el polvo: la última visita fue… nunca.', en: 'Welcome, sir. Do excuse the dust: the last visitor was… never.' }, { es: 'Hay siete cosas escondidas en la oscuridad. Las oirá antes de verlas. Mueva la luz.', en: 'Seven things are hidden in the dark. You will hear them before you see them. Move the light.' }],
@@ -289,7 +290,7 @@
   /* ---------- Final y diploma ---------- */
   var fin = $('#final');
   function finalShow() {
-    var f = TX.fin[lang]; $('#f-t').textContent = f[0]; $('#f-p').textContent = f[1]; $('#f-dip').textContent = f[2]; $('#f-home').textContent = f[3]; $('#f-again').textContent = f[4]; fin.hidden = false;
+    var f = TX.fin[lang]; $('#f-t').textContent = f[0]; $('#f-p').textContent = f[1]; $('#f-dip').textContent = f[2]; $('#f-home').textContent = f[3]; $('#f-again').textContent = f[4]; $('#f-card').textContent = f[5]; $('#f-th').textContent = f[6]; fin.hidden = false;
     try { localStorage.setItem('vxp_sala_ok', '1'); } catch (e) {} $('#skip').hidden = false; act = 4;
   }
   function diploma() {
@@ -305,6 +306,33 @@
   $('#dip-x').onclick = function () { $('#dip').hidden = true; }; $('#dip-name').oninput = diploma;
   $('#dip-dl').onclick = function () { $('#dip-c').toBlob(function (b) { var a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'diploma-vxp.png'; a.click(); }); };
   $('#f-again').onclick = function () { fin.hidden = true; $('#skip').hidden = false; go(a1Init); };
+
+  /* ---------- Tarjeta coleccionable ---------- */
+  function perf() { var p = { f: 0, h: 0 }; try { p = JSON.parse(localStorage.getItem('vxp_perf')) || p; } catch (e) {} return p; }
+  function rarity() { var p = perf(), sc = p.f + 2 * p.h; return sc === 0 ? 3 : sc <= 8 ? 2 : sc <= 25 ? 1 : 0; }
+  var RN = { es: ['Bronce', 'Plata', 'Oro', 'Obsidiana'], en: ['Bronze', 'Silver', 'Gold', 'Obsidian'] }, RC = ['#cd7f32', '#d0d4dc', '#ffd166', '#bb86fc'];
+  function ccode(n) { var s = n + new Date().toISOString().slice(0, 10) + JSON.stringify(perf()), h = 7; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return 'VXP-' + h.toString(36).toUpperCase().slice(0, 4) + '-' + (h % 90 + 10); }
+  function drawCard() {
+    var c = $('#crd-c'), x = c.getContext('2d'), es = lang === 'es', r = rarity(), col = RC[r], p = perf(), st = { s: 40, k: 523 }, name = $('#crd-name').value.trim() || (es ? 'Visitante misterioso' : 'Mysterious visitor'), F = '"Space Mono", monospace';
+    try { st = JSON.parse(localStorage.getItem('vxp_stats')) || st; } catch (e) {}
+    var rt = null, wp = null; try { rt = localStorage.getItem('vxp_best_rt'); wp = localStorage.getItem('vxp_best_wpm'); } catch (e) {}
+    var g = x.createLinearGradient(0, 0, 0, 900); g.addColorStop(0, '#0d0d16'); g.addColorStop(1, r === 3 ? '#1c1033' : '#121212'); x.fillStyle = g; x.fillRect(0, 0, 600, 900);
+    var gl = x.createRadialGradient(300, 300, 10, 300, 300, 320); gl.addColorStop(0, col + '55'); gl.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = gl; x.fillRect(0, 0, 600, 900);
+    if (r === 3) { for (var i = 0; i < 70; i++) { x.fillStyle = 'rgba(217,184,255,' + Math.random() * 0.8 + ')'; x.fillRect(Math.random() * 600, Math.random() * 900, 2, 2); } }
+    x.strokeStyle = col; x.lineWidth = 8; x.strokeRect(20, 20, 560, 860); x.lineWidth = 1.5; x.strokeRect(36, 36, 528, 828); x.textAlign = 'center';
+    x.fillStyle = col; x.font = 'bold 40px ' + F; x.fillText('VXP', 300, 96); x.fillStyle = '#fff'; x.font = 'bold 20px ' + F; x.fillText(es ? 'CAZADOR DE SECRETOS' : 'SECRET HUNTER', 300, 130);
+    x.font = '200px serif'; x.shadowColor = col; x.shadowBlur = 40; x.fillText('🦉', 300, 380); x.shadowBlur = 0;
+    x.fillStyle = '#fff'; x.font = 'bold 34px ' + F; x.fillText(name.slice(0, 20), 300, 450);
+    x.fillStyle = col; x.font = 'bold 26px ' + F; x.fillText('★'.repeat(r + 1) + ' ' + RN[lang][r].toUpperCase() + ' ' + '★'.repeat(r + 1), 300, 500);
+    x.fillStyle = '#c8c8d0'; x.font = '19px ' + F; x.textAlign = 'left';
+    var L2 = [[es ? 'Secretos' : 'Secrets', st.s + ' / 40'], [es ? 'Llaves' : 'Keys', st.k + ' / 523'], [es ? 'Retos' : 'Challenges', '10 / 10'], [es ? 'Errores' : 'Mistakes', String(p.f)], [es ? 'Pistas' : 'Hints', String(p.h)], [es ? 'Mejor reflejo' : 'Best reflex', rt ? rt + ' ms' : '—'], [es ? 'Mejor tecleo' : 'Best typing', wp ? wp + ' WPM' : '—']];
+    L2.forEach(function (l, k) { x.fillStyle = '#9a9aa8'; x.textAlign = 'left'; x.fillText(l[0], 90, 560 + k * 36); x.fillStyle = '#fff'; x.textAlign = 'right'; x.fillText(l[1], 510, 560 + k * 36); });
+    x.textAlign = 'center'; x.fillStyle = col; x.font = 'bold 18px ' + F; x.fillText(ccode(name), 300, 842);
+    x.fillStyle = '#7d7d8a'; x.font = '14px ' + F; x.fillText(new Date().toLocaleDateString(es ? 'es-MX' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' }) + ' · vxp-web.github.io', 300, 866);
+  }
+  $('#f-card').onclick = function () { $('#crd').hidden = false; drawCard(); };
+  $('#crd-x').onclick = function () { $('#crd').hidden = true; }; $('#crd-name').oninput = drawCard;
+  $('#crd-dl').onclick = function () { $('#crd-c').toBlob(function (b) { var a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'tarjeta-vxp.png'; a.click(); }); };
 
   /* ---------- Controles ---------- */
   function texts() { var s = TX.start[lang]; $('#st-a').textContent = s[0]; $('#st-b').textContent = s[1]; $('#st-go').textContent = s[2]; $('#lng').textContent = lang === 'es' ? 'EN' : 'ES'; }
