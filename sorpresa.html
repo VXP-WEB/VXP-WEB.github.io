@@ -66,7 +66,7 @@
     <div id="lbl" hidden></div>
     <div id="slots" hidden><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     <div id="door" hidden><input id="w" maxlength="12" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="······" aria-label="Palabra / Word"><button id="w-ok" class="big" type="button" style="margin:0;padding:10px 18px">⏎</button></div>
-    <div id="final" class="final" hidden><div class="card"><h2 id="f-t"></h2><p id="f-p"></p><div class="row"><button id="f-dip" type="button"></button><a id="f-home" href="index.html"></a><button id="f-again" type="button"></button><button id="f-card" type="button"></button><a id="f-th" href="temas.html"></a></div></div></div>
+    <div id="final" class="final" hidden><div class="card"><h2 id="f-t"></h2><p id="f-p"></p><p id="f-r" style="color:#fff;font-weight:bold"></p><div class="row"><button id="f-dip" type="button"></button><a id="f-home" href="index.html"></a><button id="f-again" type="button"></button><button id="f-card" type="button"></button><a id="f-th" href="temas.html"></a><a id="f-dc" href="https://discord.gg/rK3q6EGvtJ" target="_blank" rel="noopener noreferrer"></a></div></div></div>
     <div id="dip" class="dip" hidden><div class="dip-box"><canvas id="dip-c" width="900" height="560"></canvas><div class="dip-ctl"><input id="dip-name" placeholder="Nombre / Name" maxlength="28" aria-label="Name"><button id="dip-dl" type="button" class="big" style="margin:0;padding:10px 16px">PNG</button><button id="dip-x" type="button">✕</button></div></div></div>
     <div id="crd" class="dip" hidden><div class="dip-box" style="max-width:min(380px,100%)"><canvas id="crd-c" width="600" height="900"></canvas><div class="dip-ctl"><input id="crd-name" placeholder="Nombre / Name" maxlength="20" aria-label="Name"><button id="crd-dl" type="button" class="big" style="margin:0;padding:10px 16px">PNG</button><button id="crd-x" type="button">✕</button></div></div></div>
     <div id="start" class="overlay"><div class="box"><h1 id="st-a" style="color:#fff"></h1><p id="st-b"></p><button id="st-go" class="big" type="button"></button></div></div>
@@ -82,7 +82,7 @@
   var lang = ((navigator.language || 'es').slice(0, 2) === 'es') ? 'es' : 'en';
   var TX = {
     start: { es: ['Mejor con auriculares 🎧', 'Hay sonido espacial: te ayudará a encontrar cosas en la oscuridad.', 'Entrar'], en: ['Best with headphones 🎧', 'There is spatial sound: it will help you find things in the dark.', 'Enter'] },
-    fin: { es: ['🏆 Cazador de secretos', 'Abriste la bóveda: 40 secretos, 523 llaves y 10 retos. Nadie te lo puede quitar.', '🎖 Descargar diploma', '🏠 Volver al inicio', '↺ Verlo de nuevo', '🃏 Tarjeta', '🎨 Temas'], en: ['🏆 Secret hunter', 'You opened the vault: 40 secrets, 523 keys and 10 challenges. No one can take that away.', '🎖 Download diploma', '🏠 Back home', '↺ Watch again', '🃏 Card', '🎨 Themes'] }
+    fin: { es: ['🏆 Cazador de secretos', 'Abriste la bóveda: 40 secretos, 523 llaves y 10 retos. Nadie te lo puede quitar.', '🎖 Descargar diploma', '🏠 Volver al inicio', '↺ Verlo de nuevo', '🃏 Tarjeta', '🎨 Temas', '💬 Discord'], en: ['🏆 Secret hunter', 'You opened the vault: 40 secrets, 523 keys and 10 challenges. No one can take that away.', '🎖 Download diploma', '🏠 Back home', '↺ Watch again', '🃏 Card', '🎨 Themes', '💬 Discord'] }
   };
   var L = {
     a1: [{ es: 'Bienvenido, señor. Disculpe el polvo: la última visita fue… nunca.', en: 'Welcome, sir. Do excuse the dust: the last visitor was… never.' }, { es: 'Hay siete cosas escondidas en la oscuridad. Las oirá antes de verlas. Mueva la luz.', en: 'Seven things are hidden in the dark. You will hear them before you see them. Move the light.' }],
@@ -290,17 +290,17 @@
   /* ---------- Final y diploma ---------- */
   var fin = $('#final');
   function finalShow() {
-    var f = TX.fin[lang]; $('#f-t').textContent = f[0]; $('#f-p').textContent = f[1]; $('#f-dip').textContent = f[2]; $('#f-home').textContent = f[3]; $('#f-again').textContent = f[4]; $('#f-card').textContent = f[5]; $('#f-th').textContent = f[6]; fin.hidden = false;
+    var f = TX.fin[lang]; $('#f-t').textContent = f[0]; $('#f-p').textContent = f[1]; $('#f-dip').textContent = f[2]; $('#f-home').textContent = f[3]; $('#f-again').textContent = f[4]; $('#f-card').textContent = f[5]; $('#f-th').textContent = f[6]; $('#f-dc').textContent = f[7]; $('#f-r').textContent = (lang === 'es' ? 'Rango: ' : 'Rank: ') + rankName(); fin.hidden = false;
     try { localStorage.setItem('vxp_sala_ok', '1'); } catch (e) {} $('#skip').hidden = false; act = 4;
   }
   function diploma() {
     var c = $('#dip-c'), x = c.getContext('2d'), st = { s: 40, k: 523 }; try { st = JSON.parse(localStorage.getItem('vxp_stats')) || st; } catch (e) {}
-    var es = lang === 'es', F = '"Space Mono", monospace'; x.textAlign = 'center'; x.fillStyle = '#121212'; x.fillRect(0, 0, 900, 560); x.strokeStyle = '#bb86fc'; x.lineWidth = 6; x.strokeRect(24, 24, 852, 512); x.lineWidth = 1; x.strokeRect(40, 40, 820, 480);
+    var es = lang === 'es', F = '"Space Mono", monospace'; x.textAlign = 'center'; x.fillStyle = '#121212'; x.fillRect(0, 0, 900, 560); x.strokeStyle = RC[rarity()]; x.lineWidth = 6; x.strokeRect(24, 24, 852, 512); x.lineWidth = 1; x.strokeRect(40, 40, 820, 480);
     x.fillStyle = '#bb86fc'; x.font = 'bold 54px ' + F; x.fillText('VXP', 450, 120); x.fillStyle = '#fff'; x.font = 'bold 32px ' + F; x.fillText(es ? 'CAZADOR DE SECRETOS' : 'SECRET HUNTER', 450, 190);
     x.fillStyle = '#a0a0a0'; x.font = '20px ' + F; x.fillText(es ? 'Este diploma certifica que' : 'This diploma certifies that', 450, 250);
     x.fillStyle = '#fff'; x.font = 'bold 40px ' + F; x.fillText($('#dip-name').value.trim() || (es ? 'Visitante misterioso' : 'Mysterious visitor'), 450, 310);
     x.fillStyle = '#a0a0a0'; x.font = '18px ' + F; x.fillText(es ? 'abrió la bóveda: ' + st.s + ' secretos, ' + st.k + ' llaves y 10 retos' : 'opened the vault: ' + st.s + ' secrets, ' + st.k + ' keys and 10 challenges', 450, 370);
-    x.fillText(new Date().toLocaleDateString(es ? 'es-MX' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' }), 450, 420); x.fillStyle = '#bb86fc'; x.fillText('🗝  vxp-web.github.io  🦉', 450, 490);
+    x.fillText(new Date().toLocaleDateString(es ? 'es-MX' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' }), 450, 420); x.fillStyle = RC[rarity()]; x.font = 'bold 24px ' + F; x.fillText('★ ' + rankName() + ' ★', 450, 458); x.fillStyle = '#bb86fc'; x.font = '18px ' + F; x.fillText('🗝  vxp-web.github.io  🦉', 450, 500);
   }
   $('#f-dip').onclick = function () { $('#dip').hidden = false; diploma(); };
   $('#dip-x').onclick = function () { $('#dip').hidden = true; }; $('#dip-name').oninput = diploma;
@@ -311,6 +311,8 @@
   function perf() { var p = { f: 0, h: 0 }; try { p = JSON.parse(localStorage.getItem('vxp_perf')) || p; } catch (e) {} return p; }
   function rarity() { var p = perf(), sc = p.f + 2 * p.h; return sc === 0 ? 3 : sc <= 8 ? 2 : sc <= 25 ? 1 : 0; }
   var RN = { es: ['Bronce', 'Plata', 'Oro', 'Obsidiana'], en: ['Bronze', 'Silver', 'Gold', 'Obsidian'] }, RC = ['#cd7f32', '#d0d4dc', '#ffd166', '#bb86fc'];
+  var RK = { es: ['Aprendiz', 'Cazador', 'Maestre de llaves', 'Maestre de llaves'], en: ['Apprentice', 'Hunter', 'Keymaster', 'Keymaster'] };
+  function rankName() { var r = rarity(); return RK[lang][r] + (r === 3 ? (lang === 'es' ? ' · sin errores' : ' · flawless') : ''); }
   function ccode(n) { var s = n + new Date().toISOString().slice(0, 10) + JSON.stringify(perf()), h = 7; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return 'VXP-' + h.toString(36).toUpperCase().slice(0, 4) + '-' + (h % 90 + 10); }
   function drawCard() {
     var c = $('#crd-c'), x = c.getContext('2d'), es = lang === 'es', r = rarity(), col = RC[r], p = perf(), st = { s: 40, k: 523 }, name = $('#crd-name').value.trim() || (es ? 'Visitante misterioso' : 'Mysterious visitor'), F = '"Space Mono", monospace';
