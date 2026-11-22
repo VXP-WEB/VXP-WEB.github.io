@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Música — VXP</title>
-    <meta name="description" content="Mi música propia.">
+    <meta name="description" content="Mi música propia. Estreno: Lack of Chemistry, una canción instrumental.">
     <link rel="canonical" href="https://vxp-web.github.io/musica.html">
     <link rel="icon" type="image/x-icon" href="/vxp.ico">
 
@@ -12,7 +12,7 @@
     <meta property="og:site_name" content="VXP">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Música — VXP">
-    <meta property="og:description" content="Mi música propia.">
+    <meta property="og:description" content="Mi música propia. Estreno: Lack of Chemistry, una canción instrumental.">
     <meta property="og:url" content="https://vxp-web.github.io/musica.html">
     <meta property="og:image" content="https://vxp-web.github.io/vxp.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -23,7 +23,6 @@
 
     <!-- Contador de visitas -->
     <script data-goatcounter="https://vxp-web.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <meta name="robots" content="noindex">
 </head>
 <body>
     <header class="site-header">
@@ -42,13 +41,32 @@
     </header>
 
     <main>
-        <section class="construction">
-            <h1>Música</h1>
-            <p>Aquí publicaré mi música propia, que todavía está en proceso.</p>
-            <p>Si buscas lo que escucho, mis playlists están en <a href="about.html" class="buy-link">Sobre el proyecto</a>.</p>
-            <p>Suscríbete abajo para enterarte cuando haya novedades.</p>
-        </section>
+        <h1>Música</h1>
+        <p>Mi música propia. Mis playlists, lo que escucho, están en <a href="about.html" class="buy-link">Sobre el proyecto</a>.</p>
+
+        <article class="post-preview song-card">
+            <h2 class="post-title">Lack of Chemistry</h2>
+            <div class="post-date">22 de Noviembre, 2026<span class="tag">Música</span></div>
+            <div class="yt" id="yt-box">
+                <button type="button" class="yt-play" id="yt-btn" aria-label="Reproducir Lack of Chemistry">
+                    <span class="yt-icon">▶</span><span>Reproducir</span>
+                </button>
+            </div>
+            <p>Iba a ser una canción de post-punk, hecha como meme para un amigo. Pero me dio por hacer lo que me pidieran las ganas, y esto fue lo que salió. Es instrumental, sin letra, solo con voces de mujer que cantan «ooohhh». La hice y la terminé el 22 de noviembre de 2026, y es la primera canción que publico aquí.</p>
+            <p><a href="https://youtu.be/I4xM61NBlYc" target="_blank" rel="noopener noreferrer" class="buy-link">Verla en YouTube</a></p>
+        </article>
     </main>
+    <script>
+    (function () {
+        var b = document.getElementById('yt-btn'); if (!b) return;
+        b.addEventListener('click', function () {
+            var f = document.createElement('iframe');
+            f.src = 'https://www.youtube-nocookie.com/embed/I4xM61NBlYc?autoplay=1&rel=0';
+            f.title = 'Lack of Chemistry'; f.allow = 'autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen = true; f.setAttribute('loading', 'lazy');
+            var box = document.getElementById('yt-box'); box.innerHTML = ''; box.appendChild(f);
+        });
+    })();
+    </script>
 
     <section class="newsletter-card">
         <h2>Suscríbete a la Bitácora</h2>

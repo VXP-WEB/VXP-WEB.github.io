@@ -141,6 +141,11 @@ html[data-theme="rayados"]{--bg-color:#06101f;--card-bg:#0b1c36;--text-color:#f2
 .theme-card:disabled{opacity:.45;cursor:default}
 .sw{display:flex;height:28px;border-radius:6px;overflow:hidden;margin-bottom:10px;border:1px solid #333}
 .sw i{flex:1}
+.yt{position:relative;width:100%;aspect-ratio:16/9;margin:10px 0 16px;border-radius:8px;overflow:hidden;border:1px solid var(--border-color);background:radial-gradient(circle at 30% 30%,rgba(187,134,252,.25),#0b0b10 70%)}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt-play{position:absolute;inset:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:transparent;border:none;color:#fff;font-family:inherit;font-size:.9rem;cursor:pointer}
+.yt-icon{display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background-color:var(--accent-color);color:#121212;font-size:1.6rem;padding-left:4px;transition:transform .2s ease}
+.yt-play:hover .yt-icon{transform:scale(1.1)}
 footer{margin-top:60px;border-top:1px solid var(--border-color);padding-top:20px;font-size:.8rem;color:var(--muted-color);text-align:center}
 .error-page{text-align:center;padding:40px 0}
 .error-page h1{font-size:4rem;margin:0}
